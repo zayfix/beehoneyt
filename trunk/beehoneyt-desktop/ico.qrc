@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="ruches.png">ico/ruches.png</file>
+        <file alias="ruches_gris.png">ico/ruches_gris.png</file>
+        <file alias="graphiques.png">ico/graphiques.png</file>
+        <file alias="graphiques_gris.png">ico/graphiques_gris.png</file>
+        <file alias="alertes.png">ico/alertes.png</file>
+        <file alias="alertes_gris.png">ico/alertes_gris.png</file>
+        <file alias="settings.png">ico/settings.png</file>
+        <file alias="settings_gris.png">ico/settings_gris.png</file>
+        <file alias="view_all.png">ico/view_all.png</file>
+        <file alias="view_all_gris.png">ico/view_all_gris.png</file>
+    </qresource>
+</RCC>
