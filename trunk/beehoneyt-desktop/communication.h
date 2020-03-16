@@ -30,7 +30,7 @@ public:
     Communication(QObject *parent = nullptr);
     ~Communication();
 
-    void connexionTTN(QString hostname, int port, QString username, QString password);
+    void connecterTTN(QString hostname, int port, QString username, QString password);
     void souscrireTopic(QString topic);
 
 private:
@@ -42,7 +42,7 @@ private:
 
 public slots:
     void decoderJson(const QByteArray &json);
-    void changementEtat();
+    void changerEtatConnexion();
 
 signals:
     void nouvelleValeurEnsoleillement(int ensoleillement);
@@ -50,6 +50,7 @@ signals:
     void nouvelleValeurHumidite(double humidite);
     void nouvelleValeurPression(int pression);
     void nouvelleValeurPoids(int poids);
+    void nouvelEtatConnexion(int etat);
 };
 
 #endif // COMMUNICATION_H

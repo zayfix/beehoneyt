@@ -195,6 +195,19 @@
              </spacer>
             </item>
             <item>
+             <widget class="QLabel" name="label_etat_connexion">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="ico.qrc">:/off.png</pixmap>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="Line" name="ligne_horizontale_version">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -220,6 +233,7 @@
            <zorder>ligne_horizontale_version</zorder>
            <zorder>pushButton_alertes</zorder>
            <zorder>pushButton_reglage_ttn</zorder>
+           <zorder>label_etat_connexion</zorder>
           </widget>
          </item>
         </layout>
@@ -227,7 +241,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>5</number>
          </property>
          <widget class="QWidget" name="ruches">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -644,6 +658,9 @@
                <property name="text">
                 <string>Réglages de TTN</string>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
               </widget>
              </item>
              <item>
@@ -671,14 +688,14 @@
                <item>
                 <widget class="QLabel" name="label_8">
                  <property name="text">
-                  <string>Host:</string>
+                  <string>Host :</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLineEdit" name="lineEdit_host">
                  <property name="text">
-                  <string>eu.thethings.network</string>
+                  <string/>
                  </property>
                 </widget>
                </item>
@@ -701,7 +718,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>Port:</string>
+                  <string>Port :</string>
                  </property>
                 </widget>
                </item>
@@ -731,14 +748,14 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>Username:</string>
+                  <string>Username :</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLineEdit" name="lineEdit_username">
                  <property name="text">
-                  <string>mes_ruches</string>
+                  <string/>
                  </property>
                 </widget>
                </item>
@@ -755,14 +772,14 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string>Password:</string>
+                  <string>Password :</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QLineEdit" name="lineEdit_password">
                  <property name="text">
-                  <string>ttn-account-v2.vC-aqMRnLLzGkNjODWgy81kLqzxBPAT8_mE-L7U2C_w</string>
+                  <string/>
                  </property>
                 </widget>
                </item>
@@ -786,7 +803,7 @@
                <item>
                 <widget class="QPushButton" name="pushButton_connexion_ttn">
                  <property name="text">
-                  <string>Connexion</string>
+                  <string>Connecter</string>
                  </property>
                 </widget>
                </item>
@@ -798,58 +815,6 @@
                 <enum>Qt::Horizontal</enum>
                </property>
               </widget>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_10">
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_18">
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="label_12">
-                   <property name="text">
-                    <string>Topic:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="lineEdit_topic">
-                   <property name="text">
-                    <string>mes_ruches/devices/ruche_1/up</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_22">
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <spacer name="horizontalSpacer_4">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_subscribe_ttn">
-                   <property name="text">
-                    <string>S'abonner</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
              </item>
             </layout>
            </item>
@@ -871,6 +836,8 @@
    <header>qchart.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="ico.qrc"/>
+ </resources>
  <connections/>
 </ui>

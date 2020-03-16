@@ -37,17 +37,20 @@ HEADERS += \
     communication.h \
     nouvelleruche.h \
     reglageruche.h \
-    configuration.h
+    configuration.h \
+    ruche.h
 
 FORMS += \
         ihm.ui \
     nouvelleruche.ui \
     reglageruche.ui
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
-
 RESOURCES += \
     ico.qrc
+
+COPIES += configuration
+configuration.files = configuration.ini
+configuration.path = $$OUT_PWD/
+configuration.base = $$PWD/
+
+CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT

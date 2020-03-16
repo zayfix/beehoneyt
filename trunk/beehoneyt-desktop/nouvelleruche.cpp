@@ -1,5 +1,8 @@
 #include "nouvelleruche.h"
 #include "ui_nouvelleruche.h"
+#include <QPushButton>
+#include <QMessageBox>
+#include <QDebug>
 
 IHMNouvelleRuche::IHMNouvelleRuche(QWidget *parent) :
     QDialog(parent),
@@ -7,6 +10,9 @@ IHMNouvelleRuche::IHMNouvelleRuche(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->dateEdit_mise_en_service->setDate(QDate::currentDate());
+    QPushButton *ok = ui->buttonBox->button(QDialogButtonBox::Ok);
+    ok->setEnabled(false);
+    connect(ui->lineEdit_ttn, SIGNAL(textChanged(QString)), this, SLOT(verifier()));
 }
 
 IHMNouvelleRuche::~IHMNouvelleRuche()
@@ -14,13 +20,34 @@ IHMNouvelleRuche::~IHMNouvelleRuche()
     delete ui;
 }
 
+void IHMNouvelleRuche::closeEvent(QCloseEvent *event)
+{
+    qDebug() << Q_FUNC_INFO;
+    if(ui->lineEdit_ttn->text().isEmpty())
+        event->ignore();
+}
+
 void IHMNouvelleRuche::on_buttonBox_accepted()
 {
-    if(ui->lineEdit_ttn->text().isEmpty())
-        QMessageBox::warning(this,"","Le TTN ne peut être nul !");
-        /**
-         * @todo Faire en sorte que ça ne ferme pas la fenêtre de création de ruche
-         */
+    Ruche ruche;
+    ruche.nom = ui->lineEdit_nom->text();
+    ruche.topicTTN = ui->lineEdit_ttn->text();
+    ruche.adresse = ui->lineEdit_adresse->text();
+    ruche.miseEnService = ui->dateEdit_mise_en_service->date().toString("dd/MM/yyyy");
+    ruche.latitude = ui->lineEdit_latitude->text();
+    ruche.longitude = ui->lineEdit_longitude->text();
+    emit nouvelleRuche(ruche);
+}
+
+void IHMNouvelleRuche::verifier()
+{
+    QPushButton *ok = ui->buttonBox->button(QDialogButtonBox::Ok);
+    if(!ui->lineEdit_ttn->text().isEmpty())
+    {
+        ok->setEnabled(true);
+    }
     else
-        emit nouvelleRuche(ui->lineEdit_nom->text(),ui->lineEdit_ttn->text());
+    {
+        ok->setEnabled(false);
+    }
 }

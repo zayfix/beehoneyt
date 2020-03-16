@@ -1,51 +1,114 @@
 #include "configuration.h"
 
-Configuration::Configuration(QObject *parent) : QObject(parent)
+Configuration::Configuration(QObject *parent) : QObject(parent), settings(QDir::currentPath() + "/configuration.ini", QSettings::IniFormat)
 {
-    if(!fichierExistant())
-    {
-        QSettings* settings = new QSettings(QDir::currentPath() + "/configuration.ini", QSettings::IniFormat);
-        QString temps = QDateTime::currentDateTime().toString();
-        settings->setValue("Date_creation_du_fichier", temps);
-        settings->sync();
-        qDebug() << Q_FUNC_INFO << "Fichier crée.";
-    }
+    qDebug() << Q_FUNC_INFO;
+    charger();
 }
 
 Configuration::~Configuration()
 {
-
+    sauvegarder();
+    qDebug() << Q_FUNC_INFO;
 }
 
-void Configuration::sauvegarderConfigurationTTN(QString hostname, int port, QString username, QString password)
+ConfigurationTTN Configuration::getConfigurationTTN() const
 {
-    QSettings* settings = new QSettings(QDir::currentPath() + "/configuration.ini", QSettings::IniFormat);
-    settings->beginGroup("TTN");
-    settings->setValue("Hostname",hostname);
-    settings->setValue("Port",port);
-    settings->setValue("Username",username);
-    settings->setValue("Password",password);
-    settings->endGroup();
-    settings->sync();
+    return configurationTTN;
 }
 
-void Configuration::sauvegarderValeursRuches()
+QVector<Ruche> Configuration::getRuches() const
 {
-
+    return ruches;
 }
 
-bool Configuration::fichierExistant()
+void Configuration::setConfigurationTTN(ConfigurationTTN configurationTTN)
 {
-    QString fileName("./configuration.ini");
-    QFile file(fileName);
-    if(QFileInfo::exists(fileName))
+    this->configurationTTN = configurationTTN;
+}
+
+void Configuration::setConfigurationTTN(QString hostname, int port, QString username, QString password)
+{
+    configurationTTN.hostname = hostname;
+    configurationTTN.port = port;
+    configurationTTN.username = username;
+    configurationTTN.password = password;
+    qDebug() << Q_FUNC_INFO << configurationTTN.hostname << configurationTTN.port <<  configurationTTN.username << configurationTTN.password;
+}
+
+void Configuration::setRuches(QVector<Ruche> ruches)
+{
+    this->ruches = ruches;
+}
+
+void Configuration::charger()
+{
+    qDebug() << Q_FUNC_INFO << settings.allKeys() << settings.childKeys();
+    chargerConfigurationTTN();
+    chargerRuches();
+}
+
+void Configuration::chargerConfigurationTTN()
+{
+    settings.beginGroup("TTN");
+    configurationTTN.hostname = settings.value("Hostname").toString();
+    configurationTTN.port = settings.value("Port").toInt();
+    configurationTTN.username = settings.value("Username").toString();
+    configurationTTN.password = settings.value("Password").toString();
+    settings.endGroup();
+    settings.sync();
+    qDebug() << Q_FUNC_INFO << configurationTTN.hostname << configurationTTN.port <<  configurationTTN.username << configurationTTN.password;
+}
+
+void Configuration::chargerRuches()
+{
+    int nbRuches = settings.value("NbRuches", 0).toInt();
+    qDebug() << Q_FUNC_INFO << nbRuches;
+    for(int i = 0; i < nbRuches; i++)
     {
-        qDebug() << Q_FUNC_INFO << "Le fichier de configuration existe.";
-        return true;
+        Ruche ruche;
+        QString nomRuche = "Ruche" + QString::number(i+1);
+        settings.beginGroup(nomRuche);
+        ruche.nom = settings.value("Nom").toString();
+        ruche.topicTTN = settings.value("TopicTTN").toString();
+        /**
+          * @todo Charger l'ensemble des paramètres d'une ruche
+          */
+        settings.endGroup();
+        ruches.push_back(ruche);
     }
-    else
+}
+
+void Configuration::sauvegarder()
+{
+    qDebug() << Q_FUNC_INFO;
+    sauvegarderConfigurationTTN();
+    sauvegarderRuches();
+}
+
+void Configuration::sauvegarderConfigurationTTN()
+{
+    settings.beginGroup("TTN");
+    settings.setValue("Hostname", configurationTTN.hostname);
+    settings.setValue("Port", configurationTTN.port);
+    settings.setValue("Username", configurationTTN.username);
+    settings.setValue("Password", configurationTTN.password);
+    settings.endGroup();
+}
+
+void Configuration::sauvegarderRuches()
+{
+    qDebug() << Q_FUNC_INFO << ruches.size();
+    for(int i = 0; i < ruches.size(); i++)
     {
-        qDebug() << Q_FUNC_INFO << "Le fichier de configuration n'existe pas, création du fichier..";
-        return false;
+        QString nomRuche = "Ruche" + QString::number(i+1);
+        settings.beginGroup(nomRuche);
+        settings.setValue("Nom", ruches[0].nom);
+        settings.setValue("TopicTTN", ruches[0].topicTTN);
+        /**
+          * @todo Sauvegarder l'ensemble des paramètres d'une ruche
+          */
+        settings.endGroup();
     }
+    settings.setValue("NbRuches", ruches.size());
 }

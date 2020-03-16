@@ -4,6 +4,7 @@
 #include "reglageruche.h"
 #include "communication.h"
 #include "configuration.h"
+#include <QDebug>
 
 /**
  * @file    Ihm.cpp
@@ -17,10 +18,12 @@
  * @fn Ihm::Ihm
  * @param parent
  */
-Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), communication(new Communication()), configuration(new Configuration())
+Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
 {
     ui->setupUi(this);
+    qDebug() << Q_FUNC_INFO;
 
+    chargerConfiguration();
     chargerIconesBoutons();
 
     ui->comboBox_liste_ruches->addItem("Nom de la ruche");
@@ -30,23 +33,13 @@ Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(
     ui->comboBox_reglages_graphiques->addItem("1 jour");
     ui->comboBox_reglages_graphiques->addItem("7 jours");
 
-    connect(ui->comboBox_reglages_graphiques, SIGNAL(currentIndexChanged(int)), SLOT(changerAbscisseGraphiques()));
-    connect(ui->comboBox_donnees_affiche, SIGNAL(currentIndexChanged(int)), SLOT(changerDonneesVueGlobal()));
-
-    connect(this, SIGNAL(sauvegarderConfigurationTTN(QString,int,QString,QString)), configuration, SLOT(sauvegarderConfigurationTTN(QString,int,QString,QString)));
-
-    // Ajouter une nouvelle ruche
-    connect(ihmNouvelleRuche, SIGNAL(nouvelleRuche(QString,QString)), this, SLOT(ajouterNouvelleRuche(QString,QString)));
-
-    //Afficher valeur reçu
-    connect(communication, SIGNAL(nouvelleValeurTemperature(double)), this, SLOT(setValeurTemperatureInterieure(double)));
-    //connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(double)), this, SLOT(setValeurTemperatureExterieure(double)));
-    connect(communication, SIGNAL(nouvelleValeurHumidite(double)), this, SLOT(setValeurHumidite(double)));
-    connect(communication, SIGNAL(nouvelleValeurEnsoleillement(int)), this, SLOT(setValeurEnsoleillement(int)));
-    connect(communication, SIGNAL(nouvelleValeurPression(int)), this, SLOT(setValeurPression(int)));
-    connect(communication, SIGNAL(nouvelleValeurPoids(int)), this, SLOT(setValeurPoids(int)));
+    initialiserEvenements();
 
     //demarrerGraphiques();
+
+    demarrerTTN();
+
+    showMaximized();
 }
 
 /**
@@ -57,9 +50,8 @@ Ihm::~Ihm()
 {
     delete ihmNouvelleRuche;
     delete ihmReglageRuche;
-    delete communication;
-    delete configuration;
     delete ui;
+    qDebug() << Q_FUNC_INFO;
 }
 
 /**
@@ -143,6 +135,8 @@ void Ihm::on_pushButton_alertes_clicked()
  */
 void Ihm::on_pushButton_reglage_ttn_clicked()
 {
+    chargerConfiguration();
+
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_REGLAGES_TTN);
     ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings.png"));
 
@@ -158,16 +152,7 @@ void Ihm::on_pushButton_reglage_ttn_clicked()
  */
 void Ihm::on_pushButton_connexion_ttn_clicked()
 {
-    communication->connexionTTN(ui->lineEdit_host->text(), ui->spinBox_port->value(), ui->lineEdit_username->text(), ui->lineEdit_password->text());
-}
-
-/**
- * @brief Bouton qui permet de s'abonner à un topic TTN
- * @fn Ihm::on_pushButton_subscribe_ttn_clicked()
- */
-void Ihm::on_pushButton_subscribe_ttn_clicked()
-{
-    communication->souscrireTopic(ui->lineEdit_topic->text());
+    communication->connecterTTN(ui->lineEdit_host->text(), ui->spinBox_port->value(), ui->lineEdit_username->text(), ui->lineEdit_password->text());
 }
 
 /**
@@ -377,6 +362,30 @@ void Ihm::changerDonneesVueGlobal()
 }
 
 /**
+ * @brief Change l'état de connexion TTN dans l'IHM
+ * @fn Ihm::changerEtatConnexion(int etat)
+ * @param etat
+ */
+void Ihm::changerEtatConnexion(int etat)
+{
+    switch(etat)
+    {
+        case 0:
+            ui->label_etat_connexion->setPixmap(QPixmap(":/off.png"));
+            ui->pushButton_connexion_ttn->setText("Connecter");
+            break;
+        case 1:
+            //ui->label_etat_connexion->setPixmap(QPixmap(":/on.png")); // mettre orange
+            break;
+        case 2:
+            ui->label_etat_connexion->setPixmap(QPixmap(":/on.png"));
+            ui->pushButton_connexion_ttn->setText("Déconnecter");
+            connecterRuches();
+            break;
+    }
+}
+
+/**
  * @brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
  * @fn Ihm::closeEvent
  * @param event
@@ -435,6 +444,24 @@ void Ihm::initialiserWidgets()
 void Ihm::initialiserEvenements()
 {
     connect(ui->comboBox_reglages_graphiques, SIGNAL(currentIndexChanged(int)), SLOT(changerAbscisseGraphiques()));
+    connect(ui->comboBox_donnees_affiche, SIGNAL(currentIndexChanged(int)), SLOT(changerDonneesVueGlobal()));
+
+    // Configuration
+    connect(this, SIGNAL(sauvegarderConfigurationTTN(QString,int,QString,QString)), configuration, SLOT(setConfigurationTTN(QString,int,QString,QString)));
+
+    // Ajouter une nouvelle ruche
+    connect(ihmNouvelleRuche, SIGNAL(nouvelleRuche(Ruche)), this, SLOT(ajouterNouvelleRuche(Ruche)));
+
+    // Afficher valeur reçue TTN
+    connect(communication, SIGNAL(nouvelleValeurTemperature(double)), this, SLOT(setValeurTemperatureInterieure(double)));
+    //connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(double)), this, SLOT(setValeurTemperatureExterieure(double)));
+    connect(communication, SIGNAL(nouvelleValeurHumidite(double)), this, SLOT(setValeurHumidite(double)));
+    connect(communication, SIGNAL(nouvelleValeurEnsoleillement(int)), this, SLOT(setValeurEnsoleillement(int)));
+    connect(communication, SIGNAL(nouvelleValeurPression(int)), this, SLOT(setValeurPression(int)));
+    connect(communication, SIGNAL(nouvelleValeurPoids(int)), this, SLOT(setValeurPoids(int)));
+
+    // Communication
+    connect(communication, SIGNAL(nouvelEtatConnexion(int)), this, SLOT(changerEtatConnexion(int)));
 }
 
 /**
@@ -464,7 +491,6 @@ void Ihm::initialiserEntreeBarreEtatSysteme()
     menuEtatSysteme->addAction(actionQuitter);
 
     // Crée l'entrée pour la barre d'état système
-    iconeEtatSysteme = new QSystemTrayIcon(this);
     iconeEtatSysteme->setContextMenu(menuEtatSysteme);
     iconeEtatSysteme->setToolTip(NOM_APPLICATION);
     // Crée l'icône pour la barre d'état système
@@ -516,10 +542,43 @@ void Ihm::on_pushButton_enregistrer_configuration_ttn_clicked()
     emit sauvegarderConfigurationTTN(ui->lineEdit_host->text(), ui->spinBox_port->value(), ui->lineEdit_username->text(), ui->lineEdit_password->text());
 }
 
-void Ihm::ajouterNouvelleRuche(QString nom, QString ttn)
+void Ihm::ajouterNouvelleRuche(Ruche ruche)
 {
+    qDebug() << Q_FUNC_INFO << ruche.nom << ruche.topicTTN;
     if(ui->comboBox_liste_ruches->currentText() == "Nom de la ruche")
         ui->comboBox_liste_ruches->clear();
-    ui->comboBox_liste_ruches->addItem(nom);
-    communication->souscrireTopic(ttn);
+    ui->comboBox_liste_ruches->addItem(ruche.nom);
+    communication->souscrireTopic(ruche.topicTTN);
+    ruches.push_back(ruche);
+    configuration->setRuches(ruches);
+}
+
+void Ihm::chargerConfiguration()
+{
+    ConfigurationTTN configurationTTN = configuration->getConfigurationTTN();
+    ui->lineEdit_host->setText(configurationTTN.hostname);
+    ui->spinBox_port->setValue(configurationTTN.port);
+    ui->lineEdit_username->setText(configurationTTN.username);
+    ui->lineEdit_password->setText(configurationTTN.password);
+
+    ruches = configuration->getRuches();
+}
+
+void Ihm::demarrerTTN()
+{
+    ConfigurationTTN configurationTTN = configuration->getConfigurationTTN();
+    communication->connecterTTN(configurationTTN.hostname, configurationTTN.port, configurationTTN.username, configurationTTN.password);
+}
+
+void Ihm::connecterRuches()
+{
+    qDebug() << Q_FUNC_INFO << ruches.size();
+    if(ruches.size() > 0)
+        ui->comboBox_liste_ruches->clear();
+    for(int i = 0; i < ruches.size(); i++)
+    {
+        qDebug() << Q_FUNC_INFO << ruches[0].nom << ruches[0].topicTTN;
+        communication->souscrireTopic(ruches[0].topicTTN);
+        ui->comboBox_liste_ruches->addItem(ruches[0].nom);
+    }
 }

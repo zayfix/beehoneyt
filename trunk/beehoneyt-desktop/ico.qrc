@@ -10,5 +10,7 @@
         <file alias="settings_gris.png">ico/settings_gris.png</file>
         <file alias="view_all.png">ico/view_all.png</file>
         <file alias="view_all_gris.png">ico/view_all_gris.png</file>
+        <file alias="on.png">ico/on.png</file>
+        <file alias="off.png">ico/off.png</file>
     </qresource>
 </RCC>

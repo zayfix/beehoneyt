@@ -12,7 +12,7 @@
 #include <QSystemTrayIcon>
 #include <QtCharts>
 #include <QMessageBox>
-#include <QDebug>
+#include "ruche.h"
 
 #define NOM_APPLICATION     "Bee Honey't"
 #define VERSION_APPLICATION "v0.1"
@@ -85,13 +85,13 @@ private slots:
     void on_pushButton_supprimer_ruche_clicked();
     void on_pushButton_reglage_ttn_clicked();
     void on_pushButton_connexion_ttn_clicked();
-    void on_pushButton_subscribe_ttn_clicked();
     void on_pushButton_enregistrer_configuration_ttn_clicked();
 
     void changerAbscisseGraphiques();
     void changerDonneesVueGlobal();
+    void changerEtatConnexion(int etat);
 
-    void ajouterNouvelleRuche(QString, QString);
+    void ajouterNouvelleRuche(Ruche ruche);
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -103,11 +103,16 @@ private:
     QSystemTrayIcon *iconeEtatSysteme; //!< entrée dans la barre d'état du système
     Communication *communication;
     Configuration *configuration;
+    QVector<Ruche> ruches; //!< les ruches
 
     void chargerIconesBoutons();
     void initialiserWidgets();
     void initialiserEvenements();
     void initialiserEntreeBarreEtatSysteme();
+
+    void chargerConfiguration();    
+    void demarrerTTN();
+    void connecterRuches();
 
 signals:
     void sauvegarderConfigurationTTN(QString hostname, int port, QString username, QString password);

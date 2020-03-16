@@ -1,32 +1,47 @@
 #include "communication.h"
 #include "ihm.h"
+#include <QDebug>
 
 Communication::Communication(QObject *parent) : QObject(parent), client(new QMqttClient(this))
 {
-    connect(client, SIGNAL(stateChanged(ClientState)), this, SLOT(changementEtat()));
+    qDebug() << Q_FUNC_INFO;
+    connect(client, SIGNAL(stateChanged(ClientState)), this, SLOT(changerEtatConnexion()));
     connect(client, SIGNAL(messageReceived(const QByteArray &, const QMqttTopicName &)), this, SLOT(decoderJson(const QByteArray &)));
 }
 
 Communication::~Communication()
 {
-    client->disconnectFromHost();
-    delete client;
+    if(client->state() == QMqttClient::Connected)
+    {
+        client->disconnectFromHost();
+    }
+    qDebug() << Q_FUNC_INFO;
 }
 
-void Communication::connexionTTN(QString hostname, int port, QString username, QString password)
+void Communication::connecterTTN(QString hostname, int port, QString username, QString password)
 {
-    client->setHostname(hostname);
-    client->setPort(port);
-    client->setUsername(username);
-    client->setPassword(password);
-    client->connectToHost();
     qDebug() << Q_FUNC_INFO << hostname << port << username << password;
+    if(client->state() == QMqttClient::Disconnected)
+    {
+        client->setHostname(hostname);
+        client->setPort(port);
+        client->setUsername(username);
+        client->setPassword(password);
+        client->connectToHost();
+    }
+    else if(client->state() == QMqttClient::Connected)
+    {
+        client->disconnectFromHost();
+    }
 }
 
 void Communication::souscrireTopic(QString topic)
 {
-    subscription = client->subscribe(QMqttTopicFilter(topic));
-    qDebug() << Q_FUNC_INFO << topic;
+    if(client->state() == QMqttClient::Connected)
+    {
+        subscription = client->subscribe(QMqttTopicFilter(topic));
+        qDebug() << Q_FUNC_INFO << topic;
+    }
 }
 
 void Communication::decoderJson(const QByteArray &json)
@@ -85,14 +100,21 @@ void Communication::decoderJson(const QByteArray &json)
     }
 }
 
-void Communication::changementEtat()
+void Communication::changerEtatConnexion()
 {
     QString message;
     switch(client->state())
     {
-        case 0: message = "Déconnecté"; break;
-        case 1: message = "En cours de connexion"; break;
-        case 2: message = "Connecté"; break;
+        case 0:
+            message = "Déconnecté";
+            break;
+        case 1:
+            message = "En cours de connexion";
+            break;
+        case 2:
+            message = "Connecté";
+            break;
     }
     qDebug()<< Q_FUNC_INFO << client->state() << message;
+    emit nouvelEtatConnexion(client->state());
 }
