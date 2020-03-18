@@ -1,6 +1,7 @@
 package com.lasalle.beehoneyt;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.List;
 
@@ -19,9 +21,7 @@ public class RucheAdapter extends RecyclerView.Adapter<RuchesViewHolder>
 {
     private static final String TAG = "RucheAdapter";
     private  Context mContext;
-
     private List<Ruche> ruches = null;
-
 
     public RucheAdapter(Context context, List<Ruche> ruches)
     {
@@ -29,7 +29,6 @@ public class RucheAdapter extends RecyclerView.Adapter<RuchesViewHolder>
         {
             this.ruches = ruches;
             mContext = context;
-
         }
     }
 
@@ -53,9 +52,11 @@ public class RucheAdapter extends RecyclerView.Adapter<RuchesViewHolder>
             @Override
             public  void onClick(View view) {
                 Log.d(TAG, "onClick: click sur : " + ruche);
-
                 Toast.makeText(mContext, ruche.getNom(), Toast.LENGTH_SHORT).show();
 
+                Intent intent = new Intent(mContext, RucheActivity.class);
+                intent.putExtra("Ruche", (Serializable) ruche);
+                mContext.startActivity(intent);
             }
         });
     }

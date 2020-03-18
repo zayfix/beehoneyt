@@ -5,34 +5,53 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * @file MainActivity.java
+ * @brief Déclaration de la classe MainActivity
+ * @author Ethan VILLESSECHE
+ */
 
+/**
+ * @class MainActivity
+ * @brief Déclaration de la classe MainActivity
+ */
+public class MainActivity extends AppCompatActivity
+{
+    /**
+     * Constantes
+     */
     private static final String TAG = "MainActivity";
-    
-    private static final int NB_RUCHE = 5;
+    private static final int NB_RUCHES = 5; //!< le nombre max. de ruches
 
+    /**
+     * Attributs
+     */
+    private List<Ruche> ruches = new ArrayList<>(); //!< la liste des ruches connues
+
+    /**
+     * Ressources graphiques
+     */
     private RecyclerView recyclerView; // la vue
     private RecyclerView.Adapter adapter; // l'adaptateur
     private RecyclerView.LayoutManager layoutManager; // le gestionnaire de mise en page
-    private List<Ruche> ruches = new ArrayList<>();
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    /**
+     * @brief Méthode appelée à la création de l'activité MainActivity
+     *
+     * @fn MainActivity::onCreate(Bundle savedInstanceState)
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: started");
@@ -43,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh()
             {
-                recupererDonnees();
+                recupererRuches();
             }
         });
 
@@ -56,32 +75,40 @@ public class MainActivity extends AppCompatActivity {
         adapter = new RucheAdapter(this, ruches);
         recyclerView.setAdapter(adapter);
 
-        recupererDonnees();
+        recupererRuches();
     }
 
-    private void recupererDonnees() {
-        final int nb = NB_RUCHE;
-        List<Ruche> tous = Arrays.asList(
-                new Ruche("Simu", "Alexis", 1148),
-                new Ruche("Ruche_2", "Aleksander Aamodt", 1122),
-                new Ruche("Ruche_3", "Henrik", 475),
-                new Ruche("Ruche_4", "Aamodt", 570),
-                new Ruche("Ruche_5", "Thomas", 465)
+    /**
+     * @brief Méthode pour récupérer les ruches
+     *
+     * @fn MainActivity::recupererRuches()
+     */
+    private void recupererRuches()
+    {
+        List<Ruche> listeRuches = Arrays.asList(
+                new Ruche("Ruche_Alexis", "Alexis", 1148),
+                new Ruche("ruche_1", "Simulateur", 1122),
+                new Ruche("ruche_2", "Simulateur", 475),
+                new Ruche("ruche_3", "Simulateur", 570)
         );
 
         ruches.clear();
-        for(int i =0; i < nb; i++)
+        for(int i = 0; i < listeRuches.size(); i++)
         {
-            ruches.add(tous.get(i));
+            ruches.add(listeRuches.get(i));
         }
 
         rafraichir(ruches);
     }
 
+    /**
+     * @brief Méthode pour rafraîchir la liste des ruches connues
+     *
+     * @fn MainActivity::rafraichir(List<Ruche> ruches)
+     */
     private void rafraichir(List<Ruche> ruches)
     {
         swipeRefreshLayout.setRefreshing(false);
         adapter.notifyDataSetChanged();
     }
-
 }

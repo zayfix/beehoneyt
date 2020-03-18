@@ -1,50 +1,80 @@
 package com.lasalle.beehoneyt;
 
-public class Ruche {
+/**
+ * @file Ruche.java
+ * @brief Déclaration de la classe Ruche
+ * @author Ethan VILLESSECHE
+ */
 
-    private String Nom;
+import java.io.Serializable;
 
-    private String Infos;
+/**
+ * @class Ruche
+ * @brief Déclaration de la classe Ruche
+ */
+public class Ruche implements Serializable
+{
+    /**
+     * Attributs
+     */
+    private String nom; //!< Le nom de la ruche
+    private String infos; //!< Les informations sur la ruche
+    private int poids; //!< Le poids de la ruche
 
-    private int Poids;
-
-
-    public Ruche(String Nom, String Infos, int Poids)
+    /**
+     * @brief Constructeur de la classe Ruche
+     *
+     * @fn Ruche::Ruche(String nom, String infos, int poids)
+     * @param nom
+     * @param infos
+     * @param poids
+     */
+    public Ruche(String nom, String infos, int poids)
     {
-        this.Nom = Nom;
-        this.Infos = Infos;
-        this.Poids = Poids;
+        this.nom = nom;
+        this.infos = infos;
+        this.poids = poids;
     }
 
-    public void setNom(String Nom)
+    /**
+     * @brief Mutateur set du nom de la ruche
+     *
+     * @fn Ruche::setNom(String nom)
+     * @param nom le nouveau nom de la ruche
+     */
+    public void setNom(String nom)
     {
-        this.Nom = Nom;
+        this.nom = nom;
     }
 
     public void setInfos(String Infos)
     {
-        this.Infos = Infos;
+        this.infos = Infos;
     }
 
     public void setPoids(int Poids)
     {
-        this.Poids = Poids;
+        this.poids = Poids;
     }
 
+    /**
+     * @brief Accesseur get du nom de la ruche
+     *
+     * @fn Ruche::getNom()
+     * @return String le nom de la ruche
+     */
     public String getNom()
     {
-        return Nom;
+        return nom;
     }
 
     public String getInfos()
     {
-        return Infos;
+        return infos;
     }
 
     public int getPoids()
     {
-        return Poids;
+        return poids;
     }
-
-
 }

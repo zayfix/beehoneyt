@@ -21,18 +21,16 @@ public class RuchesViewHolder extends RecyclerView.ViewHolder{
     CardView cardview;
     private Ruche ruche;
 
-
-    public RuchesViewHolder(final View itemView) {
+    public RuchesViewHolder(final View itemView)
+    {
         super(itemView);
 
         image = itemView.findViewById(R.id.circle_image);
         nom = ((TextView) itemView.findViewById(R.id.nom));
         info = ((TextView) itemView.findViewById(R.id.info));
         poids = ((TextView) itemView.findViewById(R.id.poids));
-
-        cardview= itemView.findViewById(R.id.card_view);
+        cardview = itemView.findViewById(R.id.card_view);
     }
-
 
     public void afficher(Ruche ruche)
     {
