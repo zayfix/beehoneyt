@@ -32,6 +32,7 @@ public:
 
     void connecterTTN(QString hostname, int port, QString username, QString password);
     void souscrireTopic(QString topic);
+    void desabonnerTopic(QString topic);
 
 private:
     QString nomDeLaRuche;
@@ -45,11 +46,12 @@ public slots:
     void changerEtatConnexion();
 
 signals:
-    void nouvelleValeurEnsoleillement(int ensoleillement);
     void nouvelleValeurTemperature(double temperature);
+    void nouvelleValeurTemperatureExterieure(double temperatureExterieure);
+    void nouvelleValeurEnsoleillement(int ensoleillement);
     void nouvelleValeurHumidite(double humidite);
     void nouvelleValeurPression(int pression);
-    void nouvelleValeurPoids(int poids);
+    void nouvelleValeurPoids(double poids);
     void nouvelEtatConnexion(int etat);
 };
 

@@ -10,6 +10,9 @@
 
 #include <QDialog>
 #include <QCloseEvent>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QDebug>
 #include "ruche.h"
 
 namespace Ui {
@@ -29,10 +32,12 @@ protected:
 
 private slots:
     void on_buttonBox_accepted();
+    void on_buttonBox_rejected();
     void verifier();
 
 private:
     Ui::nouvelleRuche *ui;
+    void nettoyerIHM();
 
 signals:
     void nouvelleRuche(Ruche);

@@ -11,6 +11,7 @@
 #include <QtWidgets>
 #include <QSystemTrayIcon>
 #include <QtCharts>
+#include <QDebug>
 #include <QMessageBox>
 #include "ruche.h"
 
@@ -68,11 +69,11 @@ public:
 
 public slots:
     void setValeurTemperatureInterieure(double temperature);
-    //void setValeurTemperatureExterieure(double temperature);
+    void setValeurTemperatureExterieure(double temperature);
     void setValeurHumidite(double humidite);
     void setValeurEnsoleillement(int ensoleillement);
     void setValeurPression(int pression);
-    void setValeurPoids(int poids);
+    void setValeurPoids(double poids);
 
 private slots:
     void on_pushButton_ruches_clicked();
@@ -106,6 +107,7 @@ private:
     QVector<Ruche> ruches; //!< les ruches
 
     void chargerIconesBoutons();
+    void changerApparenceBouton(QString nomBouton);
     void initialiserWidgets();
     void initialiserEvenements();
     void initialiserEntreeBarreEtatSysteme();

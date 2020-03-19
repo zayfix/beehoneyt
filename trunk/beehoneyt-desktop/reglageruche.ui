@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Réglages de la ruche</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background:#404040;color:white;</string>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>

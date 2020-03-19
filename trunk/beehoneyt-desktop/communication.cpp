@@ -2,6 +2,11 @@
 #include "ihm.h"
 #include <QDebug>
 
+/**
+ * @brief Constructeur de la classe Communication
+ *
+ * @param parent
+ */
 Communication::Communication(QObject *parent) : QObject(parent), client(new QMqttClient(this))
 {
     qDebug() << Q_FUNC_INFO;
@@ -9,6 +14,10 @@ Communication::Communication(QObject *parent) : QObject(parent), client(new QMqt
     connect(client, SIGNAL(messageReceived(const QByteArray &, const QMqttTopicName &)), this, SLOT(decoderJson(const QByteArray &)));
 }
 
+/**
+ * @brief Destructeur de la classe Communication
+ *
+ */
 Communication::~Communication()
 {
     if(client->state() == QMqttClient::Connected)
@@ -18,6 +27,14 @@ Communication::~Communication()
     qDebug() << Q_FUNC_INFO;
 }
 
+/**
+ * @brief Méthode pour se connecter à TTN
+ *
+ * @param hostname
+ * @param port
+ * @param username
+ * @param password
+ */
 void Communication::connecterTTN(QString hostname, int port, QString username, QString password)
 {
     qDebug() << Q_FUNC_INFO << hostname << port << username << password;
@@ -35,6 +52,11 @@ void Communication::connecterTTN(QString hostname, int port, QString username, Q
     }
 }
 
+/**
+ * @brief Méthode pour s'abonner à un topic TTN
+ *
+ * @param topic
+ */
 void Communication::souscrireTopic(QString topic)
 {
     if(client->state() == QMqttClient::Connected)
@@ -44,6 +66,17 @@ void Communication::souscrireTopic(QString topic)
     }
 }
 
+void Communication::desabonnerTopic(QString topic)
+{
+    client->unsubscribe(topic);
+    qDebug() << "Désabonnement de " + topic;
+}
+
+/**
+ * @brief Méthode pour décoder le JSON reçu
+ *
+ * @param json
+ */
 void Communication::decoderJson(const QByteArray &json)
 {
     QJsonDocument documentJSON = QJsonDocument::fromJson(json);
@@ -86,20 +119,24 @@ void Communication::decoderJson(const QByteArray &json)
                 if(objet.contains("pression"))
                 {
                     QJsonValue pression = objet.value(QString("pression"));
-                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Pression :" << pression.toInt() << "Pa";
+                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Pression :" << pression.toInt() << "hPa";
                     emit nouvelleValeurPression(pression.toInt());
                 }
                 if(objet.contains("poids"))
                 {
                     QJsonValue poids = objet.value(QString("poids"));
-                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Poids :" << poids.toInt() << "grammes";
-                    emit nouvelleValeurPoids(poids.toInt());
+                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Poids :" << poids.toDouble() << "grammes";
+                    emit nouvelleValeurPoids(poids.toDouble());
                 }
             }
         }
     }
 }
 
+/**
+ * @brief Méthodepour notifier un changement d'état de la connexion TTN
+ *
+ */
 void Communication::changerEtatConnexion()
 {
     QString message;

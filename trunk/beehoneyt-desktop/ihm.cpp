@@ -4,10 +4,9 @@
 #include "reglageruche.h"
 #include "communication.h"
 #include "configuration.h"
-#include <QDebug>
 
 /**
- * @file    Ihm.cpp
+ * @file    ihm.cpp
  * @brief   Déclaration de la classe Ihm
  * @author  ACKERMANN Théo
  * @version 0.1
@@ -35,7 +34,7 @@ Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(
 
     initialiserEvenements();
 
-    //demarrerGraphiques();
+    demarrerGraphiques();
 
     demarrerTTN();
 
@@ -61,12 +60,13 @@ Ihm::~Ihm()
 void Ihm::on_pushButton_ruches_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_ACCUEIL);
+    changerApparenceBouton("valeursRucheSelectionne");
+    /*
     ui->pushButton_ruches->setIcon(QIcon(":/ruches.png"));
-
     ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
     ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
     ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));
+    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 /**
@@ -76,12 +76,13 @@ void Ihm::on_pushButton_ruches_clicked()
 void Ihm::on_pushButton_mesures_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_MESURES);
+    changerApparenceBouton("valeursToutesRuches");
+    /*
     ui->pushButton_mesures->setIcon(QIcon(":/view_all.png"));
-
     ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
     ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
     ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
+    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));*/
 }
 
 /**
@@ -91,12 +92,13 @@ void Ihm::on_pushButton_mesures_clicked()
 void Ihm::on_pushButton_tableaux_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_TABLEAUX);
-
+    changerApparenceBouton("tableaux");
+    /*
     ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
     ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
     ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
     ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));
+    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 /**
@@ -106,12 +108,13 @@ void Ihm::on_pushButton_tableaux_clicked()
 void Ihm::on_pushButton_graphiques_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_GRAPHIQUES);
+    changerApparenceBouton("graphiques");
+    /*
     ui->pushButton_graphiques->setIcon(QIcon(":/graphiques.png"));
-
     ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
     ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
     ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));
+    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 /**
@@ -121,12 +124,13 @@ void Ihm::on_pushButton_graphiques_clicked()
 void Ihm::on_pushButton_alertes_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_ALERTES);
+    changerApparenceBouton("alertes");
+    /*
     ui->pushButton_alertes->setIcon(QIcon(":/alertes.png"));
-
     ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
     ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
     ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));
+    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 /**
@@ -136,14 +140,58 @@ void Ihm::on_pushButton_alertes_clicked()
 void Ihm::on_pushButton_reglage_ttn_clicked()
 {
     chargerConfiguration();
-
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_REGLAGES_TTN);
+    changerApparenceBouton("reglagesTTN");
+    /*
     ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings.png"));
-
     ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
     ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
     ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));
+    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
+}
+
+void Ihm::changerApparenceBouton(QString nomBouton)
+{
+    if(nomBouton == "valeursRucheSelectionne")
+    {
+        ui->pushButton_ruches->setStyleSheet("background:#666666;");
+        ui->pushButton_mesures->setStyleSheet("");
+        ui->pushButton_graphiques->setStyleSheet("");
+        ui->pushButton_alertes->setStyleSheet("");
+        ui->pushButton_reglage_ttn->setStyleSheet("");
+    }
+    if(nomBouton == "valeursToutesRuches")
+    {
+        ui->pushButton_ruches->setStyleSheet("");
+        ui->pushButton_mesures->setStyleSheet("background:#666666;");
+        ui->pushButton_graphiques->setStyleSheet("");
+        ui->pushButton_alertes->setStyleSheet("");
+        ui->pushButton_reglage_ttn->setStyleSheet("");
+    }
+    if(nomBouton == "graphiques")
+    {
+        ui->pushButton_ruches->setStyleSheet("");
+        ui->pushButton_mesures->setStyleSheet("");
+        ui->pushButton_graphiques->setStyleSheet("background:#666666;");
+        ui->pushButton_alertes->setStyleSheet("");
+        ui->pushButton_reglage_ttn->setStyleSheet("");
+    }
+    if(nomBouton == "alertes")
+    {
+        ui->pushButton_ruches->setStyleSheet("");
+        ui->pushButton_mesures->setStyleSheet("");
+        ui->pushButton_graphiques->setStyleSheet("");
+        ui->pushButton_alertes->setStyleSheet("background:#666666;");
+        ui->pushButton_reglage_ttn->setStyleSheet("");
+    }
+    if(nomBouton == "reglagesTTN")
+    {
+        ui->pushButton_ruches->setStyleSheet("");
+        ui->pushButton_mesures->setStyleSheet("");
+        ui->pushButton_graphiques->setStyleSheet("");
+        ui->pushButton_alertes->setStyleSheet("");
+        ui->pushButton_reglage_ttn->setStyleSheet("background:#666666;");
+    }
 }
 
 /**
@@ -187,6 +235,8 @@ void Ihm::on_pushButton_supprimer_ruche_clicked()
     if(reponse == QMessageBox::Yes)
     {
         qDebug() << Q_FUNC_INFO << "reponse : Oui";
+        communication->desabonnerTopic(configuration->getTopicRuche(ui->comboBox_liste_ruches->currentText()));
+        configuration->supprimerRuche(ui->comboBox_liste_ruches->currentText());
         ui->comboBox_liste_ruches->removeItem(ui->comboBox_liste_ruches->currentIndex());
     }
     else
@@ -297,6 +347,10 @@ void Ihm::graphiqueHumidite()
     //humidite->attachAxis(axisX);
 }
 
+/**
+ * @brief
+ *
+ */
 void Ihm::graphiqueLuminosite()
 {
     QLineSeries *luminosite = new QLineSeries();
@@ -331,6 +385,10 @@ void Ihm::graphiqueLuminosite()
     //luminosite->attachAxis(axisX);
 }
 
+/**
+ * @brief
+ *
+ */
 void Ihm::changerAbscisseGraphiques()
 {
     switch(ui->comboBox_reglages_graphiques->currentIndex())
@@ -346,6 +404,10 @@ void Ihm::changerAbscisseGraphiques()
      }
 }
 
+/**
+ * @brief
+ *
+ */
 void Ihm::changerDonneesVueGlobal()
 {
     switch(ui->comboBox_donnees_affiche->currentIndex())
@@ -411,13 +473,17 @@ void Ihm::setValeurGraphique(QLineSeries *serie, int x, int y)
     serie->append(x,y);
 }
 
+/**
+ * @brief Méthode pour charger les icones des boutons
+ *
+ */
 void Ihm::chargerIconesBoutons()
 {
     ui->pushButton_ruches->setIcon(QIcon(":/ruches.png"));
-    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
-    ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));
+    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques.png"));
+    ui->pushButton_alertes->setIcon(QIcon(":/alertes.png"));
+    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings.png"));
+    ui->pushButton_mesures->setIcon(QIcon(":/view_all.png"));
 }
 
 /**
@@ -454,11 +520,11 @@ void Ihm::initialiserEvenements()
 
     // Afficher valeur reçue TTN
     connect(communication, SIGNAL(nouvelleValeurTemperature(double)), this, SLOT(setValeurTemperatureInterieure(double)));
-    //connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(double)), this, SLOT(setValeurTemperatureExterieure(double)));
+    connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(double)), this, SLOT(setValeurTemperatureExterieure(double)));
     connect(communication, SIGNAL(nouvelleValeurHumidite(double)), this, SLOT(setValeurHumidite(double)));
     connect(communication, SIGNAL(nouvelleValeurEnsoleillement(int)), this, SLOT(setValeurEnsoleillement(int)));
     connect(communication, SIGNAL(nouvelleValeurPression(int)), this, SLOT(setValeurPression(int)));
-    connect(communication, SIGNAL(nouvelleValeurPoids(int)), this, SLOT(setValeurPoids(int)));
+    connect(communication, SIGNAL(nouvelleValeurPoids(double)), this, SLOT(setValeurPoids(double)));
 
     // Communication
     connect(communication, SIGNAL(nouvelEtatConnexion(int)), this, SLOT(changerEtatConnexion(int)));
@@ -501,47 +567,88 @@ void Ihm::initialiserEntreeBarreEtatSysteme()
     iconeEtatSysteme->show();
 }
 
+/**
+ * @brief Méthode pour définir la température intérieure dans l'IHM
+ *
+ * @param temperatureInterieure
+ */
 void Ihm::setValeurTemperatureInterieure(double temperatureInterieure)
 {
     ui->lcdNumber_temperature_interieure->display(temperatureInterieure);
     qDebug() << Q_FUNC_INFO << "Nouvelle température intérieure :" << temperatureInterieure;
 }
-/*
+
+/**
+ * @brief Méthode pour définir la température extérieure dans l'IHM
+ *
+ * @param temperatureInterieure
+ */
 void Ihm::setValeurTemperatureExterieure(double temperatureExterieure)
 {
     ui->lcdNumber_temperature_exterieure->display(temperatureExterieure);
     qDebug() << Q_FUNC_INFO << "Nouvelle température extérieure :" << temperatureExterieure;
 }
-*/
+
+
+/**
+ * @brief Méthode pour définir l'humidite dans l'IHM
+ *
+ * @param humidite
+ */
 void Ihm::setValeurHumidite(double humidite)
 {
     ui->lcdNumber_humidite->display(humidite);
     qDebug() << Q_FUNC_INFO << "Nouvelle humidité :" << humidite;
 }
 
+/**
+ * @brief Méthode pour définir l'ensoleillement dans l'IHM
+ *
+ * @param ensoleillement
+ */
 void Ihm::setValeurEnsoleillement(int ensoleillement)
 {
     ui->lcdNumber_ensoleillement->display(ensoleillement);
     qDebug() << Q_FUNC_INFO << "Nouvelle ensoleillement :" << ensoleillement;
 }
 
+/**
+ * @brief Méthode pour définir la pression dans l'IHM
+ *
+ * @param pression
+ */
 void Ihm::setValeurPression(int pression)
 {
     ui->lcdNumber_pression->display(pression);
     qDebug() << Q_FUNC_INFO << "Nouvelle pression :" << pression;
 }
 
-void Ihm::setValeurPoids(int poids)
+/**
+ * @brief Méthode pour définir le poids dans l'IHM
+ *
+ * @param poids
+ */
+void Ihm::setValeurPoids(double poids)
 {
+    poids = poids*0.001; // valeur à un dixième
     ui->lcdNumber_poids->display(poids);
     qDebug() << Q_FUNC_INFO << "Nouveau poids :" << poids;
 }
 
+/**
+ * @brief Bouton pour enregistrer la configuration TTN dans le fichier INI
+ *
+ */
 void Ihm::on_pushButton_enregistrer_configuration_ttn_clicked()
 {
     emit sauvegarderConfigurationTTN(ui->lineEdit_host->text(), ui->spinBox_port->value(), ui->lineEdit_username->text(), ui->lineEdit_password->text());
 }
 
+/**
+ * @brief Méthode pour ajouter une nouvelle ruche
+ *
+ * @param ruche
+ */
 void Ihm::ajouterNouvelleRuche(Ruche ruche)
 {
     qDebug() << Q_FUNC_INFO << ruche.nom << ruche.topicTTN;
@@ -553,6 +660,10 @@ void Ihm::ajouterNouvelleRuche(Ruche ruche)
     configuration->setRuches(ruches);
 }
 
+/**
+ * @brief Méthode pour charger la configuration TTN
+ *
+ */
 void Ihm::chargerConfiguration()
 {
     ConfigurationTTN configurationTTN = configuration->getConfigurationTTN();
@@ -564,12 +675,20 @@ void Ihm::chargerConfiguration()
     ruches = configuration->getRuches();
 }
 
+/**
+ * @brief Méthode pour démarrer TTN
+ *
+ */
 void Ihm::demarrerTTN()
 {
     ConfigurationTTN configurationTTN = configuration->getConfigurationTTN();
     communication->connecterTTN(configurationTTN.hostname, configurationTTN.port, configurationTTN.username, configurationTTN.password);
 }
 
+/**
+ * @brief Méthode pour s'abonner à un topic
+ *
+ */
 void Ihm::connecterRuches()
 {
     qDebug() << Q_FUNC_INFO << ruches.size();

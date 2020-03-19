@@ -1,32 +1,51 @@
 #include "configuration.h"
 
+/**
+ * @file    configuration.cpp
+ * @brief   Déclaration de la classe Configuration
+ * @author  ACKERMANN Théo
+ * @version 0.1
+ */
+
+/**
+ * @brief Constructeur de la classe Configuration
+ *
+ * @param parent
+ */
 Configuration::Configuration(QObject *parent) : QObject(parent), settings(QDir::currentPath() + "/configuration.ini", QSettings::IniFormat)
 {
     qDebug() << Q_FUNC_INFO;
     charger();
 }
 
+/**
+ * @brief Destructeur de la classe Configuration
+ *
+ */
 Configuration::~Configuration()
 {
     sauvegarder();
     qDebug() << Q_FUNC_INFO;
 }
 
-ConfigurationTTN Configuration::getConfigurationTTN() const
-{
-    return configurationTTN;
-}
-
-QVector<Ruche> Configuration::getRuches() const
-{
-    return ruches;
-}
-
+/**
+ * @brief Méthode pour définir une configuration TTN
+ *
+ * @param configurationTTN
+ */
 void Configuration::setConfigurationTTN(ConfigurationTTN configurationTTN)
 {
     this->configurationTTN = configurationTTN;
 }
 
+/**
+ * @brief Méthode pour définir une configuration TTN
+ *
+ * @param hostname
+ * @param port
+ * @param username
+ * @param password
+ */
 void Configuration::setConfigurationTTN(QString hostname, int port, QString username, QString password)
 {
     configurationTTN.hostname = hostname;
@@ -34,13 +53,55 @@ void Configuration::setConfigurationTTN(QString hostname, int port, QString user
     configurationTTN.username = username;
     configurationTTN.password = password;
     qDebug() << Q_FUNC_INFO << configurationTTN.hostname << configurationTTN.port <<  configurationTTN.username << configurationTTN.password;
+    sauvegarderConfigurationTTN();
 }
 
+/**
+ * @brief Méthode pour récupérer la configuration TTN
+ *
+ * @return ConfigurationTTN
+ */
+ConfigurationTTN Configuration::getConfigurationTTN() const
+{
+    return configurationTTN;
+}
+
+/**
+ * @brief Méthode pour définir une ruche
+ *
+ * @param ruches
+ */
 void Configuration::setRuches(QVector<Ruche> ruches)
 {
     this->ruches = ruches;
 }
 
+/**
+ * @brief Méthode pour récupérer une ruche
+ *
+ * @return QVector<Ruche>
+ */
+QVector<Ruche> Configuration::getRuches() const
+{
+    return ruches;
+}
+
+/**
+ * @brief Méthode qui retourne le topic TTN d'une ruche
+ *
+ * @param ruche
+ * @return QString
+ */
+QString Configuration::getTopicRuche(QString ruche)
+{
+    ruche = ruche.replace(" ","");
+    ruche = ruche + "/TopicTTN";
+    return settings.value(ruche).toString();
+}
+/**
+ * @brief Méthode pour charger la configuration TTN et les ruches depuis le fichier INI
+ *
+ */
 void Configuration::charger()
 {
     qDebug() << Q_FUNC_INFO << settings.allKeys() << settings.childKeys();
@@ -48,6 +109,10 @@ void Configuration::charger()
     chargerRuches();
 }
 
+/**
+ * @brief Méthode pour charger la configuration TTN
+ *
+ */
 void Configuration::chargerConfigurationTTN()
 {
     settings.beginGroup("TTN");
@@ -60,6 +125,10 @@ void Configuration::chargerConfigurationTTN()
     qDebug() << Q_FUNC_INFO << configurationTTN.hostname << configurationTTN.port <<  configurationTTN.username << configurationTTN.password;
 }
 
+/**
+ * @brief Méthode pour charger les ruches depuis le fichier INI
+ *
+ */
 void Configuration::chargerRuches()
 {
     int nbRuches = settings.value("NbRuches", 0).toInt();
@@ -79,6 +148,10 @@ void Configuration::chargerRuches()
     }
 }
 
+/**
+ * @brief Méthode pour sauvegarder la configuration TTN et les ruches dans le fichier INI
+ *
+ */
 void Configuration::sauvegarder()
 {
     qDebug() << Q_FUNC_INFO;
@@ -86,6 +159,10 @@ void Configuration::sauvegarder()
     sauvegarderRuches();
 }
 
+/**
+ * @brief Méthode pour sauvegarder la configuration TTN dans le fichier INI
+ *
+ */
 void Configuration::sauvegarderConfigurationTTN()
 {
     settings.beginGroup("TTN");
@@ -96,6 +173,10 @@ void Configuration::sauvegarderConfigurationTTN()
     settings.endGroup();
 }
 
+/**
+ * @brief Méthode pour sauvegarder les ruches dans le fichier INI
+ *
+ */
 void Configuration::sauvegarderRuches()
 {
     qDebug() << Q_FUNC_INFO << ruches.size();
@@ -111,4 +192,15 @@ void Configuration::sauvegarderRuches()
         settings.endGroup();
     }
     settings.setValue("NbRuches", ruches.size());
+}
+
+/**
+ * @brief
+ *
+ * @param ruche
+ */
+void Configuration::supprimerRuche(QString ruche)
+{
+    settings.remove(ruche.replace(" ",""));
+    settings.setValue("NbRuches", ruches.size()-1);
 }

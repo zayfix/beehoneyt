@@ -28,8 +28,11 @@ public:
     Configuration(QObject *parent = nullptr);
     ~Configuration();
 
+    void supprimerRuche(QString ruche);
+
     ConfigurationTTN getConfigurationTTN() const;
     QVector<Ruche> getRuches() const;
+    QString getTopicRuche(QString ruche);
 
 public slots:
     void setConfigurationTTN(ConfigurationTTN configurationTTN);
