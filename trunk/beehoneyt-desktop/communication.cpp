@@ -68,8 +68,11 @@ void Communication::souscrireTopic(QString topic)
 
 void Communication::desabonnerTopic(QString topic)
 {
-    client->unsubscribe(topic);
-    qDebug() << "Désabonnement de " + topic;
+    if(client->state() == QMqttClient::Connected)
+    {
+        client->unsubscribe(topic);
+        qDebug() << Q_FUNC_INFO << topic;
+    }
 }
 
 /**
