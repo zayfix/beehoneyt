@@ -499,12 +499,12 @@ void Ihm::initialiserEvenements()
     connect(ihmNouvelleRuche, SIGNAL(nouvelleRuche(Ruche)), this, SLOT(ajouterNouvelleRuche(Ruche)));
 
     // Afficher valeur reçue TTN
-    connect(communication, SIGNAL(nouvelleValeurTemperature(QString,double)), this, SLOT(setValeurTemperatureInterieure(QString,double)));
-    connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(QString,double)), this, SLOT(setValeurTemperatureExterieure(QString,double)));
-    connect(communication, SIGNAL(nouvelleValeurHumidite(QString,double)), this, SLOT(setValeurHumidite(QString,double)));
-    connect(communication, SIGNAL(nouvelleValeurEnsoleillement(QString,int)), this, SLOT(setValeurEnsoleillement(QString,int)));
-    connect(communication, SIGNAL(nouvelleValeurPression(QString,int)), this, SLOT(setValeurPression(QString,int)));
-    connect(communication, SIGNAL(nouvelleValeurPoids(QString,double)), this, SLOT(setValeurPoids(QString,double)));
+    connect(communication, SIGNAL(nouvelleValeurTemperature(QString,double,QString)), this, SLOT(setValeurTemperatureInterieure(QString,double,QString)));
+    connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(QString,double,QString)), this, SLOT(setValeurTemperatureExterieure(QString,double,QString)));
+    connect(communication, SIGNAL(nouvelleValeurHumidite(QString,double,QString)), this, SLOT(setValeurHumidite(QString,double,QString)));
+    connect(communication, SIGNAL(nouvelleValeurEnsoleillement(QString,int,QString)), this, SLOT(setValeurEnsoleillement(QString,int,QString)));
+    connect(communication, SIGNAL(nouvelleValeurPression(QString,int,QString)), this, SLOT(setValeurPression(QString,int,QString)));
+    connect(communication, SIGNAL(nouvelleValeurPoids(QString,double,QString)), this, SLOT(setValeurPoids(QString,double,QString)));
 
     // Communication
     connect(communication, SIGNAL(nouvelEtatConnexion(int)), this, SLOT(changerEtatConnexion(int)));
@@ -552,16 +552,12 @@ void Ihm::initialiserEntreeBarreEtatSysteme()
  *
  * @param temperatureInterieure
  */
-void Ihm::setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatureInterieure)
+void Ihm::setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatureInterieure, QString horodatage)
 {
-    qDebug() << Q_FUNC_INFO << QDateTime::currentDateTime();
-    /**
-      * @todo Afficher l'horodatage
-      */
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_temperature_interieure->display(temperatureInterieure);
-        QString temps = "Dernière màj: " + QDateTime::currentDateTime().toString();
+        QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_temp_int->setText(temps);
     }
     /**
@@ -578,12 +574,12 @@ void Ihm::setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatur
  * @param nomDeLaRuche
  * @param temperatureInterieure
  */
-void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure)
+void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure, QString horodatage)
 {
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_temperature_exterieure->display(temperatureExterieure);
-        QString temps = "Dernière màj: " + QDateTime::currentDateTime().toString();
+        QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_temp_ext->setText(temps);
     }
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle température extérieure :" << temperatureExterieure;
@@ -596,12 +592,12 @@ void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatur
  * @param nomDeLaRuche
  * @param humidite
  */
-void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite)
+void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage)
 {
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_humidite->display(humidite);
-        QString temps = "Dernière màj: " + QDateTime::currentDateTime().toString();
+        QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_humidite->setText(temps);
     }
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle humidité :" << humidite;
@@ -613,12 +609,12 @@ void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite)
  * @param nomDeLaRuche
  * @param ensoleillement
  */
-void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement)
+void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage)
 {
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_ensoleillement->display(ensoleillement);
-        QString temps = "Dernière màj: " + QDateTime::currentDateTime().toString();
+        QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_luminosite->setText(temps);
     }
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle ensoleillement :" << ensoleillement;
@@ -630,12 +626,12 @@ void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement)
  * @param nomDeLaRuche
  * @param pression
  */
-void Ihm::setValeurPression(QString nomDeLaRuche, int pression)
+void Ihm::setValeurPression(QString nomDeLaRuche, int pression, QString horodatage)
 {    
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_pression->display(pression);
-        QString temps = "Dernière màj: " + QDateTime::currentDateTime().toString();
+        QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_pression->setText(temps);
     }
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle pression :" << pression;
@@ -647,13 +643,13 @@ void Ihm::setValeurPression(QString nomDeLaRuche, int pression)
  * @param nomDeLaRuche
  * @param poids
  */
-void Ihm::setValeurPoids(QString nomDeLaRuche, double poids)
+void Ihm::setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage)
 {
     poids = poids*0.001; // valeur à un dixième
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_poids->display(poids);
-        QString temps = "Dernière màj: " + QDateTime::currentDateTime().toString();
+        QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_poids->setText(temps);
     }
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouveau poids :" << poids;

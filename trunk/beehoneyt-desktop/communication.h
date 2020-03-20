@@ -39,17 +39,19 @@ private:
     QMqttSubscription *subscription;
     Ihm *ihm;
 
+    QString formatterHorodatage(QString horodatageBrut);
+
 public slots:
     void decoderJson(const QByteArray &json);
     void changerEtatConnexion();
 
 signals:
-    void nouvelleValeurTemperature(QString nomDeLaRuche, double temperature);
-    void nouvelleValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure);
-    void nouvelleValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement);
-    void nouvelleValeurHumidite(QString nomDeLaRuche, double humidite);
-    void nouvelleValeurPression(QString nomDeLaRuche, int pression);
-    void nouvelleValeurPoids(QString nomDeLaRuche, double poids);
+    void nouvelleValeurTemperature(QString nomDeLaRuche, double temperature, QString horodatage);
+    void nouvelleValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure, QString horodatage);
+    void nouvelleValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage);
+    void nouvelleValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage);
+    void nouvelleValeurPression(QString nomDeLaRuche, int pression, QString horodatage);
+    void nouvelleValeurPoids(QString nomDeLaRuche, double poids, QString horodatage);
     void nouvelEtatConnexion(int etat);
 };
 

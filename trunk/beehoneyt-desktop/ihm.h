@@ -71,12 +71,12 @@ public:
     void setValeurGraphique(QLineSeries *serie, int x, int y);
 
 public slots:
-    void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperature);
-    void setValeurTemperatureExterieure(QString nomDeLaRuche, double temperature);
-    void setValeurHumidite(QString nomDeLaRuche, double humidite);
-    void setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement);
-    void setValeurPression(QString nomDeLaRuche, int pression);
-    void setValeurPoids(QString nomDeLaRuche, double poids);
+    void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperature, QString horodatage);
+    void setValeurTemperatureExterieure(QString nomDeLaRuche, double temperature, QString horodatage);
+    void setValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage);
+    void setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage);
+    void setValeurPression(QString nomDeLaRuche, int pression, QString horodatage);
+    void setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage);
 
 private slots:
     void on_pushButton_ruches_clicked();

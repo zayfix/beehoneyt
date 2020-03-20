@@ -85,6 +85,7 @@ void Communication::decoderJson(const QByteArray &json)
     QJsonDocument documentJSON = QJsonDocument::fromJson(json);
     QByteArray payload;
     QString nomDeLaRuche;
+    QJsonValue horodatage;
     /**
       * @todo Extraire et gérer l'horodatage
       */
@@ -92,52 +93,66 @@ void Communication::decoderJson(const QByteArray &json)
     {
         QJsonObject objetJSON = documentJSON.object();
         QStringList listeCles = objetJSON.keys();
-        qDebug() << Q_FUNC_INFO << listeCles;
         for(int i = 0; i < listeCles.count()-1; i++)
         {
+            if(listeCles.at(i) == "metadata")
+            {
+                QJsonObject objet = objetJSON[listeCles.at(i)].toObject();
+                horodatage = objet.value(QString("time"));
+            }
             if(listeCles.at(i) == "dev_id")
             {
                 nomDeLaRuche = objetJSON[listeCles.at(i)].toString();
-                qDebug() << Q_FUNC_INFO << nomDeLaRuche;
             }
             if(listeCles.at(i) == "payload_fields")
             {
-                qDebug() << Q_FUNC_INFO << "payload_fields" << objetJSON[listeCles.at(i)];
                 QJsonObject objet = objetJSON[listeCles.at(i)].toObject();
 
                 if(objet.contains("temperature"))
                 {
                     QJsonValue temperature = objet.value(QString("temperature"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Température :" << temperature.toDouble() << "°C";
-                    emit nouvelleValeurTemperature(nomDeLaRuche, temperature.toDouble());
+                    emit nouvelleValeurTemperature(nomDeLaRuche, temperature.toDouble(), formatterHorodatage(horodatage.toString()));
                 }
                 if(objet.contains("humidite"))
                 {
                     QJsonValue humidite = objet.value(QString("humidite"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Humidité :" << humidite.toDouble() << "%";
-                    emit nouvelleValeurHumidite(nomDeLaRuche, humidite.toDouble());
+                    emit nouvelleValeurHumidite(nomDeLaRuche, humidite.toDouble(), formatterHorodatage(horodatage.toString()));
                 }
                 if(objet.contains("ensoleillement"))
                 {
                     QJsonValue ensoleillement = objet.value(QString("ensoleillement"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Ensoleillement :" << ensoleillement.toInt() << "lux";
-                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, ensoleillement.toInt());
+                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, ensoleillement.toInt(), formatterHorodatage(horodatage.toString()));
                 }
                 if(objet.contains("pression"))
                 {
                     QJsonValue pression = objet.value(QString("pression"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Pression :" << pression.toInt() << "hPa";
-                    emit nouvelleValeurPression(nomDeLaRuche, pression.toInt());
+                    emit nouvelleValeurPression(nomDeLaRuche, pression.toInt(), formatterHorodatage(horodatage.toString()));
                 }
                 if(objet.contains("poids"))
                 {
                     QJsonValue poids = objet.value(QString("poids"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Poids :" << poids.toDouble() << "grammes";
-                    emit nouvelleValeurPoids(nomDeLaRuche, poids.toDouble());
+                    emit nouvelleValeurPoids(nomDeLaRuche, poids.toDouble(), formatterHorodatage(horodatage.toString()));
                 }
             }
         }
     }
+}
+
+QString Communication::formatterHorodatage(QString horodatageBrut)
+{
+    horodatageBrut.chop(11);
+    horodatageBrut.replace("T", " ");
+    QString temps = horodatageBrut.right(8);
+    QString date = horodatageBrut.left(10);
+    date = date.mid(8,2) + "-" + date.section("-",1,1) + "-" + date.left(4);
+    QString horodatage = temps + " " + date;
+
+    return horodatage;
 }
 
 /**
