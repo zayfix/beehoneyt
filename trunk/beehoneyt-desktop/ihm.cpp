@@ -22,6 +22,7 @@ Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(
     ui->setupUi(this);
     qDebug() << Q_FUNC_INFO;
 
+
     chargerConfiguration();
     chargerIconesBoutons();
 
@@ -34,7 +35,7 @@ Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(
 
     initialiserEvenements();
 
-    demarrerGraphiques();
+    initialiserGraphiques();
 
     demarrerTTN();
 
@@ -121,6 +122,11 @@ void Ihm::on_pushButton_reglage_ttn_clicked()
     changerApparenceBouton("reglagesTTN");
 }
 
+/**
+ * @brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+ *
+ * @param nomBouton
+ */
 void Ihm::changerApparenceBouton(QString nomBouton)
 {
     if(nomBouton == "valeursRucheSelectionne")
@@ -220,21 +226,21 @@ void Ihm::on_pushButton_supprimer_ruche_clicked()
  * @brief Méthode qui initialise les graphiques
  * @fn Ihm::demarrerGraphiques
  */
-void Ihm::demarrerGraphiques()
+void Ihm::initialiserGraphiques()
 {
-    graphiqueTemperature();
-    graphiqueHumidite();
-    graphiqueLuminosite();
-    //graphiquePression();
-    //graphiquePoids();
-    //graphiqueActivite();
+    initialiserGraphiqueTemperature();
+    initialiserGraphiqueHumidite();
+    initialiserGraphiqueLuminosite();
+    //initialiserGraphiquePression();
+    //initialiserGraphiquePoids();
+    //initialiserGraphiqueActivite();
 }
 
 /**
  * @brief Méthode qui initialise le graphique de température
  * @fn Ihm::graphiqueTemperature
  */
-void Ihm::graphiqueTemperature()
+void Ihm::initialiserGraphiqueTemperature()
 {
     temperatureInterieure = new QLineSeries();
     temperatureInterieure->setName("Intérieure");
@@ -242,12 +248,12 @@ void Ihm::graphiqueTemperature()
 
     QLineSeries *temperatureExterieure = new QLineSeries();
     temperatureExterieure->setName("Extérieure");
-    // Valeurs de test
+    /* Valeurs de test
     temperatureExterieure->append(0, 35);
     temperatureExterieure->append(1, 37);
     temperatureExterieure->append(2, 35);
     temperatureExterieure->append(3, 34);
-    temperatureExterieure->append(4, 31);
+    temperatureExterieure->append(4, 31);*/
 
     QChart *chart = new QChart();
     chart->legend()->show();
@@ -272,9 +278,9 @@ void Ihm::graphiqueTemperature()
 
     QValueAxis *axisY = new QValueAxis();
     axisY->setTitleText("°C");
-    axisY->setTickCount((((AXE_TEMPARATURE_MAX - (AXE_TEMPARATURE_MIN))*2)/10)+1);
-    axisY->setMin(AXE_TEMPARATURE_MIN);
-    axisY->setMax(AXE_TEMPARATURE_MAX);
+    axisY->setTickCount((((AXE_TEMPERATURE_MAX - (AXE_TEMPERATURE_MIN))*2)/10)+1);
+    axisY->setMin(AXE_TEMPERATURE_MIN);
+    axisY->setMax(AXE_TEMPERATURE_MAX);
 
     chart->setAxisY(axisY);
     chart->setAxisX(axisX);
@@ -284,7 +290,7 @@ void Ihm::graphiqueTemperature()
  * @brief Méthode qui initialise le graphique d'humidité
  * @fn Ihm::graphiqueHumidite
  */
-void Ihm::graphiqueHumidite()
+void Ihm::initialiserGraphiqueHumidite()
 {
     QLineSeries *humidite = new QLineSeries();
     // Valeurs de test
@@ -319,14 +325,13 @@ void Ihm::graphiqueHumidite()
 
     chart->setAxisY(axisY);
     chart->setAxisX(axisX);
-    //humidite->attachAxis(axisX);
 }
 
 /**
  * @brief
  *
  */
-void Ihm::graphiqueLuminosite()
+void Ihm::initialiserGraphiqueLuminosite()
 {
     QLineSeries *luminosite = new QLineSeries();
     // Valeurs de test
@@ -362,7 +367,6 @@ void Ihm::graphiqueLuminosite()
 
     chart->setAxisY(axisY);
     chart->setAxisX(axisX);
-    //luminosite->attachAxis(axisX);
 }
 
 /**

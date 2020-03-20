@@ -195,7 +195,7 @@ void Configuration::sauvegarderRuches()
 }
 
 /**
- * @brief
+ * @brief Méthode pour supprimer une ruche du fichier INI
  *
  * @param ruche
  */

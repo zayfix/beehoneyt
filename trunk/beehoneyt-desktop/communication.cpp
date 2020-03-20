@@ -1,6 +1,5 @@
 #include "communication.h"
 #include "ihm.h"
-#include <QDebug>
 
 /**
  * @brief Constructeur de la classe Communication
@@ -66,6 +65,11 @@ void Communication::souscrireTopic(QString topic)
     }
 }
 
+/**
+ * @brief Méthode pour se désabonner d'un topic TTN
+ *
+ * @param topic
+ */
 void Communication::desabonnerTopic(QString topic)
 {
     if(client->state() == QMqttClient::Connected)
@@ -86,9 +90,7 @@ void Communication::decoderJson(const QByteArray &json)
     QByteArray payload;
     QString nomDeLaRuche;
     QJsonValue horodatage;
-    /**
-      * @todo Extraire et gérer l'horodatage
-      */
+
     if(!documentJSON.isNull())
     {
         QJsonObject objetJSON = documentJSON.object();
@@ -143,6 +145,13 @@ void Communication::decoderJson(const QByteArray &json)
     }
 }
 
+
+/**
+ * @brief Méthode pour mettre dans le bon format l'horodatage reçu
+ *
+ * @param horodatageBrut
+ * @return QString
+ */
 QString Communication::formatterHorodatage(QString horodatageBrut)
 {
     horodatageBrut.chop(11);
@@ -156,7 +165,7 @@ QString Communication::formatterHorodatage(QString horodatageBrut)
 }
 
 /**
- * @brief Méthodepour notifier un changement d'état de la connexion TTN
+ * @brief Méthode pour notifier un changement d'état de la connexion TTN
  *
  */
 void Communication::changerEtatConnexion()

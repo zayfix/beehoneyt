@@ -18,8 +18,8 @@
 #define NOM_APPLICATION     "Bee Honey't"
 #define VERSION_APPLICATION "v0.1"
 
-#define AXE_TEMPARATURE_MIN -10
-#define AXE_TEMPARATURE_MAX 50
+#define AXE_TEMPERATURE_MIN -10
+#define AXE_TEMPERATURE_MAX 50
 
 /**
  * @enum PagesIHM
@@ -59,14 +59,14 @@ public:
     explicit Ihm(QWidget *parent = nullptr);
     ~Ihm();
 
-    void demarrerGraphiques();
+    void initialiserGraphiques();
 
-    void graphiqueTemperature();
-    void graphiqueHumidite();
-    void graphiqueLuminosite();
-    void graphiquePression();
-    void graphiquePoids();
-    void graphiqueActivite();
+    void initialiserGraphiqueTemperature();
+    void initialiserGraphiqueHumidite();
+    void initialiserGraphiqueLuminosite();
+    void initialiserGraphiquePression();
+    void initialiserGraphiquePoids();
+    void initialiserGraphiqueActivite();
 
     void setValeurGraphique(QLineSeries *serie, int x, int y);
 
