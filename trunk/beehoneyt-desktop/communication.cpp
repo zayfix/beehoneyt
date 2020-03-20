@@ -84,6 +84,10 @@ void Communication::decoderJson(const QByteArray &json)
 {
     QJsonDocument documentJSON = QJsonDocument::fromJson(json);
     QByteArray payload;
+    QString nomDeLaRuche;
+    /**
+      * @todo Extraire et gérer l'horodatage
+      */
     if(!documentJSON.isNull())
     {
         QJsonObject objetJSON = documentJSON.object();
@@ -105,31 +109,31 @@ void Communication::decoderJson(const QByteArray &json)
                 {
                     QJsonValue temperature = objet.value(QString("temperature"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Température :" << temperature.toDouble() << "°C";
-                    emit nouvelleValeurTemperature(temperature.toDouble());
+                    emit nouvelleValeurTemperature(nomDeLaRuche, temperature.toDouble());
                 }
                 if(objet.contains("humidite"))
                 {
                     QJsonValue humidite = objet.value(QString("humidite"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Humidité :" << humidite.toDouble() << "%";
-                    emit nouvelleValeurHumidite(humidite.toDouble());
+                    emit nouvelleValeurHumidite(nomDeLaRuche, humidite.toDouble());
                 }
                 if(objet.contains("ensoleillement"))
                 {
                     QJsonValue ensoleillement = objet.value(QString("ensoleillement"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Ensoleillement :" << ensoleillement.toInt() << "lux";
-                    emit nouvelleValeurEnsoleillement(ensoleillement.toInt());
+                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, ensoleillement.toInt());
                 }
                 if(objet.contains("pression"))
                 {
                     QJsonValue pression = objet.value(QString("pression"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Pression :" << pression.toInt() << "hPa";
-                    emit nouvelleValeurPression(pression.toInt());
+                    emit nouvelleValeurPression(nomDeLaRuche, pression.toInt());
                 }
                 if(objet.contains("poids"))
                 {
                     QJsonValue poids = objet.value(QString("poids"));
                     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Poids :" << poids.toDouble() << "grammes";
-                    emit nouvelleValeurPoids(poids.toDouble());
+                    emit nouvelleValeurPoids(nomDeLaRuche, poids.toDouble());
                 }
             }
         }

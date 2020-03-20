@@ -18,6 +18,9 @@
 #define NOM_APPLICATION     "Bee Honey't"
 #define VERSION_APPLICATION "v0.1"
 
+#define AXE_TEMPARATURE_MIN -10
+#define AXE_TEMPARATURE_MAX 50
+
 /**
  * @enum PagesIHM
  * @brief Définit les numéros de page de l'IHM
@@ -68,12 +71,12 @@ public:
     void setValeurGraphique(QLineSeries *serie, int x, int y);
 
 public slots:
-    void setValeurTemperatureInterieure(double temperature);
-    void setValeurTemperatureExterieure(double temperature);
-    void setValeurHumidite(double humidite);
-    void setValeurEnsoleillement(int ensoleillement);
-    void setValeurPression(int pression);
-    void setValeurPoids(double poids);
+    void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperature);
+    void setValeurTemperatureExterieure(QString nomDeLaRuche, double temperature);
+    void setValeurHumidite(QString nomDeLaRuche, double humidite);
+    void setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement);
+    void setValeurPression(QString nomDeLaRuche, int pression);
+    void setValeurPoids(QString nomDeLaRuche, double poids);
 
 private slots:
     void on_pushButton_ruches_clicked();
@@ -105,6 +108,8 @@ private:
     Communication *communication;
     Configuration *configuration;
     QVector<Ruche> ruches; //!< les ruches
+    QLineSeries *temperatureInterieure; //!< la courbe température intérieure
+    QVector<QPointF> mesuresTemperatureInterieure; //!< les mesures pour la courbe température intérieure
 
     void chargerIconesBoutons();
     void changerApparenceBouton(QString nomBouton);
@@ -115,6 +120,8 @@ private:
     void chargerConfiguration();    
     void demarrerTTN();
     void connecterRuches();
+
+    void afficherGraphiqueTemperatureInterieure();
 
 signals:
     void sauvegarderConfigurationTTN(QString hostname, int port, QString username, QString password);

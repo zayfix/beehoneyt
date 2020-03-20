@@ -77,12 +77,6 @@ void Ihm::on_pushButton_mesures_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_MESURES);
     changerApparenceBouton("valeursToutesRuches");
-    /*
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all.png"));
-    ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
-    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
-    ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));*/
 }
 
 /**
@@ -93,12 +87,6 @@ void Ihm::on_pushButton_tableaux_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_TABLEAUX);
     changerApparenceBouton("tableaux");
-    /*
-    ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
-    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
-    ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 /**
@@ -109,12 +97,7 @@ void Ihm::on_pushButton_graphiques_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_GRAPHIQUES);
     changerApparenceBouton("graphiques");
-    /*
-    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques.png"));
-    ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
-    ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
+    afficherGraphiqueTemperatureInterieure();
 }
 
 /**
@@ -125,12 +108,6 @@ void Ihm::on_pushButton_alertes_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_ALERTES);
     changerApparenceBouton("alertes");
-    /*
-    ui->pushButton_alertes->setIcon(QIcon(":/alertes.png"));
-    ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
-    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 /**
@@ -142,12 +119,6 @@ void Ihm::on_pushButton_reglage_ttn_clicked()
     chargerConfiguration();
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_REGLAGES_TTN);
     changerApparenceBouton("reglagesTTN");
-    /*
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings.png"));
-    ui->pushButton_ruches->setIcon(QIcon(":/ruches_gris.png"));
-    ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
-    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 void Ihm::changerApparenceBouton(QString nomBouton)
@@ -265,14 +236,9 @@ void Ihm::demarrerGraphiques()
  */
 void Ihm::graphiqueTemperature()
 {
-    QLineSeries *temperatureInterieure = new QLineSeries();
+    temperatureInterieure = new QLineSeries();
     temperatureInterieure->setName("Intérieure");
-    // Valeurs de test
-    temperatureInterieure->append(0, 27);
-    temperatureInterieure->append(1, 26);
-    temperatureInterieure->append(2, 28);
-    temperatureInterieure->append(3, 31);
-    temperatureInterieure->append(4, 24);
+    temperatureInterieure->setPointsVisible(true);
 
     QLineSeries *temperatureExterieure = new QLineSeries();
     temperatureExterieure->setName("Extérieure");
@@ -295,15 +261,20 @@ void Ihm::graphiqueTemperature()
 
     QDateTimeAxis *axisX = new QDateTimeAxis();
     axisX->setTickCount(7);
-    axisX->setFormat("dd.MM");
+    axisX->setFormat("dd/MM");
     axisX->setTitleText("Jours");
+    // ou :
+    //axisX->setTickCount(10);
+    //axisX->setFormat("hh:mm");
+    //axisX->setTitleText("Heure");
     axisX->setMin(QDateTime::currentDateTime().addDays(-3));
     axisX->setMax(QDateTime::currentDateTime().addDays(3));
 
     QValueAxis *axisY = new QValueAxis();
     axisY->setTitleText("°C");
-    axisY->setMin(-10);
-    axisY->setMax(45);
+    axisY->setTickCount((((AXE_TEMPARATURE_MAX - (AXE_TEMPARATURE_MIN))*2)/10)+1);
+    axisY->setMin(AXE_TEMPARATURE_MIN);
+    axisY->setMax(AXE_TEMPARATURE_MAX);
 
     chart->setAxisY(axisY);
     chart->setAxisX(axisX);
@@ -332,8 +303,12 @@ void Ihm::graphiqueHumidite()
 
     QDateTimeAxis *axisX = new QDateTimeAxis();
     axisX->setTickCount(7);
-    axisX->setFormat("dd.MM");
+    axisX->setFormat("dd/MM");
     axisX->setTitleText("Jours");
+    // ou :
+    //axisX->setTickCount(10);
+    //axisX->setFormat("hh:mm");
+    //axisX->setTitleText("Heure");
     axisX->setMin(QDateTime::currentDateTime().addDays(-3));
     axisX->setMax(QDateTime::currentDateTime().addDays(3));
 
@@ -370,8 +345,13 @@ void Ihm::graphiqueLuminosite()
 
     QDateTimeAxis *axisX = new QDateTimeAxis();
     axisX->setTickCount(7);
-    axisX->setFormat("dd.MM");
+    axisX->setFormat("dd/MM");
     axisX->setTitleText("Jours");
+    // ou :
+    //axisX->setTickCount(10);
+    //axisX->setFormat("hh:mm");
+    //axisX->setTitleText("Heure");
+
     axisX->setMin(QDateTime::currentDateTime().addDays(-3));
     axisX->setMax(QDateTime::currentDateTime().addDays(3));
 
@@ -519,12 +499,12 @@ void Ihm::initialiserEvenements()
     connect(ihmNouvelleRuche, SIGNAL(nouvelleRuche(Ruche)), this, SLOT(ajouterNouvelleRuche(Ruche)));
 
     // Afficher valeur reçue TTN
-    connect(communication, SIGNAL(nouvelleValeurTemperature(double)), this, SLOT(setValeurTemperatureInterieure(double)));
-    connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(double)), this, SLOT(setValeurTemperatureExterieure(double)));
-    connect(communication, SIGNAL(nouvelleValeurHumidite(double)), this, SLOT(setValeurHumidite(double)));
-    connect(communication, SIGNAL(nouvelleValeurEnsoleillement(int)), this, SLOT(setValeurEnsoleillement(int)));
-    connect(communication, SIGNAL(nouvelleValeurPression(int)), this, SLOT(setValeurPression(int)));
-    connect(communication, SIGNAL(nouvelleValeurPoids(double)), this, SLOT(setValeurPoids(double)));
+    connect(communication, SIGNAL(nouvelleValeurTemperature(QString,double)), this, SLOT(setValeurTemperatureInterieure(QString,double)));
+    connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(QString,double)), this, SLOT(setValeurTemperatureExterieure(QString,double)));
+    connect(communication, SIGNAL(nouvelleValeurHumidite(QString,double)), this, SLOT(setValeurHumidite(QString,double)));
+    connect(communication, SIGNAL(nouvelleValeurEnsoleillement(QString,int)), this, SLOT(setValeurEnsoleillement(QString,int)));
+    connect(communication, SIGNAL(nouvelleValeurPression(QString,int)), this, SLOT(setValeurPression(QString,int)));
+    connect(communication, SIGNAL(nouvelleValeurPoids(QString,double)), this, SLOT(setValeurPoids(QString,double)));
 
     // Communication
     connect(communication, SIGNAL(nouvelEtatConnexion(int)), this, SLOT(changerEtatConnexion(int)));
@@ -572,67 +552,86 @@ void Ihm::initialiserEntreeBarreEtatSysteme()
  *
  * @param temperatureInterieure
  */
-void Ihm::setValeurTemperatureInterieure(double temperatureInterieure)
+void Ihm::setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatureInterieure)
 {
-    ui->lcdNumber_temperature_interieure->display(temperatureInterieure);
-    qDebug() << Q_FUNC_INFO << "Nouvelle température intérieure :" << temperatureInterieure;
+    /**
+      * @todo Afficher l'horodatage
+      */
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+        ui->lcdNumber_temperature_interieure->display(temperatureInterieure);
+    /**
+     * @todo Intégrer l'horodatage pour la mesure (cf. toMSecsSinceEpoch() de la classe QDateTime) pour l'instant l'axe X est une valeur 0,1, ...
+     */
+    QPointF mesure(mesuresTemperatureInterieure.size(), temperatureInterieure);
+    mesuresTemperatureInterieure.push_back(mesure);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle température intérieure :" << temperatureInterieure;
 }
 
 /**
  * @brief Méthode pour définir la température extérieure dans l'IHM
  *
+ * @param nomDeLaRuche
  * @param temperatureInterieure
  */
-void Ihm::setValeurTemperatureExterieure(double temperatureExterieure)
+void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure)
 {
-    ui->lcdNumber_temperature_exterieure->display(temperatureExterieure);
-    qDebug() << Q_FUNC_INFO << "Nouvelle température extérieure :" << temperatureExterieure;
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+        ui->lcdNumber_temperature_exterieure->display(temperatureExterieure);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle température extérieure :" << temperatureExterieure;
 }
 
 
 /**
  * @brief Méthode pour définir l'humidite dans l'IHM
  *
+ * @param nomDeLaRuche
  * @param humidite
  */
-void Ihm::setValeurHumidite(double humidite)
+void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite)
 {
-    ui->lcdNumber_humidite->display(humidite);
-    qDebug() << Q_FUNC_INFO << "Nouvelle humidité :" << humidite;
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+        ui->lcdNumber_humidite->display(humidite);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle humidité :" << humidite;
 }
 
 /**
  * @brief Méthode pour définir l'ensoleillement dans l'IHM
  *
+ * @param nomDeLaRuche
  * @param ensoleillement
  */
-void Ihm::setValeurEnsoleillement(int ensoleillement)
+void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement)
 {
-    ui->lcdNumber_ensoleillement->display(ensoleillement);
-    qDebug() << Q_FUNC_INFO << "Nouvelle ensoleillement :" << ensoleillement;
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+        ui->lcdNumber_ensoleillement->display(ensoleillement);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle ensoleillement :" << ensoleillement;
 }
 
 /**
  * @brief Méthode pour définir la pression dans l'IHM
  *
+ * @param nomDeLaRuche
  * @param pression
  */
-void Ihm::setValeurPression(int pression)
-{
-    ui->lcdNumber_pression->display(pression);
-    qDebug() << Q_FUNC_INFO << "Nouvelle pression :" << pression;
+void Ihm::setValeurPression(QString nomDeLaRuche, int pression)
+{    
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+        ui->lcdNumber_pression->display(pression);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle pression :" << pression;
 }
 
 /**
  * @brief Méthode pour définir le poids dans l'IHM
  *
+ * @param nomDeLaRuche
  * @param poids
  */
-void Ihm::setValeurPoids(double poids)
+void Ihm::setValeurPoids(QString nomDeLaRuche, double poids)
 {
     poids = poids*0.001; // valeur à un dixième
-    ui->lcdNumber_poids->display(poids);
-    qDebug() << Q_FUNC_INFO << "Nouveau poids :" << poids;
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+        ui->lcdNumber_poids->display(poids);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouveau poids :" << poids;
 }
 
 /**
@@ -700,4 +699,15 @@ void Ihm::connecterRuches()
         communication->souscrireTopic(ruches[0].topicTTN);
         ui->comboBox_liste_ruches->addItem(ruches[0].nom);
     }
+}
+
+/**
+ * @brief Méthode qui met à jour les mesures de température intérieure dans le graphique associée
+ *
+ */
+void Ihm::afficherGraphiqueTemperatureInterieure()
+{
+    temperatureInterieure->clear();
+    for(int i=0;i<mesuresTemperatureInterieure.size();i++)
+        temperatureInterieure->append(mesuresTemperatureInterieure[i]);
 }

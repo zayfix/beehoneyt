@@ -18,22 +18,28 @@ public class Ruche implements Serializable
      * Attributs
      */
     private String nom; //!< Le nom de la ruche
+    private String deviceID; //!< Le deviceID TTN de la ruche
     private String infos; //!< Les informations sur la ruche
     private int poids; //!< Le poids de la ruche
+    private CommunicationMQTT communicationMQTT = null;
 
     /**
      * @brief Constructeur de la classe Ruche
      *
      * @fn Ruche::Ruche(String nom, String infos, int poids)
      * @param nom
-     * @param infos
-     * @param poids
      */
-    public Ruche(String nom, String infos, int poids)
+    public Ruche(String nom, String deviceID, CommunicationMQTT communicationMQTT)
     {
         this.nom = nom;
-        this.infos = infos;
-        this.poids = poids;
+        this.deviceID = deviceID;
+        this.communicationMQTT = communicationMQTT;
+        if(communicationMQTT != null && communicationMQTT.estConnecte())
+        {
+            /**
+             * @todo Souscrire au topic
+             */
+        }
     }
 
     /**
@@ -45,6 +51,11 @@ public class Ruche implements Serializable
     public void setNom(String nom)
     {
         this.nom = nom;
+    }
+
+    public void setDeviceID(String deviceID)
+    {
+        this.deviceID = deviceID;
     }
 
     public void setInfos(String Infos)
@@ -66,6 +77,11 @@ public class Ruche implements Serializable
     public String getNom()
     {
         return nom;
+    }
+
+    public String getDeviceID()
+    {
+        return deviceID;
     }
 
     public String getInfos()

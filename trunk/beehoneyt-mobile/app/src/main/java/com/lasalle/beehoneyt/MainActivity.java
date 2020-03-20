@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity
      * Attributs
      */
     private List<Ruche> ruches = new ArrayList<>(); //!< la liste des ruches connues
+    private CommunicationMQTT communicationMQTT;
 
     /**
      * Ressources graphiques
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(adapter);
 
         recupererRuches();
+
+        communicationMQTT = new CommunicationMQTT(getApplicationContext());
     }
 
     /**
@@ -85,12 +88,22 @@ public class MainActivity extends AppCompatActivity
      */
     private void recupererRuches()
     {
+        // Pour les tests
         List<Ruche> listeRuches = Arrays.asList(
-                new Ruche("Ruche_Alexis", "Alexis", 1148),
-                new Ruche("ruche_1", "Simulateur", 1122),
-                new Ruche("ruche_2", "Simulateur", 475),
-                new Ruche("ruche_3", "Simulateur", 570)
+                new Ruche("Ruche_Alexis", "ruche_alexis", communicationMQTT),
+                new Ruche("Ruche 1", "ruche_1", communicationMQTT),
+                new Ruche("Ruche 2", "ruche_2", communicationMQTT),
+                new Ruche("Ruche 3", "ruche_3", communicationMQTT)
         );
+
+        listeRuches.get(0).setPoids(1148);
+        listeRuches.get(0).setInfos("Alexis");
+        listeRuches.get(1).setPoids(1122);
+        listeRuches.get(1).setInfos("Simulateur");
+        listeRuches.get(2).setPoids(475);
+        listeRuches.get(2).setInfos("Simulateur");
+        listeRuches.get(3).setPoids(570);
+        listeRuches.get(3).setInfos("Simulateur");
 
         ruches.clear();
         for(int i = 0; i < listeRuches.size(); i++)

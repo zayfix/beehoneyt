@@ -35,8 +35,6 @@ public:
     void desabonnerTopic(QString topic);
 
 private:
-    QString nomDeLaRuche;
-
     QMqttClient *client;
     QMqttSubscription *subscription;
     Ihm *ihm;
@@ -46,12 +44,12 @@ public slots:
     void changerEtatConnexion();
 
 signals:
-    void nouvelleValeurTemperature(double temperature);
-    void nouvelleValeurTemperatureExterieure(double temperatureExterieure);
-    void nouvelleValeurEnsoleillement(int ensoleillement);
-    void nouvelleValeurHumidite(double humidite);
-    void nouvelleValeurPression(int pression);
-    void nouvelleValeurPoids(double poids);
+    void nouvelleValeurTemperature(QString nomDeLaRuche, double temperature);
+    void nouvelleValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure);
+    void nouvelleValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement);
+    void nouvelleValeurHumidite(QString nomDeLaRuche, double humidite);
+    void nouvelleValeurPression(QString nomDeLaRuche, int pression);
+    void nouvelleValeurPoids(QString nomDeLaRuche, double poids);
     void nouvelEtatConnexion(int etat);
 };
 
