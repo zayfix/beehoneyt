@@ -39,6 +39,14 @@ private:
     QMqttSubscription *subscription;
     Ihm *ihm;
 
+    QString extraireHorodatage(QJsonObject objetJSON);
+    QString extraireDeviceID(QJsonObject objetJSON, QStringList listeCles, int position);
+    double extraireTemperature(QJsonObject objetJSON);
+    double extraireHumidite(QJsonObject objetJSON);
+    int extraireEnsoleillement(QJsonObject objetJSON);
+    int extrairePression(QJsonObject objetJSON);
+    double extrairePoids(QJsonObject objetJSON);
+
     QString formatterHorodatage(QString horodatageBrut);
 
 public slots:

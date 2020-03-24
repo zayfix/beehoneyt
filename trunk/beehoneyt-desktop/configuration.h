@@ -44,6 +44,8 @@ private:
     ConfigurationTTN configurationTTN; //!< configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN)
     QVector<Ruche> ruches;
 
+    bool estEgal(Ruche const& b, QString a) const;
+
     void charger();
     void chargerConfigurationTTN();
     void chargerRuches();

@@ -87,9 +87,8 @@ void Communication::desabonnerTopic(QString topic)
 void Communication::decoderJson(const QByteArray &json)
 {
     QJsonDocument documentJSON = QJsonDocument::fromJson(json);
-    QByteArray payload;
     QString nomDeLaRuche;
-    QJsonValue horodatage;
+    QString horodatage;
 
     if(!documentJSON.isNull())
     {
@@ -99,12 +98,11 @@ void Communication::decoderJson(const QByteArray &json)
         {
             if(listeCles.at(i) == "metadata")
             {
-                QJsonObject objet = objetJSON[listeCles.at(i)].toObject();
-                horodatage = objet.value(QString("time"));
+                horodatage = extraireHorodatage(objetJSON[listeCles.at(i)].toObject());
             }
             if(listeCles.at(i) == "dev_id")
             {
-                nomDeLaRuche = objetJSON[listeCles.at(i)].toString();
+                nomDeLaRuche = extraireDeviceID(objetJSON, listeCles, i);
             }
             if(listeCles.at(i) == "payload_fields")
             {
@@ -112,39 +110,107 @@ void Communication::decoderJson(const QByteArray &json)
 
                 if(objet.contains("temperature"))
                 {
-                    QJsonValue temperature = objet.value(QString("temperature"));
-                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Température :" << temperature.toDouble() << "°C";
-                    emit nouvelleValeurTemperature(nomDeLaRuche, temperature.toDouble(), formatterHorodatage(horodatage.toString()));
+                    emit nouvelleValeurTemperature(nomDeLaRuche, extraireTemperature(objet), formatterHorodatage(horodatage));
                 }
                 if(objet.contains("humidite"))
                 {
-                    QJsonValue humidite = objet.value(QString("humidite"));
-                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Humidité :" << humidite.toDouble() << "%";
-                    emit nouvelleValeurHumidite(nomDeLaRuche, humidite.toDouble(), formatterHorodatage(horodatage.toString()));
+                    emit nouvelleValeurHumidite(nomDeLaRuche, extraireHumidite(objet), formatterHorodatage(horodatage));
                 }
                 if(objet.contains("ensoleillement"))
                 {
-                    QJsonValue ensoleillement = objet.value(QString("ensoleillement"));
-                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Ensoleillement :" << ensoleillement.toInt() << "lux";
-                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, ensoleillement.toInt(), formatterHorodatage(horodatage.toString()));
+                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, extraireEnsoleillement(objet), formatterHorodatage(horodatage));
                 }
                 if(objet.contains("pression"))
                 {
-                    QJsonValue pression = objet.value(QString("pression"));
-                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Pression :" << pression.toInt() << "hPa";
-                    emit nouvelleValeurPression(nomDeLaRuche, pression.toInt(), formatterHorodatage(horodatage.toString()));
+                    emit nouvelleValeurPression(nomDeLaRuche, extrairePression(objet), formatterHorodatage(horodatage));
                 }
                 if(objet.contains("poids"))
                 {
-                    QJsonValue poids = objet.value(QString("poids"));
-                    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Poids :" << poids.toDouble() << "grammes";
-                    emit nouvelleValeurPoids(nomDeLaRuche, poids.toDouble(), formatterHorodatage(horodatage.toString()));
+                    emit nouvelleValeurPoids(nomDeLaRuche, extrairePoids(objet), formatterHorodatage(horodatage));
                 }
             }
         }
     }
 }
 
+/**
+ * @brief Méthode pour extraire le temps de l'objet JSON
+ *
+ * @param objetJSON
+ * @return QString
+ */
+QString Communication::extraireHorodatage(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("time")).toString();
+}
+
+/**
+ * @brief Méthode pour extraire le device ID de l'objet JSON
+ *
+ * @param objetJSON
+ * @param listeCles
+ * @param position
+ * @return QString
+ */
+QString Communication::extraireDeviceID(QJsonObject objetJSON, QStringList listeCles, int position)
+{
+    return objetJSON[listeCles.at(position)].toString();
+}
+
+/**
+ * @brief Méthode pour extraire la temperature de l'objet JSON
+ *
+ * @param objetJSON
+ * @return double
+ */
+double Communication::extraireTemperature(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("temperature")).toDouble();
+}
+
+/**
+ * @brief Méthode pour extraire l'humidité de l'objet JSON
+ *
+ * @param objetJSON
+ * @return double
+ */
+double Communication::extraireHumidite(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("humidite")).toDouble();
+}
+
+/**
+ * @brief Méthode pour extraire l'ensoleillement de l'objet JSON
+ *
+ * @param objetJSON
+ * @return int
+ */
+int Communication::extraireEnsoleillement(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("ensoleillement")).toInt();
+}
+
+/**
+ * @brief Méthode pour extraire la pression de l'objet JSON
+ *
+ * @param objetJSON
+ * @return int
+ */
+int Communication::extrairePression(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("pression")).toInt();
+}
+
+/**
+ * @brief Méthode pour extraire le poids le l'objet JSON
+ *
+ * @param objetJSON
+ * @return double
+ */
+double Communication::extrairePoids(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("poids")).toDouble();
+}
 
 /**
  * @brief Méthode pour mettre dans le bon format l'horodatage reçu
@@ -154,14 +220,17 @@ void Communication::decoderJson(const QByteArray &json)
  */
 QString Communication::formatterHorodatage(QString horodatageBrut)
 {
-    horodatageBrut.chop(11);
+    QDateTime horodatage = QDateTime::fromString(horodatageBrut, Qt::ISODate).toLocalTime();
+    return horodatage.toString("dd/MM/yyyy HH:mm:ss");
+
+    /*horodatageBrut.chop(11);
     horodatageBrut.replace("T", " ");
     QString temps = horodatageBrut.right(8);
     QString date = horodatageBrut.left(10);
     date = date.mid(8,2) + "-" + date.section("-",1,1) + "-" + date.left(4);
     QString horodatage = temps + " " + date;
 
-    return horodatage;
+    return horodatage;*/
 }
 
 /**

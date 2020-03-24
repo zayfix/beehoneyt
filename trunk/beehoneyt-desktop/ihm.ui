@@ -17,7 +17,7 @@
    <string>Bee-honey't</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ico.qrc">
+   <iconset>
     <normaloff>:/ruches.png</normaloff>:/ruches.png</iconset>
   </property>
   <property name="styleSheet">
@@ -64,9 +64,9 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset theme=":/ruches.png">
-                <normaloff>.</normaloff>
-                <normalon>:/ruches.png</normalon>.</iconset>
+               <iconset>
+                <normalon>:/ruche.png</normalon>
+               </iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -92,7 +92,7 @@
               </property>
               <property name="icon">
                <iconset>
-                <normalon>:/view_all.png</normalon>
+                <normalon>:/vue_globale.png</normalon>
                </iconset>
               </property>
               <property name="iconSize">
@@ -167,8 +167,8 @@
               </property>
               <property name="iconSize">
                <size>
-                <width>50</width>
-                <height>50</height>
+                <width>45</width>
+                <height>45</height>
                </size>
               </property>
              </widget>
@@ -189,7 +189,7 @@
               </property>
               <property name="icon">
                <iconset>
-                <normalon>:/settings.png</normalon>
+                <normalon>:/reglages.png</normalon>
                </iconset>
               </property>
               <property name="iconSize">

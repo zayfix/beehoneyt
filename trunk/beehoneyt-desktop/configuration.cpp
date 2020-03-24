@@ -140,9 +140,10 @@ void Configuration::chargerRuches()
         settings.beginGroup(nomRuche);
         ruche.nom = settings.value("Nom").toString();
         ruche.topicTTN = settings.value("TopicTTN").toString();
-        /**
-          * @todo Charger l'ensemble des paramètres d'une ruche
-          */
+        ruche.miseEnService = settings.value("MiseEnService").toString();
+        ruche.adresse = settings.value("Adresse").toString();
+        ruche.latitude = settings.value("Latitude").toString();
+        ruche.longitude = settings.value("Longitude").toString();
         settings.endGroup();
         ruches.push_back(ruche);
     }
@@ -186,9 +187,10 @@ void Configuration::sauvegarderRuches()
         settings.beginGroup(nomRuche);
         settings.setValue("Nom", ruches[0].nom);
         settings.setValue("TopicTTN", ruches[0].topicTTN);
-        /**
-          * @todo Sauvegarder l'ensemble des paramètres d'une ruche
-          */
+        settings.setValue("MiseEnService", ruches[0].miseEnService);
+        settings.setValue("Adresse", ruches[0].adresse);
+        settings.setValue("Latitude", ruches[0].latitude);
+        settings.setValue("Longitude", ruches[0].longitude);
         settings.endGroup();
     }
     settings.setValue("NbRuches", ruches.size());
@@ -201,6 +203,9 @@ void Configuration::sauvegarderRuches()
  */
 void Configuration::supprimerRuche(QString ruche)
 {
-    settings.remove(ruche.replace(" ",""));
-    settings.setValue("NbRuches", ruches.size()-1);
+    /**
+       @todo Supprimer la ruche dans le QVector ruches
+     */
 }
+
+

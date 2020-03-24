@@ -108,8 +108,24 @@ private:
     Communication *communication;
     Configuration *configuration;
     QVector<Ruche> ruches; //!< les ruches
-    QLineSeries *temperatureInterieure; //!< la courbe température intérieure
-    QVector<QPointF> mesuresTemperatureInterieure; //!< les mesures pour la courbe température intérieure
+
+    QLineSeries *temperatureInterieure; //!< La courbe de la température intérieure.
+    QVector<QPointF> mesuresTemperatureInterieure; //!< Les mesures pour la courbe de la température intérieure.
+
+    QLineSeries *temperatureExterieure; //!< La courbe de la température extérieure.
+    QVector<QPointF> mesuresTemperatureExterieure; //!< Les mesures pour la courbe de la température extérieure.
+
+    QLineSeries *humidite; //!< La courbe de l'humidite.
+    QVector<QPointF> mesuresHumidite; //!< Les mesures pour la courbe de l'humidité.
+
+    QLineSeries *ensoleillement; //!< La courbe de l'ensoleillement.
+    QVector<QPointF> mesuresEnsoleillement; //!< Les mesures pour la courbe de l'ensoleillement.
+
+    QLineSeries *pression; //!< La courbe de la pression.
+    QVector<QPointF> mesuresPression; //!< Les mesures pour la courbe de la pression.
+
+    QLineSeries *poids; //!< La courbe du poids.
+    QVector<QPointF> mesuresPoids; //!< Les mesures pour la courbe du poids.
 
     void chargerIconesBoutons();
     void changerApparenceBouton(QString nomBouton);
@@ -122,6 +138,13 @@ private:
     void connecterRuches();
 
     void afficherGraphiqueTemperatureInterieure();
+    void afficherGraphiqueTemperatureExterieure();
+    void afficherGraphiqueHumidite();
+    void afficherGraphiqueEnsoleillement();
+    void afficherGraphiquePression();
+    void afficherGraphiquePoids();
+
+    void afficherGraphiques();
 
 signals:
     void sauvegarderConfigurationTTN(QString hostname, int port, QString username, QString password);

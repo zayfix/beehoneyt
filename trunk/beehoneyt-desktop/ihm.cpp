@@ -62,12 +62,6 @@ void Ihm::on_pushButton_ruches_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_ACCUEIL);
     changerApparenceBouton("valeursRucheSelectionne");
-    /*
-    ui->pushButton_ruches->setIcon(QIcon(":/ruches.png"));
-    ui->pushButton_graphiques->setIcon(QIcon(":/graphiques_gris.png"));
-    ui->pushButton_alertes->setIcon(QIcon(":/alertes_gris.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings_gris.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all_gris.png"));*/
 }
 
 /**
@@ -98,7 +92,7 @@ void Ihm::on_pushButton_graphiques_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_GRAPHIQUES);
     changerApparenceBouton("graphiques");
-    afficherGraphiqueTemperatureInterieure();
+    afficherGraphiques();
 }
 
 /**
@@ -236,6 +230,19 @@ void Ihm::initialiserGraphiques()
     //initialiserGraphiqueActivite();
 }
 
+void Ihm::afficherGraphiques()
+{
+    afficherGraphiqueTemperatureInterieure();
+    /**
+     * @todo Crash sur les autres affichage de graphique
+     */
+    //afficherGraphiqueTemperatureExterieure();
+    //afficherGraphiqueHumidite();
+    //afficherGraphiqueEnsoleillement();
+    //afficherGraphiquePression();
+    //afficherGraphiquePoids();
+}
+
 /**
  * @brief Méthode qui initialise le graphique de température
  * @fn Ihm::graphiqueTemperature
@@ -265,6 +272,9 @@ void Ihm::initialiserGraphiqueTemperature()
     ui->chartView_temperature->setChart(chart);
     ui->chartView_temperature->setRenderHint(QPainter::Antialiasing);
 
+    /**
+     * @todo Faire un axeX commun pour tout les graphiques
+     */
     QDateTimeAxis *axisX = new QDateTimeAxis();
     axisX->setTickCount(7);
     axisX->setFormat("dd/MM");
@@ -293,12 +303,12 @@ void Ihm::initialiserGraphiqueTemperature()
 void Ihm::initialiserGraphiqueHumidite()
 {
     QLineSeries *humidite = new QLineSeries();
-    // Valeurs de test
+    /* Valeurs de test
     humidite->append(0, 27);
     humidite->append(1, 26);
     humidite->append(2, 28);
     humidite->append(3, 31);
-    humidite->append(4, 24);
+    humidite->append(4, 24);*/
 
     QChart *chart = new QChart();
     chart->legend()->hide();
@@ -319,9 +329,10 @@ void Ihm::initialiserGraphiqueHumidite()
     axisX->setMax(QDateTime::currentDateTime().addDays(3));
 
     QValueAxis *axisY = new QValueAxis();
-    axisY->setTitleText("%");
-    axisY->setMin(0);
-    axisY->setMax(100);
+    axisY->setTitleText("°C");
+    axisY->setTickCount((((AXE_TEMPERATURE_MAX - (AXE_TEMPERATURE_MIN))*2)/10)+1);
+    axisY->setMin(AXE_TEMPERATURE_MIN);
+    axisY->setMax(AXE_TEMPERATURE_MAX);
 
     chart->setAxisY(axisY);
     chart->setAxisX(axisX);
@@ -421,7 +432,7 @@ void Ihm::changerEtatConnexion(int etat)
             ui->pushButton_connexion_ttn->setText("Connecter");
             break;
         case 1:
-            //ui->label_etat_connexion->setPixmap(QPixmap(":/on.png")); // mettre orange
+            ui->label_etat_connexion->setPixmap(QPixmap(":/connexion.png"));
             break;
         case 2:
             ui->label_etat_connexion->setPixmap(QPixmap(":/on.png"));
@@ -463,11 +474,11 @@ void Ihm::setValeurGraphique(QLineSeries *serie, int x, int y)
  */
 void Ihm::chargerIconesBoutons()
 {
-    ui->pushButton_ruches->setIcon(QIcon(":/ruches.png"));
+    ui->pushButton_ruches->setIcon(QIcon(":/ruche.png"));
     ui->pushButton_graphiques->setIcon(QIcon(":/graphiques.png"));
     ui->pushButton_alertes->setIcon(QIcon(":/alertes.png"));
-    ui->pushButton_reglage_ttn->setIcon(QIcon(":/settings.png"));
-    ui->pushButton_mesures->setIcon(QIcon(":/view_all.png"));
+    ui->pushButton_reglage_ttn->setIcon(QIcon(":/reglages.png"));
+    ui->pushButton_mesures->setIcon(QIcon(":/vue_globale.png"));
 }
 
 /**
@@ -544,7 +555,7 @@ void Ihm::initialiserEntreeBarreEtatSysteme()
     iconeEtatSysteme->setContextMenu(menuEtatSysteme);
     iconeEtatSysteme->setToolTip(NOM_APPLICATION);
     // Crée l'icône pour la barre d'état système
-    QIcon iconeRuche(":/ruches.png");
+    QIcon iconeRuche(":/ruche.png");
     iconeEtatSysteme->setIcon(iconeRuche);
     setWindowIcon(iconeRuche);
 
@@ -586,6 +597,8 @@ void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatur
         QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_temp_ext->setText(temps);
     }
+    QPointF mesure(mesuresTemperatureExterieure.size(), temperatureExterieure);
+    mesuresTemperatureExterieure.push_back(mesure);
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle température extérieure :" << temperatureExterieure;
 }
 
@@ -604,6 +617,8 @@ void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horod
         QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_humidite->setText(temps);
     }
+    QPointF mesure(mesuresHumidite.size(), humidite);
+    mesuresHumidite.push_back(mesure);
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle humidité :" << humidite;
 }
 
@@ -621,6 +636,8 @@ void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QStr
         QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_luminosite->setText(temps);
     }
+    QPointF mesure(mesuresEnsoleillement.size(), ensoleillement);
+    mesuresEnsoleillement.push_back(mesure);
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle ensoleillement :" << ensoleillement;
 }
 
@@ -638,6 +655,8 @@ void Ihm::setValeurPression(QString nomDeLaRuche, int pression, QString horodata
         QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_pression->setText(temps);
     }
+    QPointF mesure(mesuresPression.size(), pression);
+    mesuresPression.push_back(mesure);
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle pression :" << pression;
 }
 
@@ -656,6 +675,8 @@ void Ihm::setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage)
         QString temps = "Dernière màj: " + horodatage;
         ui->label_maj_poids->setText(temps);
     }
+    QPointF mesure(mesuresPoids.size(), poids);
+    mesuresPoids.push_back(mesure);
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouveau poids :" << poids;
 }
 
@@ -727,12 +748,73 @@ void Ihm::connecterRuches()
 }
 
 /**
- * @brief Méthode qui met à jour les mesures de température intérieure dans le graphique associée
+ * @brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
  *
  */
 void Ihm::afficherGraphiqueTemperatureInterieure()
 {
+    qDebug() << Q_FUNC_INFO;
     temperatureInterieure->clear();
     for(int i=0;i<mesuresTemperatureInterieure.size();i++)
         temperatureInterieure->append(mesuresTemperatureInterieure[i]);
+}
+
+/**
+ * @brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
+ *
+ */
+void Ihm::afficherGraphiqueTemperatureExterieure()
+{
+    qDebug() << Q_FUNC_INFO;
+    temperatureExterieure->clear();
+    for(int i=0;i<mesuresTemperatureExterieure.size();i++)
+        temperatureExterieure->append(mesuresTemperatureExterieure[i]);
+}
+
+/**
+ * @brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
+ *
+ */
+void Ihm::afficherGraphiqueHumidite()
+{
+    qDebug() << Q_FUNC_INFO;
+    humidite->clear();
+    for(int i=0;i<mesuresHumidite.size();i++)
+        humidite->append(mesuresHumidite[i]);
+}
+
+/**
+ * @brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
+ *
+ */
+void Ihm::afficherGraphiqueEnsoleillement()
+{
+    qDebug() << Q_FUNC_INFO;
+    ensoleillement->clear();
+    for(int i=0;i<mesuresEnsoleillement.size();i++)
+        ensoleillement->append(mesuresEnsoleillement[i]);
+}
+
+/**
+ * @brief Méthode qui met à jour les mesures de la pression dans le graphique associée
+ *
+ */
+void Ihm::afficherGraphiquePression()
+{
+    qDebug() << Q_FUNC_INFO;
+    pression->clear();
+    for(int i=0;i<mesuresPression.size();i++)
+        pression->append(mesuresPression[i]);
+}
+
+/**
+ * @brief Méthode qui met à jour les mesures du poids dans le graphique associée
+ *
+ */
+void Ihm::afficherGraphiquePoids()
+{
+    qDebug() << Q_FUNC_INFO;
+    poids->clear();
+    for(int i=0;i<mesuresPoids.size();i++)
+        poids->append(mesuresPoids[i]);
 }
