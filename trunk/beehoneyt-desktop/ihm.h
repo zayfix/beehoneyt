@@ -61,9 +61,9 @@ public:
 
     void initialiserGraphiques();
 
-    void initialiserGraphiqueTemperature();
+    void initialiserGraphiqueTemperatures();
     void initialiserGraphiqueHumidite();
-    void initialiserGraphiqueLuminosite();
+    void initialiserGraphiqueEnsoleillement();
     void initialiserGraphiquePression();
     void initialiserGraphiquePoids();
     void initialiserGraphiqueActivite();
@@ -92,7 +92,7 @@ private slots:
     void on_pushButton_enregistrer_configuration_ttn_clicked();
 
     void changerAbscisseGraphiques();
-    void changerDonneesVueGlobal();
+    void changerDonneesVueGlobale();
     void changerEtatConnexion(int etat);
 
     void ajouterNouvelleRuche(Ruche ruche);
@@ -128,7 +128,7 @@ private:
     QVector<QPointF> mesuresPoids; //!< Les mesures pour la courbe du poids.
 
     void chargerIconesBoutons();
-    void changerApparenceBouton(QString nomBouton);
+    void changerApparenceBouton(PagesIHM);
     void initialiserWidgets();
     void initialiserEvenements();
     void initialiserEntreeBarreEtatSysteme();

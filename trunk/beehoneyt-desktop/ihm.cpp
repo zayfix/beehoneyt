@@ -22,19 +22,11 @@ Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(
     ui->setupUi(this);
     qDebug() << Q_FUNC_INFO;
 
-
     chargerConfiguration();
     chargerIconesBoutons();
 
-    ui->comboBox_liste_ruches->addItem("Nom de la ruche");
-    ui->comboBox_donnees_affiche->addItem("Température");
-    ui->comboBox_donnees_affiche->addItem("Humidité");
-
-    ui->comboBox_reglages_graphiques->addItem("1 jour");
-    ui->comboBox_reglages_graphiques->addItem("7 jours");
-
     initialiserEvenements();
-
+    initialiserWidgets();
     initialiserGraphiques();
 
     demarrerTTN();
@@ -55,65 +47,65 @@ Ihm::~Ihm()
 }
 
 /**
- * @brief Bouton/icone qui permet d'aller sur l'onglet de la ruche
+ * @brief Bouton/icône affichant l'onglet des données de la ruche selectionné
  * @fn Ihm::on_pushButton_ruches_clicked
  */
 void Ihm::on_pushButton_ruches_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_ACCUEIL);
-    changerApparenceBouton("valeursRucheSelectionne");
+    changerApparenceBouton(PagesIHM::PAGE_ACCUEIL);
 }
 
 /**
- * @brief
+ * @brief Bouton/icône affichant l'onglet des mesures
  * @fn Ihm::on_pushButton_mesures_clicked()
  */
 void Ihm::on_pushButton_mesures_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_MESURES);
-    changerApparenceBouton("valeursToutesRuches");
+    changerApparenceBouton(PagesIHM::PAGE_MESURES);
 }
 
 /**
- * @brief
+ * @brief Bouton/icône affichant l'onglet des tableaux
  * @fn Ihm::on_pushButton_tableaux_clicked()
  */
 void Ihm::on_pushButton_tableaux_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_TABLEAUX);
-    changerApparenceBouton("tableaux");
+    changerApparenceBouton(PagesIHM::PAGE_TABLEAUX);
 }
 
 /**
- * @brief Bouton/icone qui permet d'aller sur l'onglet des graphiques
+ * @brief Bouton/icône affichant l'onglet des graphiques
  * @fn Ihm::on_pushButton_graphiques_clicked()
  */
 void Ihm::on_pushButton_graphiques_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_GRAPHIQUES);
-    changerApparenceBouton("graphiques");
+    changerApparenceBouton(PagesIHM::PAGE_GRAPHIQUES);
     afficherGraphiques();
 }
 
 /**
- * @brief Bouton/icone qui permet d'aller sur l'onglet des alertes
+ * @brief Bouton/icône affichant l'onglet des alertes
  * @fn Ihm::on_pushButton_alertes_clicked()
  */
 void Ihm::on_pushButton_alertes_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_ALERTES);
-    changerApparenceBouton("alertes");
+    changerApparenceBouton(PagesIHM::PAGE_ALERTES);
 }
 
 /**
- * @brief Bouton/icone qui permet d'aller sur l'onglet des réglages TTN
+ * @brief Bouton/icône affichant l'onglet des réglages de connexion TTN
  * @fn Ihm::on_pushButton_reglage_ttn_clicked()
  */
 void Ihm::on_pushButton_reglage_ttn_clicked()
 {
     chargerConfiguration();
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_REGLAGES_TTN);
-    changerApparenceBouton("reglagesTTN");
+    changerApparenceBouton(PagesIHM::PAGE_REGLAGES_TTN);
 }
 
 /**
@@ -121,9 +113,9 @@ void Ihm::on_pushButton_reglage_ttn_clicked()
  *
  * @param nomBouton
  */
-void Ihm::changerApparenceBouton(QString nomBouton)
+void Ihm::changerApparenceBouton(PagesIHM page)
 {
-    if(nomBouton == "valeursRucheSelectionne")
+    if(page == PagesIHM::PAGE_ACCUEIL)
     {
         ui->pushButton_ruches->setStyleSheet("background:#666666;");
         ui->pushButton_mesures->setStyleSheet("");
@@ -131,7 +123,7 @@ void Ihm::changerApparenceBouton(QString nomBouton)
         ui->pushButton_alertes->setStyleSheet("");
         ui->pushButton_reglage_ttn->setStyleSheet("");
     }
-    if(nomBouton == "valeursToutesRuches")
+    if(page == PagesIHM::PAGE_MESURES)
     {
         ui->pushButton_ruches->setStyleSheet("");
         ui->pushButton_mesures->setStyleSheet("background:#666666;");
@@ -139,7 +131,7 @@ void Ihm::changerApparenceBouton(QString nomBouton)
         ui->pushButton_alertes->setStyleSheet("");
         ui->pushButton_reglage_ttn->setStyleSheet("");
     }
-    if(nomBouton == "graphiques")
+    if(page == PagesIHM::PAGE_GRAPHIQUES)
     {
         ui->pushButton_ruches->setStyleSheet("");
         ui->pushButton_mesures->setStyleSheet("");
@@ -147,7 +139,7 @@ void Ihm::changerApparenceBouton(QString nomBouton)
         ui->pushButton_alertes->setStyleSheet("");
         ui->pushButton_reglage_ttn->setStyleSheet("");
     }
-    if(nomBouton == "alertes")
+    if(page == PagesIHM::PAGE_ALERTES)
     {
         ui->pushButton_ruches->setStyleSheet("");
         ui->pushButton_mesures->setStyleSheet("");
@@ -155,7 +147,7 @@ void Ihm::changerApparenceBouton(QString nomBouton)
         ui->pushButton_alertes->setStyleSheet("background:#666666;");
         ui->pushButton_reglage_ttn->setStyleSheet("");
     }
-    if(nomBouton == "reglagesTTN")
+    if(page == PagesIHM::PAGE_REGLAGES_TTN)
     {
         ui->pushButton_ruches->setStyleSheet("");
         ui->pushButton_mesures->setStyleSheet("");
@@ -223,39 +215,42 @@ void Ihm::on_pushButton_supprimer_ruche_clicked()
  */
 void Ihm::initialiserGraphiques()
 {
-    initialiserGraphiqueTemperature();
+    initialiserGraphiqueTemperatures();
     initialiserGraphiqueHumidite();
-    initialiserGraphiqueLuminosite();
-    //initialiserGraphiquePression();
-    //initialiserGraphiquePoids();
+    initialiserGraphiqueEnsoleillement();
+    initialiserGraphiquePression();
+    initialiserGraphiquePoids();
     //initialiserGraphiqueActivite();
 }
 
+/**
+ * @brief Méthode qui affiche les nouvelles valeurs dans le graphique
+ * @fn Ihm::afficherGraphiques
+ */
 void Ihm::afficherGraphiques()
 {
     afficherGraphiqueTemperatureInterieure();
-    /**
-     * @todo Crash sur les autres affichage de graphique
-     */
-    //afficherGraphiqueTemperatureExterieure();
-    //afficherGraphiqueHumidite();
-    //afficherGraphiqueEnsoleillement();
-    //afficherGraphiquePression();
-    //afficherGraphiquePoids();
+    afficherGraphiqueTemperatureExterieure();
+    afficherGraphiqueHumidite();
+    afficherGraphiqueEnsoleillement();
+    afficherGraphiquePression();
+    afficherGraphiquePoids();
 }
 
 /**
- * @brief Méthode qui initialise le graphique de température
- * @fn Ihm::graphiqueTemperature
+ * @brief Méthode qui initialise le graphique des températures
+ * @fn Ihm::initialiserGraphiqueTemperatures
  */
-void Ihm::initialiserGraphiqueTemperature()
+void Ihm::initialiserGraphiqueTemperatures()
 {
     temperatureInterieure = new QLineSeries();
     temperatureInterieure->setName("Intérieure");
     temperatureInterieure->setPointsVisible(true);
 
-    QLineSeries *temperatureExterieure = new QLineSeries();
+    temperatureExterieure = new QLineSeries();
     temperatureExterieure->setName("Extérieure");
+    temperatureExterieure->setPointsVisible(true);
+
     /* Valeurs de test
     temperatureExterieure->append(0, 35);
     temperatureExterieure->append(1, 37);
@@ -303,7 +298,7 @@ void Ihm::initialiserGraphiqueTemperature()
  */
 void Ihm::initialiserGraphiqueHumidite()
 {
-    QLineSeries *humidite = new QLineSeries();
+    humidite = new QLineSeries();
     /* Valeurs de test
     humidite->append(0, 27);
     humidite->append(1, 26);
@@ -330,7 +325,7 @@ void Ihm::initialiserGraphiqueHumidite()
     axisX->setMax(QDateTime::currentDateTime().addDays(3));
 
     QValueAxis *axisY = new QValueAxis();
-    axisY->setTitleText("°C");
+    axisY->setTitleText("%");
     axisY->setTickCount((((AXE_TEMPERATURE_MAX - (AXE_TEMPERATURE_MIN))*2)/10)+1);
     axisY->setMin(AXE_TEMPERATURE_MIN);
     axisY->setMax(AXE_TEMPERATURE_MAX);
@@ -340,25 +335,19 @@ void Ihm::initialiserGraphiqueHumidite()
 }
 
 /**
- * @brief
- *
+ * @brief Méthode qui initialise le graphique de l'ensoleillement
+ * @fn Ihm::initialiserGraphiqueEnsoleillement
  */
-void Ihm::initialiserGraphiqueLuminosite()
+void Ihm::initialiserGraphiqueEnsoleillement()
 {
-    QLineSeries *luminosite = new QLineSeries();
-    // Valeurs de test
-    luminosite->append(0, 321);
-    luminosite->append(1, 354);
-    luminosite->append(2, 396);
-    luminosite->append(3, 348);
-    luminosite->append(4, 240);
+    ensoleillement = new QLineSeries();
 
     QChart *chart = new QChart();
     chart->legend()->hide();
-    chart->addSeries(luminosite);
-    chart->setTitle("Luminosité");
-    ui->chartView_luminosite->setChart(chart);
-    ui->chartView_luminosite->setRenderHint(QPainter::Antialiasing);
+    chart->addSeries(ensoleillement);
+    chart->setTitle("Ensoleillement");
+    ui->chartView_ensoleillement->setChart(chart);
+    ui->chartView_ensoleillement->setRenderHint(QPainter::Antialiasing);
 
     QDateTimeAxis *axisX = new QDateTimeAxis();
     axisX->setTickCount(7);
@@ -382,8 +371,92 @@ void Ihm::initialiserGraphiqueLuminosite()
 }
 
 /**
- * @brief
- *
+ * @brief Méthode qui initialise le graphique de la pression
+ * @fn Ihm::initialiserGraphiquePression
+ */
+void Ihm::initialiserGraphiquePression()
+{
+    pression = new QLineSeries();
+    // Valeurs de test
+    pression->append(0, 321);
+    pression->append(1, 354);
+    pression->append(2, 396);
+    pression->append(3, 348);
+    pression->append(4, 240);
+
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(pression);
+    chart->setTitle("Pression");
+    ui->chartView_pression->setChart(chart);
+    ui->chartView_pression->setRenderHint(QPainter::Antialiasing);
+
+    QDateTimeAxis *axisX = new QDateTimeAxis();
+    axisX->setTickCount(7);
+    axisX->setFormat("dd/MM");
+    axisX->setTitleText("Jours");
+    // ou :
+    //axisX->setTickCount(10);
+    //axisX->setFormat("hh:mm");
+    //axisX->setTitleText("Heure");
+
+    axisX->setMin(QDateTime::currentDateTime().addDays(-3));
+    axisX->setMax(QDateTime::currentDateTime().addDays(3));
+
+    QValueAxis *axisY = new QValueAxis();
+    axisY->setTitleText("hPa");
+    axisY->setMin(0);
+    axisY->setMax(500);
+
+    chart->setAxisY(axisY);
+    chart->setAxisX(axisX);
+}
+
+/**
+ * @brief Méthode qui initialise le graphique du poids
+ * @fn Ihm::initialiserGraphiquePoids
+ */
+void Ihm::initialiserGraphiquePoids()
+{
+    poids = new QLineSeries();
+    // Valeurs de test
+    poids->append(0, 321);
+    poids->append(1, 354);
+    poids->append(2, 396);
+    poids->append(3, 348);
+    poids->append(4, 240);
+
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(poids);
+    chart->setTitle("Poids");
+    ui->chartView_poids->setChart(chart);
+    ui->chartView_poids->setRenderHint(QPainter::Antialiasing);
+
+    QDateTimeAxis *axisX = new QDateTimeAxis();
+    axisX->setTickCount(7);
+    axisX->setFormat("dd/MM");
+    axisX->setTitleText("Jours");
+    // ou :
+    //axisX->setTickCount(10);
+    //axisX->setFormat("hh:mm");
+    //axisX->setTitleText("Heure");
+
+    axisX->setMin(QDateTime::currentDateTime().addDays(-3));
+    axisX->setMax(QDateTime::currentDateTime().addDays(3));
+
+    QValueAxis *axisY = new QValueAxis();
+    axisY->setTitleText("Kg");
+    axisY->setMin(0);
+    axisY->setMax(500);
+
+    chart->setAxisY(axisY);
+    chart->setAxisX(axisX);
+}
+
+/**
+ * @brief Méthode qui permet de change l'abscisse des graphiques
+ * @fn Ihm::changerAbscisseGraphiques
  */
 void Ihm::changerAbscisseGraphiques()
 {
@@ -391,9 +464,15 @@ void Ihm::changerAbscisseGraphiques()
     {
         case 0:
             qDebug() << Q_FUNC_INFO << "reponse : 1j";
+            //axisX->setTickCount(10);
+            //axisX->setFormat("hh:mm");
+            //axisX->setTitleText("Heure");
             break;
         case 1:
             qDebug() << Q_FUNC_INFO << "reponse : 7j";
+            //axisX->setTickCount(7);
+            //axisX->setFormat("dd/MM");
+            //axisX->setTitleText("Jours");
             break;
         default:
             qDebug() << Q_FUNC_INFO << ui->comboBox_reglages_graphiques->currentIndex();
@@ -401,10 +480,10 @@ void Ihm::changerAbscisseGraphiques()
 }
 
 /**
- * @brief
- *
+ * @brief Méthode permettant de changer la données affiché sur la vue globale
+ * @fn Ihm::changerDonneesVueGlobale
  */
-void Ihm::changerDonneesVueGlobal()
+void Ihm::changerDonneesVueGlobale()
 {
     switch(ui->comboBox_donnees_affiche->currentIndex())
     {
@@ -470,7 +549,7 @@ void Ihm::setValeurGraphique(QLineSeries *serie, int x, int y)
 }
 
 /**
- * @brief Méthode pour charger les icones des boutons
+ * @brief Méthode pour charger les icônes des boutons
  *
  */
 void Ihm::chargerIconesBoutons()
@@ -493,8 +572,12 @@ void Ihm::initialiserWidgets()
 
     chargerIconesBoutons();
     ui->comboBox_liste_ruches->addItem("Nom de la ruche");
+
     ui->comboBox_reglages_graphiques->addItem("1 jour");
     ui->comboBox_reglages_graphiques->addItem("7 jours");
+
+    ui->comboBox_donnees_affiche->addItem("Température");
+    ui->comboBox_donnees_affiche->addItem("Humidité");
 
     //showMaximized();
 }
@@ -506,7 +589,7 @@ void Ihm::initialiserWidgets()
 void Ihm::initialiserEvenements()
 {
     connect(ui->comboBox_reglages_graphiques, SIGNAL(currentIndexChanged(int)), SLOT(changerAbscisseGraphiques()));
-    connect(ui->comboBox_donnees_affiche, SIGNAL(currentIndexChanged(int)), SLOT(changerDonneesVueGlobal()));
+    connect(ui->comboBox_donnees_affiche, SIGNAL(currentIndexChanged(int)), SLOT(changerDonneesVueGlobale()));
 
     // Configuration
     connect(this, SIGNAL(sauvegarderConfigurationTTN(QString,int,QString,QString)), configuration, SLOT(setConfigurationTTN(QString,int,QString,QString)));
@@ -589,6 +672,7 @@ void Ihm::setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatur
  *
  * @param nomDeLaRuche
  * @param temperatureInterieure
+ * @param horodatage
  */
 void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure, QString horodatage)
 {
@@ -609,6 +693,7 @@ void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatur
  *
  * @param nomDeLaRuche
  * @param humidite
+ * @param horodatage
  */
 void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage)
 {
@@ -628,6 +713,7 @@ void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horod
  *
  * @param nomDeLaRuche
  * @param ensoleillement
+ * @param horodatage
  */
 void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage)
 {
@@ -647,6 +733,7 @@ void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QStr
  *
  * @param nomDeLaRuche
  * @param pression
+ * @param horodatage
  */
 void Ihm::setValeurPression(QString nomDeLaRuche, int pression, QString horodatage)
 {    
@@ -666,6 +753,7 @@ void Ihm::setValeurPression(QString nomDeLaRuche, int pression, QString horodata
  *
  * @param nomDeLaRuche
  * @param poids
+ * @param horodatage
  */
 void Ihm::setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage)
 {
@@ -754,7 +842,6 @@ void Ihm::connecterRuches()
  */
 void Ihm::afficherGraphiqueTemperatureInterieure()
 {
-    qDebug() << Q_FUNC_INFO;
     temperatureInterieure->clear();
     for(int i=0;i<mesuresTemperatureInterieure.size();i++)
         temperatureInterieure->append(mesuresTemperatureInterieure[i]);
@@ -766,7 +853,6 @@ void Ihm::afficherGraphiqueTemperatureInterieure()
  */
 void Ihm::afficherGraphiqueTemperatureExterieure()
 {
-    qDebug() << Q_FUNC_INFO;
     temperatureExterieure->clear();
     for(int i=0;i<mesuresTemperatureExterieure.size();i++)
         temperatureExterieure->append(mesuresTemperatureExterieure[i]);
@@ -778,7 +864,6 @@ void Ihm::afficherGraphiqueTemperatureExterieure()
  */
 void Ihm::afficherGraphiqueHumidite()
 {
-    qDebug() << Q_FUNC_INFO;
     humidite->clear();
     for(int i=0;i<mesuresHumidite.size();i++)
         humidite->append(mesuresHumidite[i]);
@@ -790,7 +875,6 @@ void Ihm::afficherGraphiqueHumidite()
  */
 void Ihm::afficherGraphiqueEnsoleillement()
 {
-    qDebug() << Q_FUNC_INFO;
     ensoleillement->clear();
     for(int i=0;i<mesuresEnsoleillement.size();i++)
         ensoleillement->append(mesuresEnsoleillement[i]);
@@ -802,7 +886,6 @@ void Ihm::afficherGraphiqueEnsoleillement()
  */
 void Ihm::afficherGraphiquePression()
 {
-    qDebug() << Q_FUNC_INFO;
     pression->clear();
     for(int i=0;i<mesuresPression.size();i++)
         pression->append(mesuresPression[i]);
@@ -814,7 +897,6 @@ void Ihm::afficherGraphiquePression()
  */
 void Ihm::afficherGraphiquePoids()
 {
-    qDebug() << Q_FUNC_INFO;
     poids->clear();
     for(int i=0;i<mesuresPoids.size();i++)
         poids->append(mesuresPoids[i]);

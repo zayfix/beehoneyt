@@ -17,8 +17,8 @@
    <string>Bee-honey't</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/ruches.png</normaloff>:/ruches.png</iconset>
+   <iconset resource="ico.qrc">
+    <normaloff>:/ruche.png</normaloff>:/ruche.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background:#404040;color:white;</string>
@@ -266,7 +266,7 @@
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="ruches">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -808,7 +808,7 @@
            <item>
             <widget class="QTabWidget" name="tabWidget">
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="tab">
               <attribute name="title">
@@ -832,11 +832,11 @@
              </widget>
              <widget class="QWidget" name="tab_3">
               <attribute name="title">
-               <string>Luminosité</string>
+               <string>Ensoleillement</string>
               </attribute>
               <layout class="QHBoxLayout" name="horizontalLayout_11">
                <item>
-                <widget class="QChartView" name="chartView_luminosite"/>
+                <widget class="QChartView" name="chartView_ensoleillement"/>
                </item>
               </layout>
              </widget>
