@@ -47,7 +47,7 @@ private:
     int extrairePression(QJsonObject objetJSON);
     double extrairePoids(QJsonObject objetJSON);
 
-    QString formatterHorodatage(QString horodatageBrut);
+    QString formaterHorodatage(QString horodatageBrut);
 
 public slots:
     void decoderJson(const QByteArray &json);

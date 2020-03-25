@@ -53,7 +53,6 @@ void Configuration::setConfigurationTTN(QString hostname, int port, QString user
     configurationTTN.username = username;
     configurationTTN.password = password;
     qDebug() << Q_FUNC_INFO << configurationTTN.hostname << configurationTTN.port <<  configurationTTN.username << configurationTTN.password;
-    sauvegarderConfigurationTTN();
 }
 
 /**
@@ -185,27 +184,13 @@ void Configuration::sauvegarderRuches()
     {
         QString nomRuche = "Ruche" + QString::number(i+1);
         settings.beginGroup(nomRuche);
-        settings.setValue("Nom", ruches[0].nom);
-        settings.setValue("TopicTTN", ruches[0].topicTTN);
-        settings.setValue("MiseEnService", ruches[0].miseEnService);
-        settings.setValue("Adresse", ruches[0].adresse);
-        settings.setValue("Latitude", ruches[0].latitude);
-        settings.setValue("Longitude", ruches[0].longitude);
+        settings.setValue("Nom", ruches[i].nom);
+        settings.setValue("TopicTTN", ruches[i].topicTTN);
+        settings.setValue("MiseEnService", ruches[i].miseEnService);
+        settings.setValue("Adresse", ruches[i].adresse);
+        settings.setValue("Latitude", ruches[i].latitude);
+        settings.setValue("Longitude", ruches[i].longitude);
         settings.endGroup();
     }
     settings.setValue("NbRuches", ruches.size());
 }
-
-/**
- * @brief Méthode pour supprimer une ruche du fichier INI
- *
- * @param ruche
- */
-void Configuration::supprimerRuche(QString ruche)
-{
-    /**
-       @todo Supprimer la ruche dans le QVector ruches
-     */
-}
-
-

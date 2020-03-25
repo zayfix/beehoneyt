@@ -90,43 +90,45 @@ void Communication::decoderJson(const QByteArray &json)
     QString nomDeLaRuche;
     QString horodatage;
 
+    qDebug() << Q_FUNC_INFO << json;
     if(!documentJSON.isNull())
     {
         QJsonObject objetJSON = documentJSON.object();
         QStringList listeCles = objetJSON.keys();
+        // les clés sont triés alphabétiquement
         for(int i = 0; i < listeCles.count()-1; i++)
         {
-            if(listeCles.at(i) == "metadata")
-            {
-                horodatage = extraireHorodatage(objetJSON[listeCles.at(i)].toObject());
-            }
             if(listeCles.at(i) == "dev_id")
             {
                 nomDeLaRuche = extraireDeviceID(objetJSON, listeCles, i);
             }
+            if(listeCles.at(i) == "metadata")
+            {                
+                horodatage = formaterHorodatage(extraireHorodatage(objetJSON[listeCles.at(i)].toObject()));
+            }            
             if(listeCles.at(i) == "payload_fields")
             {
                 QJsonObject objet = objetJSON[listeCles.at(i)].toObject();
 
                 if(objet.contains("temperature"))
                 {
-                    emit nouvelleValeurTemperature(nomDeLaRuche, extraireTemperature(objet), formatterHorodatage(horodatage));
+                    emit nouvelleValeurTemperature(nomDeLaRuche, extraireTemperature(objet), horodatage);
                 }
                 if(objet.contains("humidite"))
                 {
-                    emit nouvelleValeurHumidite(nomDeLaRuche, extraireHumidite(objet), formatterHorodatage(horodatage));
+                    emit nouvelleValeurHumidite(nomDeLaRuche, extraireHumidite(objet), horodatage);
                 }
                 if(objet.contains("ensoleillement"))
                 {
-                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, extraireEnsoleillement(objet), formatterHorodatage(horodatage));
+                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, extraireEnsoleillement(objet), horodatage);
                 }
                 if(objet.contains("pression"))
                 {
-                    emit nouvelleValeurPression(nomDeLaRuche, extrairePression(objet), formatterHorodatage(horodatage));
+                    emit nouvelleValeurPression(nomDeLaRuche, extrairePression(objet), horodatage);
                 }
                 if(objet.contains("poids"))
                 {
-                    emit nouvelleValeurPoids(nomDeLaRuche, extrairePoids(objet), formatterHorodatage(horodatage));
+                    emit nouvelleValeurPoids(nomDeLaRuche, extrairePoids(objet), horodatage);
                 }
             }
         }
@@ -218,7 +220,7 @@ double Communication::extrairePoids(QJsonObject objetJSON)
  * @param horodatageBrut
  * @return QString
  */
-QString Communication::formatterHorodatage(QString horodatageBrut)
+QString Communication::formaterHorodatage(QString horodatageBrut)
 {
     QDateTime horodatage = QDateTime::fromString(horodatageBrut, Qt::ISODate).toLocalTime();
     return horodatage.toString("dd/MM/yyyy HH:mm:ss");

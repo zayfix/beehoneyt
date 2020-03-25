@@ -19,6 +19,17 @@ struct Ruche
     QString adresse;   //!< l'adresse
     QString latitude;   //!< la latitude
     QString longitude;   //!< la longitude
+    bool operator==(const Ruche &r) const
+    {
+        // le nom aussi ?
+        if(this->topicTTN != r.topicTTN)
+                return false;
+        return true;
+    }
+    bool operator!=(const Ruche &r) const
+    {
+        return !(*this == r);
+    }
 };
 
 #endif // RUCHE_H

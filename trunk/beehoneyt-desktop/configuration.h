@@ -28,8 +28,6 @@ public:
     Configuration(QObject *parent = nullptr);
     ~Configuration();
 
-    void supprimerRuche(QString ruche);
-
     ConfigurationTTN getConfigurationTTN() const;
     QVector<Ruche> getRuches() const;
     QString getTopicRuche(QString ruche);
@@ -43,8 +41,6 @@ private:
     QSettings settings; //!< objet pour gérer un fichier .ini
     ConfigurationTTN configurationTTN; //!< configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN)
     QVector<Ruche> ruches;
-
-    bool estEgal(Ruche const& b, QString a) const;
 
     void charger();
     void chargerConfigurationTTN();

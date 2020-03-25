@@ -200,14 +200,15 @@ void Ihm::on_pushButton_supprimer_ruche_clicked()
 {
     QMessageBox::StandardButton reponse;
     QString nom_ruche = ui->comboBox_liste_ruches->currentText();
-    QString question = "Êtes-vous sûr de vouloir supprimer la " + nom_ruche + " ?";
+    QString question = "Êtes-vous sûr de vouloir supprimer la ruche '" + nom_ruche + "' ?";
     reponse = QMessageBox::question(this,"",question,QMessageBox::Yes|QMessageBox::No);
 
     if(reponse == QMessageBox::Yes)
     {
-        qDebug() << Q_FUNC_INFO << "reponse : Oui";
-        communication->desabonnerTopic(configuration->getTopicRuche(ui->comboBox_liste_ruches->currentText()));
-        configuration->supprimerRuche(ui->comboBox_liste_ruches->currentText());
+        qDebug() << Q_FUNC_INFO << "reponse : Oui";        
+        communication->desabonnerTopic(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN);
+        ruches.remove(ui->comboBox_liste_ruches->currentIndex());
+        configuration->setRuches(ruches);
         ui->comboBox_liste_ruches->removeItem(ui->comboBox_liste_ruches->currentIndex());
     }
     else
@@ -293,7 +294,7 @@ void Ihm::initialiserGraphiqueTemperature()
     axisY->setMax(AXE_TEMPERATURE_MAX);
 
     chart->setAxisY(axisY);
-    chart->setAxisX(axisX);
+    chart->setAxisX(axisX);    
 }
 
 /**
@@ -572,7 +573,7 @@ void Ihm::setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatur
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_temperature_interieure->display(temperatureInterieure);
-        QString temps = "Dernière màj: " + horodatage;
+        QString temps = horodatage;
         ui->label_maj_temp_int->setText(temps);
     }
     /**
@@ -594,7 +595,7 @@ void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatur
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_temperature_exterieure->display(temperatureExterieure);
-        QString temps = "Dernière màj: " + horodatage;
+        QString temps = horodatage;
         ui->label_maj_temp_ext->setText(temps);
     }
     QPointF mesure(mesuresTemperatureExterieure.size(), temperatureExterieure);
@@ -614,7 +615,7 @@ void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horod
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_humidite->display(humidite);
-        QString temps = "Dernière màj: " + horodatage;
+        QString temps = horodatage;
         ui->label_maj_humidite->setText(temps);
     }
     QPointF mesure(mesuresHumidite.size(), humidite);
@@ -633,7 +634,7 @@ void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QStr
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_ensoleillement->display(ensoleillement);
-        QString temps = "Dernière màj: " + horodatage;
+        QString temps = horodatage;
         ui->label_maj_luminosite->setText(temps);
     }
     QPointF mesure(mesuresEnsoleillement.size(), ensoleillement);
@@ -652,7 +653,7 @@ void Ihm::setValeurPression(QString nomDeLaRuche, int pression, QString horodata
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_pression->display(pression);
-        QString temps = "Dernière màj: " + horodatage;
+        QString temps = horodatage;
         ui->label_maj_pression->setText(temps);
     }
     QPointF mesure(mesuresPression.size(), pression);
@@ -672,7 +673,7 @@ void Ihm::setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage)
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_poids->display(poids);
-        QString temps = "Dernière màj: " + horodatage;
+        QString temps = horodatage;
         ui->label_maj_poids->setText(temps);
     }
     QPointF mesure(mesuresPoids.size(), poids);
@@ -741,9 +742,9 @@ void Ihm::connecterRuches()
         ui->comboBox_liste_ruches->clear();
     for(int i = 0; i < ruches.size(); i++)
     {
-        qDebug() << Q_FUNC_INFO << ruches[0].nom << ruches[0].topicTTN;
-        communication->souscrireTopic(ruches[0].topicTTN);
-        ui->comboBox_liste_ruches->addItem(ruches[0].nom);
+        qDebug() << Q_FUNC_INFO << ruches[i].nom << ruches[i].topicTTN;
+        communication->souscrireTopic(ruches[i].topicTTN);
+        ui->comboBox_liste_ruches->addItem(ruches[i].nom);
     }
 }
 
