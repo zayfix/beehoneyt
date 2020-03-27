@@ -2,6 +2,13 @@
 #include "ui_nouvelleruche.h"
 
 /**
+ * @file    nouvelleruche.cpp
+ * @brief   Déclaration de la classe IHMNouvelleRuche
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
+
+/**
  * @brief Constructeur de la classe IHMNouvelleRuche
  *
  * @param parent

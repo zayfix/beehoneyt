@@ -6,9 +6,9 @@
 
 /**
  * @file    main.cpp
- * @brief   Programme principal de l'application desktop qu crée et affiche l'ihm principale
+ * @brief   Programme principal de l'application desktop qui crée et affiche l'ihm principale
  * @author  ACKERMANN Théo
- * @version 0.1
+ * @version 2.0
  */
 
 int main(int argc, char *argv[])

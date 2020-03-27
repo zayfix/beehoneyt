@@ -1,6 +1,13 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
+/**
+ * @file    configuration.h
+ * @brief   Déclaration de la classe Configuration
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
+
 #include <QDebug>
 #include <QSettings>
 #include <QDir>
@@ -19,6 +26,13 @@ struct ConfigurationTTN
     QString username;   //!< le compte d'accès TTN
     QString password;   //!< le mote de passe du compte TTN
 };
+
+/**
+ * @class   Configuration
+ * @brief   Gère le fichier INI
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
 
 class Configuration : public QObject
 {

@@ -2,9 +2,17 @@
 #include "ihm.h"
 
 /**
+ * @file    communication.cpp
+ * @brief   Déclaration de la classe Communication
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
+
+/**
  * @brief Constructeur de la classe Communication
  *
  * @param parent
+ * @param client
  */
 Communication::Communication(QObject *parent) : QObject(parent), client(new QMqttClient(this))
 {
@@ -224,15 +232,6 @@ QString Communication::formaterHorodatage(QString horodatageBrut)
 {
     QDateTime horodatage = QDateTime::fromString(horodatageBrut, Qt::ISODate).toLocalTime();
     return horodatage.toString("dd/MM/yyyy HH:mm:ss");
-
-    /*horodatageBrut.chop(11);
-    horodatageBrut.replace("T", " ");
-    QString temps = horodatageBrut.right(8);
-    QString date = horodatageBrut.left(10);
-    date = date.mid(8,2) + "-" + date.section("-",1,1) + "-" + date.left(4);
-    QString horodatage = temps + " " + date;
-
-    return horodatage;*/
 }
 
 /**

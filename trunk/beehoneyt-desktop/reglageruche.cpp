@@ -1,6 +1,12 @@
 #include "reglageruche.h"
 #include "ui_reglageruche.h"
-#include <QDebug>
+
+/**
+ * @file    reglageruche.cpp
+ * @brief   Déclaration de la classe IHMReglageRuche
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
 
 /**
  * @brief Constructeur de la classe IHMReglageRuche

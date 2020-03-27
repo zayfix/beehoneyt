@@ -5,7 +5,7 @@
  * @file    nouvelleruche.h
  * @brief   Déclaration de la classe IHMNouvelleRuche
  * @author  ACKERMANN Théo
- * @version 0.1
+ * @version 2.0
  */
 
 #include <QDialog>
@@ -18,6 +18,14 @@
 namespace Ui {
 class nouvelleRuche;
 }
+
+
+/**
+ * @class   IHMNouvelleRuche
+ * @brief   La fenêtre pour créer une nouvelle ruche
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
 
 class IHMNouvelleRuche : public QDialog
 {

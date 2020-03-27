@@ -1,11 +1,14 @@
 #ifndef RUCHE_H
 #define RUCHE_H
 
-#include <QString>
-
 /**
-  * @todo Une classe Ruche ?
-  */
+ * @file    ruche.h
+ * @brief   Déclaration de la structure Ruche
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
+
+#include <QString>
 
 /**
  * @brief Structure qui définit une ruche

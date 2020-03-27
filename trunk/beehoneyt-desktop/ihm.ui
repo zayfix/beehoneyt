@@ -104,19 +104,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_tableaux">
-              <property name="minimumSize">
-               <size>
-                <width>60</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QPushButton" name="pushButton_graphiques">
               <property name="minimumSize">
                <size>
@@ -248,7 +235,6 @@
             </item>
            </layout>
            <zorder>pushButton_ruches</zorder>
-           <zorder>pushButton_tableaux</zorder>
            <zorder>pushButton_mesures</zorder>
            <zorder>label_version</zorder>
            <zorder>pushButton_graphiques</zorder>
@@ -266,7 +252,7 @@
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="ruches">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -722,6 +708,11 @@
               <layout class="QHBoxLayout" name="horizontalLayout_15">
                <item>
                 <widget class="QComboBox" name="comboBox_donnees_affiche">
+                 <property name="font">
+                  <font>
+                   <pointsize>13</pointsize>
+                  </font>
+                 </property>
                  <property name="editable">
                   <bool>false</bool>
                  </property>
@@ -748,6 +739,11 @@
                </item>
                <item>
                 <widget class="QPushButton" name="pushButton_rafraichir">
+                 <property name="font">
+                  <font>
+                   <pointsize>13</pointsize>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Rafraichir</string>
                  </property>
@@ -774,21 +770,6 @@
             </layout>
            </item>
           </layout>
-         </widget>
-         <widget class="QWidget" name="page_3">
-          <widget class="QLabel" name="label_3">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>10</y>
-             <width>67</width>
-             <height>17</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Page 3</string>
-           </property>
-          </widget>
          </widget>
          <widget class="QWidget" name="graph">
           <layout class="QVBoxLayout" name="verticalLayout_5">

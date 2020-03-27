@@ -5,7 +5,7 @@
  * @file    Ihm.h
  * @brief   Déclaration de la classe Ihm
  * @author  ACKERMANN Théo
- * @version 0.1
+ * @version 2.0
  */
 
 #include <QtWidgets>
@@ -16,7 +16,7 @@
 #include "ruche.h"
 
 #define NOM_APPLICATION     "Bee Honey't"
-#define VERSION_APPLICATION "v0.1"
+#define VERSION_APPLICATION "v2.0"
 
 #define AXE_TEMPERATURE_MIN -10
 #define AXE_TEMPERATURE_MAX 50
@@ -29,11 +29,10 @@
 enum PagesIHM
 {
     PAGE_ACCUEIL,       //!< Page principale
-    PAGE_MESURES,       //!< Page
-    PAGE_TABLEAUX,      //!< Page
+    PAGE_VUE_GLOBALE,   //!< Page de la vue globale
     PAGE_GRAPHIQUES,    //!< Page des graphiques
     PAGE_ALERTES,       //!< Page des dernières alertes
-    PAGE_REGLAGES_TTN    //!< Page des réglages de TTN
+    PAGE_REGLAGES_TTN   //!< Page des réglages de TTN
 };
 
 class IHMNouvelleRuche;
@@ -49,7 +48,7 @@ class ihm;
  * @class   Ihm
  * @brief   La fenêtre principale de l'application
  * @author  ACKERMANN Théo
- * @version 0.1
+ * @version 2.0
  */
 class Ihm : public QMainWindow
 {
@@ -81,7 +80,6 @@ public slots:
 private slots:
     void on_pushButton_ruches_clicked();
     void on_pushButton_mesures_clicked();
-    void on_pushButton_tableaux_clicked();
     void on_pushButton_graphiques_clicked();
     void on_pushButton_alertes_clicked();
     void on_pushButton_nouvelle_ruche_clicked();

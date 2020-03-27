@@ -5,14 +5,22 @@
  * @file    reglageruche.h
  * @brief   Déclaration de la classe IHMReglageRuche
  * @author  ACKERMANN Théo
- * @version 0.1
+ * @version 2.0
  */
 
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class reglageRuche;
 }
+
+/**
+ * @class   IHMReglageRuche
+ * @brief   La fenêtre pour changer les réglages de la ruche
+ * @author  ACKERMANN Théo
+ * @version 2.0
+ */
 
 class IHMReglageRuche : public QDialog
 {

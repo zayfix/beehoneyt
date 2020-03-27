@@ -9,7 +9,7 @@
  * @file    ihm.cpp
  * @brief   Déclaration de la classe Ihm
  * @author  ACKERMANN Théo
- * @version 0.1
+ * @version 2.0
  */
 
 /**
@@ -62,18 +62,8 @@ void Ihm::on_pushButton_ruches_clicked()
  */
 void Ihm::on_pushButton_mesures_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_MESURES);
-    changerApparenceBouton(PagesIHM::PAGE_MESURES);
-}
-
-/**
- * @brief Bouton/icône affichant l'onglet des tableaux
- * @fn Ihm::on_pushButton_tableaux_clicked()
- */
-void Ihm::on_pushButton_tableaux_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_TABLEAUX);
-    changerApparenceBouton(PagesIHM::PAGE_TABLEAUX);
+    ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_VUE_GLOBALE);
+    changerApparenceBouton(PagesIHM::PAGE_VUE_GLOBALE);
 }
 
 /**
@@ -123,7 +113,7 @@ void Ihm::changerApparenceBouton(PagesIHM page)
         ui->pushButton_alertes->setStyleSheet("");
         ui->pushButton_reglage_ttn->setStyleSheet("");
     }
-    if(page == PagesIHM::PAGE_MESURES)
+    if(page == PagesIHM::PAGE_VUE_GLOBALE)
     {
         ui->pushButton_ruches->setStyleSheet("");
         ui->pushButton_mesures->setStyleSheet("background:#666666;");
@@ -578,8 +568,6 @@ void Ihm::initialiserWidgets()
 
     ui->comboBox_donnees_affiche->addItem("Température");
     ui->comboBox_donnees_affiche->addItem("Humidité");
-
-    //showMaximized();
 }
 
 /**

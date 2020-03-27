@@ -4,13 +4,14 @@
  * @file    configuration.cpp
  * @brief   Déclaration de la classe Configuration
  * @author  ACKERMANN Théo
- * @version 0.1
+ * @version 2.0
  */
 
 /**
  * @brief Constructeur de la classe Configuration
  *
  * @param parent
+ * @param settings
  */
 Configuration::Configuration(QObject *parent) : QObject(parent), settings(QDir::currentPath() + "/configuration.ini", QSettings::IniFormat)
 {
