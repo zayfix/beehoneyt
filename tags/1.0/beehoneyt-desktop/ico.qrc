@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="ruche.png">ico/ruche.png</file>
+        <file alias="reglages.png">ico/reglages.png</file>
+        <file alias="on.png">ico/on.png</file>
+        <file alias="off.png">ico/off.png</file>
+	<file alias="connexion.png">ico/connexion.png</file>
+    </qresource>
+</RCC>
