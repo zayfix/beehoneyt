@@ -2,6 +2,13 @@
 #include "ihm.h"
 
 /**
+ * @file    communication.cpp
+ * @brief   Déclaration de la classe Communication
+ * @author  ACKERMANN Théo
+ * @version 0.1
+ */
+
+/**
  * @brief Constructeur de la classe Communication
  * @fn Communication::Communication
  * @param parent

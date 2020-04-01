@@ -17,8 +17,6 @@ class reglageRuche;
 /**
  * @class   IHMReglageRuche
  * @brief   La fenêtre pour changer les réglages de la ruche
- * @author  ACKERMANN Théo
- * @version 0.1
  */
 
 class IHMReglageRuche : public QDialog

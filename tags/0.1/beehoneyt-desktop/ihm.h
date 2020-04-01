@@ -39,8 +39,6 @@ class ihm;
 /**
  * @class   Ihm
  * @brief   La fenêtre principale de l'application
- * @author  ACKERMANN Théo
- * @version 0.1
  */
 class Ihm : public QMainWindow
 {

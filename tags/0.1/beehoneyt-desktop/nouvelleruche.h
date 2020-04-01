@@ -22,8 +22,6 @@ class nouvelleRuche;
 /**
  * @class   IHMNouvelleRuche
  * @brief   La fenêtre pour créer une nouvelle ruche
- * @author  ACKERMANN Théo
- * @version 0.1
  */
 
 class IHMNouvelleRuche : public QDialog

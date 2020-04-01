@@ -18,8 +18,6 @@ class Ihm;
 /**
  * @class   Communication
  * @brief   Permet de recevoir les données
- * @author  ACKERMANN Théo
- * @version 0.1
  */
 
 class Communication  : public QObject
