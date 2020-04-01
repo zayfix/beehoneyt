@@ -5,7 +5,7 @@
  * @file    ruche.h
  * @brief   Déclaration de la structure Ruche
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 #include <QString>
@@ -16,12 +16,12 @@
  */
 struct Ruche
 {
-    QString nom;   //!< le nom de la ruche
-    QString topicTTN;   //!< le topic TTN associé à la ruche
-    QString miseEnService; //!< la date de mise en service
-    QString adresse;   //!< l'adresse
-    QString latitude;   //!< la latitude
-    QString longitude;   //!< la longitude
+    QString nom;            //!< le nom de la ruche
+    QString topicTTN;       //!< le topic TTN associé à la ruche
+    QString miseEnService;  //!< la date de mise en service
+    QString adresse;        //!< l'adresse
+    QString latitude;       //!< la latitude
+    QString longitude;      //!< la longitude
     bool operator==(const Ruche &r) const
     {
         // le nom aussi ?

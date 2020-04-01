@@ -25,15 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        ihm.cpp \
+    main.cpp \
+    ihm.cpp \
     communication.cpp \
     nouvelleruche.cpp \
     reglageruche.cpp \
     configuration.cpp
 
 HEADERS += \
-        ihm.h \
+    ihm.h \
     communication.h \
     nouvelleruche.h \
     reglageruche.h \
@@ -41,7 +41,7 @@ HEADERS += \
     ruche.h
 
 FORMS += \
-        ihm.ui \
+    ihm.ui \
     nouvelleruche.ui \
     reglageruche.ui
 

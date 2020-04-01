@@ -5,7 +5,7 @@
  * @file    configuration.h
  * @brief   Déclaration de la classe Configuration
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 #include <QDebug>
@@ -31,7 +31,7 @@ struct ConfigurationTTN
  * @class   Configuration
  * @brief   Gère le fichier INI
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 class Configuration : public QObject
@@ -52,9 +52,9 @@ public slots:
     void setRuches(QVector<Ruche> ruches);
 
 private:
-    QSettings settings; //!< objet pour gérer un fichier .ini
-    ConfigurationTTN configurationTTN; //!< configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN)
-    QVector<Ruche> ruches;
+    QSettings settings;                 //!< objet pour gérer un fichier .ini
+    ConfigurationTTN configurationTTN;  //!< configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN)
+    QVector<Ruche> ruches;              //!< les ruches
 
     void charger();
     void chargerConfigurationTTN();

@@ -5,13 +5,12 @@
  * @file    communication.h
  * @brief   Déclaration de la classe Communication
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 #include <QObject>
 #include <QtMqtt/QtMqtt>
 #include <QDebug>
-
 
 class Ihm;
 
@@ -19,7 +18,7 @@ class Ihm;
  * @class   Communication
  * @brief   Permet de recevoir les données
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 class Communication  : public QObject
@@ -37,15 +36,15 @@ public:
 private:
     QMqttClient *client;
     QMqttSubscription *subscription;
-    Ihm *ihm;
+    Ihm *ihm;                           //!< interface utilisateur
 
     QString extraireHorodatage(QJsonObject objetJSON);
     QString extraireDeviceID(QJsonObject objetJSON, QStringList listeCles, int position);
-    double extraireTemperature(QJsonObject objetJSON);
-    double extraireHumidite(QJsonObject objetJSON);
-    int extraireEnsoleillement(QJsonObject objetJSON);
-    int extrairePression(QJsonObject objetJSON);
-    double extrairePoids(QJsonObject objetJSON);
+    double  extraireTemperature(QJsonObject objetJSON);
+    double  extraireHumidite(QJsonObject objetJSON);
+    int     extraireEnsoleillement(QJsonObject objetJSON);
+    int     extrairePression(QJsonObject objetJSON);
+    double  extrairePoids(QJsonObject objetJSON);
 
     QString formaterHorodatage(QString horodatageBrut);
 

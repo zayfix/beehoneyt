@@ -5,7 +5,7 @@
  * @file    nouvelleruche.h
  * @brief   Déclaration de la classe IHMNouvelleRuche
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 #include <QDialog>
@@ -24,7 +24,7 @@ class nouvelleRuche;
  * @class   IHMNouvelleRuche
  * @brief   La fenêtre pour créer une nouvelle ruche
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 class IHMNouvelleRuche : public QDialog
@@ -44,7 +44,7 @@ private slots:
     void verifier();
 
 private:
-    Ui::nouvelleRuche *ui;
+    Ui::nouvelleRuche *ui;              //!< interface
     void nettoyerIHM();
 
 signals:

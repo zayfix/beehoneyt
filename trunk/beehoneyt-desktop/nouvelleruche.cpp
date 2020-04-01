@@ -5,12 +5,13 @@
  * @file    nouvelleruche.cpp
  * @brief   Déclaration de la classe IHMNouvelleRuche
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 /**
  * @brief Constructeur de la classe IHMNouvelleRuche
- *
+ * @fn IHMNouvelleRuche::IHMNouvelleRuche
+ * 
  * @param parent
  */
 IHMNouvelleRuche::IHMNouvelleRuche(QWidget *parent) :
@@ -26,7 +27,7 @@ IHMNouvelleRuche::IHMNouvelleRuche(QWidget *parent) :
 
 /**
  * @brief Destructeur de la classe IHMNouvelleRuche
- *
+ * @fn IHMNouvelleRuche::~IHMNouvelleRuche
  */
 IHMNouvelleRuche::~IHMNouvelleRuche()
 {
@@ -35,7 +36,8 @@ IHMNouvelleRuche::~IHMNouvelleRuche()
 
 /**
  * @brief Méthode pour empêcher la fermeture de la fenetre si la ligne de TTN est vide.
- *
+ * @fn IHMNouvelleRuche::closeEvent
+ * 
  * @param event
  */
 void IHMNouvelleRuche::closeEvent(QCloseEvent *event)
@@ -50,7 +52,7 @@ void IHMNouvelleRuche::closeEvent(QCloseEvent *event)
 
 /**
  * @brief Méthode qui est effectuée si le bouton de confirmation de la fenêtre est pressé.
- *
+ * @fn IHMNouvelleRuche::on_buttonBox_accepted
  */
 void IHMNouvelleRuche::on_buttonBox_accepted()
 {
@@ -66,7 +68,7 @@ void IHMNouvelleRuche::on_buttonBox_accepted()
 
 /**
  * @brief Méthode qui est effectuée si le bouton d'annulation de la fenêtre est pressé.
- *
+ * @fn IHMNouvelleRuche::on_buttonBox_rejected
  */
 void IHMNouvelleRuche::on_buttonBox_rejected()
 {
@@ -75,7 +77,7 @@ void IHMNouvelleRuche::on_buttonBox_rejected()
 
 /**
  * @brief Méthode pour activer/désactiver le bouton de confirmation selon si une valeur de topic TTN a été entrée.
- *
+ * @fn IHMNouvelleRuche::verifier
  */
 void IHMNouvelleRuche::verifier()
 {
@@ -92,7 +94,7 @@ void IHMNouvelleRuche::verifier()
 
 /**
  * @brief Méthode pour supprimer les données entré dans l'IHM
- *
+ * @fn IHMNouvelleRuche::nettoyerIHM
  */
 void IHMNouvelleRuche::nettoyerIHM()
 {

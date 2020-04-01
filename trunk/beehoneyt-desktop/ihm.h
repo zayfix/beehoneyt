@@ -5,7 +5,7 @@
  * @file    Ihm.h
  * @brief   Déclaration de la classe Ihm
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 #include <QtWidgets>
@@ -16,7 +16,7 @@
 #include "ruche.h"
 
 #define NOM_APPLICATION     "Bee Honey't"
-#define VERSION_APPLICATION "v2.0"
+#define VERSION_APPLICATION "v0.2"
 
 #define AXE_TEMPERATURE_MIN -10
 #define AXE_TEMPERATURE_MAX 50
@@ -24,7 +24,6 @@
 /**
  * @enum PagesIHM
  * @brief Définit les numéros de page de l'IHM
- *
  */
 enum PagesIHM
 {
@@ -48,8 +47,9 @@ class ihm;
  * @class   Ihm
  * @brief   La fenêtre principale de l'application
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
+
 class Ihm : public QMainWindow
 {
     Q_OBJECT
@@ -66,8 +66,6 @@ public:
     void initialiserGraphiquePression();
     void initialiserGraphiquePoids();
     void initialiserGraphiqueActivite();
-
-    void setValeurGraphique(QLineSeries *serie, int x, int y);
 
 public slots:
     void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperature, QString horodatage);
@@ -99,31 +97,31 @@ protected:
     void closeEvent(QCloseEvent *event);
 
 private:
-    Ui::ihm *ui; //!< interface utilisateur
-    IHMNouvelleRuche *ihmNouvelleRuche; //!< association vers l'IHM de création d'une nouvelle ruche
-    IHMReglageRuche *ihmReglageRuche; //!< association vers l'IHM de réglage d'une ruche
-    QSystemTrayIcon *iconeEtatSysteme; //!< entrée dans la barre d'état du système
-    Communication *communication;
-    Configuration *configuration;
-    QVector<Ruche> ruches; //!< les ruches
+    Ui::ihm *ui;                                    //!< interface utilisateur
+    IHMNouvelleRuche *ihmNouvelleRuche;             //!< association vers l'IHM de création d'une nouvelle ruche
+    IHMReglageRuche *ihmReglageRuche;               //!< association vers l'IHM de réglage d'une ruche
+    QSystemTrayIcon *iconeEtatSysteme;              //!< entrée dans la barre d'état du système
+    Communication *communication;                   //!< association vers la classe Communication
+    Configuration *configuration;                   //!< association vers la classe Configuration
+    QVector<Ruche> ruches;                          //!< les ruches
 
-    QLineSeries *temperatureInterieure; //!< La courbe de la température intérieure.
-    QVector<QPointF> mesuresTemperatureInterieure; //!< Les mesures pour la courbe de la température intérieure.
+    QLineSeries *temperatureInterieure;             //!< La courbe de la température intérieure.
+    QVector<QPointF> mesuresTemperatureInterieure;  //!< Les mesures pour la courbe de la température intérieure.
 
-    QLineSeries *temperatureExterieure; //!< La courbe de la température extérieure.
-    QVector<QPointF> mesuresTemperatureExterieure; //!< Les mesures pour la courbe de la température extérieure.
+    QLineSeries *temperatureExterieure;             //!< La courbe de la température extérieure.
+    QVector<QPointF> mesuresTemperatureExterieure;  //!< Les mesures pour la courbe de la température extérieure.
 
-    QLineSeries *humidite; //!< La courbe de l'humidite.
-    QVector<QPointF> mesuresHumidite; //!< Les mesures pour la courbe de l'humidité.
+    QLineSeries *humidite;                          //!< La courbe de l'humidite.
+    QVector<QPointF> mesuresHumidite;               //!< Les mesures pour la courbe de l'humidité.
 
-    QLineSeries *ensoleillement; //!< La courbe de l'ensoleillement.
-    QVector<QPointF> mesuresEnsoleillement; //!< Les mesures pour la courbe de l'ensoleillement.
+    QLineSeries *ensoleillement;                    //!< La courbe de l'ensoleillement.
+    QVector<QPointF> mesuresEnsoleillement;         //!< Les mesures pour la courbe de l'ensoleillement.
 
-    QLineSeries *pression; //!< La courbe de la pression.
-    QVector<QPointF> mesuresPression; //!< Les mesures pour la courbe de la pression.
+    QLineSeries *pression;                          //!< La courbe de la pression.
+    QVector<QPointF> mesuresPression;               //!< Les mesures pour la courbe de la pression.
 
-    QLineSeries *poids; //!< La courbe du poids.
-    QVector<QPointF> mesuresPoids; //!< Les mesures pour la courbe du poids.
+    QLineSeries *poids;                             //!< La courbe du poids.
+    QVector<QPointF> mesuresPoids;                  //!< Les mesures pour la courbe du poids.
 
     void chargerIconesBoutons();
     void changerApparenceBouton(PagesIHM);
@@ -146,7 +144,6 @@ private:
 
 signals:
     void sauvegarderConfigurationTTN(QString hostname, int port, QString username, QString password);
-
 
 };
 

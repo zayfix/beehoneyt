@@ -5,12 +5,13 @@
  * @file    reglageruche.cpp
  * @brief   Déclaration de la classe IHMReglageRuche
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 /**
  * @brief Constructeur de la classe IHMReglageRuche
- *
+ * @fn IHMReglageRuche::IHMReglageRuche
+ * 
  * @param parent
  */
 IHMReglageRuche::IHMReglageRuche(QWidget *parent) :
@@ -22,7 +23,7 @@ IHMReglageRuche::IHMReglageRuche(QWidget *parent) :
 
 /**
  * @brief Destructeur de la classe IHMReglageRuche
- *
+ * @fn IHMReglageRuche::~IHMReglageRuche
  */
 IHMReglageRuche::~IHMReglageRuche()
 {

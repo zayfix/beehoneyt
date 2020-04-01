@@ -5,12 +5,13 @@
  * @file    communication.cpp
  * @brief   Déclaration de la classe Communication
  * @author  ACKERMANN Théo
- * @version 2.0
+ * @version 0.2
  */
 
 /**
  * @brief Constructeur de la classe Communication
- *
+ * @fn Communication::Communication
+ * 
  * @param parent
  * @param client
  */
@@ -23,7 +24,7 @@ Communication::Communication(QObject *parent) : QObject(parent), client(new QMqt
 
 /**
  * @brief Destructeur de la classe Communication
- *
+ * @fn Communication::~Communication
  */
 Communication::~Communication()
 {
@@ -36,7 +37,8 @@ Communication::~Communication()
 
 /**
  * @brief Méthode pour se connecter à TTN
- *
+ * @fn Communication::connecterTTN
+ * 
  * @param hostname
  * @param port
  * @param username
@@ -61,7 +63,8 @@ void Communication::connecterTTN(QString hostname, int port, QString username, Q
 
 /**
  * @brief Méthode pour s'abonner à un topic TTN
- *
+ * @fn Communication::souscrireTopic
+ * 
  * @param topic
  */
 void Communication::souscrireTopic(QString topic)
@@ -75,7 +78,8 @@ void Communication::souscrireTopic(QString topic)
 
 /**
  * @brief Méthode pour se désabonner d'un topic TTN
- *
+ * @fn Communication::desabonnerTopic
+ * 
  * @param topic
  */
 void Communication::desabonnerTopic(QString topic)
@@ -89,7 +93,8 @@ void Communication::desabonnerTopic(QString topic)
 
 /**
  * @brief Méthode pour décoder le JSON reçu
- *
+ * @fn Communication::decoderJson
+ * 
  * @param json
  */
 void Communication::decoderJson(const QByteArray &json)
@@ -145,7 +150,8 @@ void Communication::decoderJson(const QByteArray &json)
 
 /**
  * @brief Méthode pour extraire le temps de l'objet JSON
- *
+ * @fn Communication::extraireHorodatage
+ * 
  * @param objetJSON
  * @return QString
  */
@@ -156,7 +162,8 @@ QString Communication::extraireHorodatage(QJsonObject objetJSON)
 
 /**
  * @brief Méthode pour extraire le device ID de l'objet JSON
- *
+ * @fn Communication::extraireDeviceID
+ * 
  * @param objetJSON
  * @param listeCles
  * @param position
@@ -169,7 +176,8 @@ QString Communication::extraireDeviceID(QJsonObject objetJSON, QStringList liste
 
 /**
  * @brief Méthode pour extraire la temperature de l'objet JSON
- *
+ * @fn Communication::extraireTemperature
+ * 
  * @param objetJSON
  * @return double
  */
@@ -180,7 +188,8 @@ double Communication::extraireTemperature(QJsonObject objetJSON)
 
 /**
  * @brief Méthode pour extraire l'humidité de l'objet JSON
- *
+ * @fn Communication::extraireHumidite
+ * 
  * @param objetJSON
  * @return double
  */
@@ -191,7 +200,8 @@ double Communication::extraireHumidite(QJsonObject objetJSON)
 
 /**
  * @brief Méthode pour extraire l'ensoleillement de l'objet JSON
- *
+ * @fn Communication::extraireEnsoleillement
+ * 
  * @param objetJSON
  * @return int
  */
@@ -202,7 +212,8 @@ int Communication::extraireEnsoleillement(QJsonObject objetJSON)
 
 /**
  * @brief Méthode pour extraire la pression de l'objet JSON
- *
+ * @fn Communication::extrairePression
+ * 
  * @param objetJSON
  * @return int
  */
@@ -213,7 +224,8 @@ int Communication::extrairePression(QJsonObject objetJSON)
 
 /**
  * @brief Méthode pour extraire le poids le l'objet JSON
- *
+ * @fn Communication::extrairePoids
+ * 
  * @param objetJSON
  * @return double
  */
@@ -224,7 +236,8 @@ double Communication::extrairePoids(QJsonObject objetJSON)
 
 /**
  * @brief Méthode pour mettre dans le bon format l'horodatage reçu
- *
+ * @fn Communication::formaterHorodatage
+ * 
  * @param horodatageBrut
  * @return QString
  */
@@ -236,7 +249,7 @@ QString Communication::formaterHorodatage(QString horodatageBrut)
 
 /**
  * @brief Méthode pour notifier un changement d'état de la connexion TTN
- *
+ * @fn Communication::changerEtatConnexion
  */
 void Communication::changerEtatConnexion()
 {
