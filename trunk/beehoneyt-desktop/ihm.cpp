@@ -14,6 +14,7 @@
 
 /**
  * @brief Constructeur de la classe Ihm
+ * 
  * @param parent
  */
 Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
@@ -93,6 +94,7 @@ void Ihm::on_pushButton_reglage_ttn_clicked()
 
 /**
  * @brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+ * 
  * @param nomBouton
  */
 void Ihm::changerApparenceBouton(PagesIHM page)
