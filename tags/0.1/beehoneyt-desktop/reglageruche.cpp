@@ -10,7 +10,6 @@
 
 /**
  * @brief Constructeur de la classe IHMReglageRuche
- * @fn IHMReglageRuche::IHMReglageRuche
  * @param parent
  */
 IHMReglageRuche::IHMReglageRuche(QWidget *parent) :
@@ -22,7 +21,6 @@ IHMReglageRuche::IHMReglageRuche(QWidget *parent) :
 
 /**
  * @brief Destructeur de la classe IHMReglageRuche
- * @fn IHMReglageRuche::~IHMReglageRuche
  */
 IHMReglageRuche::~IHMReglageRuche()
 {

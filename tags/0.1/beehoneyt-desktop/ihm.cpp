@@ -14,7 +14,6 @@
 
 /**
  * @brief Constructeur de la classe Ihm
- * @fn Ihm::Ihm
  * @param parent
  */
 Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this))
@@ -32,7 +31,6 @@ Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(
 
 /**
  * @brief Destructeur de la classe Ihm
- * @fn Ihm::~Ihm
  */
 Ihm::~Ihm()
 {
@@ -43,7 +41,6 @@ Ihm::~Ihm()
 
 /**
  * @brief Bouton/icône affichant l'onglet des données de la ruche selectionné
- * @fn Ihm::on_pushButton_ruches_clicked
  */
 void Ihm::on_pushButton_ruches_clicked()
 {
@@ -53,7 +50,6 @@ void Ihm::on_pushButton_ruches_clicked()
 
 /**
  * @brief Bouton/icône affichant l'onglet des réglages de connexion TTN
- * @fn Ihm::on_pushButton_reglage_ttn_clicked()
  */
 void Ihm::on_pushButton_reglage_ttn_clicked()
 {
@@ -82,7 +78,6 @@ void Ihm::changerApparenceBouton(PagesIHM page)
 
 /**
  * @brief Bouton qui permet de démarrer la connexion avec TTN
- * @fn Ihm::on_pushButton_connexion_ttn_clicked()
  */
 void Ihm::on_pushButton_connexion_ttn_clicked()
 {
@@ -91,7 +86,6 @@ void Ihm::on_pushButton_connexion_ttn_clicked()
 
 /**
  * @brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
- *
  */
 void Ihm::on_pushButton_nouvelle_ruche_clicked()
 {
@@ -100,7 +94,6 @@ void Ihm::on_pushButton_nouvelle_ruche_clicked()
 
 /**
  * @brief Change l'état de connexion TTN dans l'IHM
- * @fn Ihm::changerEtatConnexion(int etat)
  * @param etat
  */
 void Ihm::changerEtatConnexion(int etat)
@@ -124,7 +117,6 @@ void Ihm::changerEtatConnexion(int etat)
 
 /**
  * @brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
- * @fn Ihm::closeEvent
  * @param event
  */
 void Ihm::closeEvent(QCloseEvent *event)
@@ -139,7 +131,6 @@ void Ihm::closeEvent(QCloseEvent *event)
 
 /**
  * @brief Méthode pour charger les icônes des boutons
- *
  */
 void Ihm::chargerIconesBoutons()
 {
@@ -149,7 +140,6 @@ void Ihm::chargerIconesBoutons()
 
 /**
  * @brief Initialise les différents widgets de l'IHM
- * @fn Ihm::initialiserWidgets
  */
 void Ihm::initialiserWidgets()
 {
@@ -162,7 +152,6 @@ void Ihm::initialiserWidgets()
 
 /**
  * @brief Assure la connexion signal/slot
- * @fn Ihm::initialiserEvenements
  */
 void Ihm::initialiserEvenements()
 {
@@ -183,7 +172,6 @@ void Ihm::initialiserEvenements()
 
 /**
  * @brief Initialise l'entrée dans la barre d'état du système
- * @fn Ihm::initialiserEntreeBarreEtatSysteme
  */
 void Ihm::initialiserEntreeBarreEtatSysteme()
 {
@@ -220,7 +208,6 @@ void Ihm::initialiserEntreeBarreEtatSysteme()
 
 /**
  * @brief Méthode pour ajouter une nouvelle ruche
- *
  * @param ruche
  */
 void Ihm::ajouterNouvelleRuche(Ruche ruche)
@@ -234,7 +221,6 @@ void Ihm::ajouterNouvelleRuche(Ruche ruche)
 
 /**
  * @brief Méthode pour s'abonner à un topic
- *
  */
 void Ihm::connecterRuches()
 {
