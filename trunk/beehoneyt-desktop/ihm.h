@@ -68,8 +68,8 @@ public:
     void initialiserGraphiqueActivite();
 
 public slots:
-    void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperature, QString horodatage);
-    void setValeurTemperatureExterieure(QString nomDeLaRuche, double temperature, QString horodatage);
+    void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatureInterieure, QString horodatage);
+    void setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure, QString horodatage);
     void setValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage);
     void setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage);
     void setValeurPression(QString nomDeLaRuche, int pression, QString horodatage);

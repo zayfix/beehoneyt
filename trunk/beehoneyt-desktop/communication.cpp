@@ -12,7 +12,6 @@
  * @brief Constructeur de la classe Communication
  * 
  * @param parent
- * @param client
  */
 Communication::Communication(QObject *parent) : QObject(parent), client(new QMqttClient(this))
 {
