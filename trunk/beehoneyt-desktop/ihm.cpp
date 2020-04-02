@@ -14,7 +14,6 @@
 
 /**
  * @brief Constructeur de la classe Ihm
- * @fn Ihm::Ihm
  * @param parent
  */
 Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
@@ -36,7 +35,6 @@ Ihm::Ihm(QWidget *parent) :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(
 
 /**
  * @brief Destructeur de la classe Ihm
- * @fn Ihm::~Ihm
  */
 Ihm::~Ihm()
 {
@@ -48,7 +46,6 @@ Ihm::~Ihm()
 
 /**
  * @brief Bouton/icône affichant l'onglet des données de la ruche selectionné
- * @fn Ihm::on_pushButton_ruches_clicked
  */
 void Ihm::on_pushButton_ruches_clicked()
 {
@@ -58,7 +55,6 @@ void Ihm::on_pushButton_ruches_clicked()
 
 /**
  * @brief Bouton/icône affichant l'onglet des mesures
- * @fn Ihm::on_pushButton_mesures_clicked()
  */
 void Ihm::on_pushButton_mesures_clicked()
 {
@@ -68,7 +64,6 @@ void Ihm::on_pushButton_mesures_clicked()
 
 /**
  * @brief Bouton/icône affichant l'onglet des graphiques
- * @fn Ihm::on_pushButton_graphiques_clicked()
  */
 void Ihm::on_pushButton_graphiques_clicked()
 {
@@ -79,7 +74,6 @@ void Ihm::on_pushButton_graphiques_clicked()
 
 /**
  * @brief Bouton/icône affichant l'onglet des alertes
- * @fn Ihm::on_pushButton_alertes_clicked()
  */
 void Ihm::on_pushButton_alertes_clicked()
 {
@@ -89,7 +83,6 @@ void Ihm::on_pushButton_alertes_clicked()
 
 /**
  * @brief Bouton/icône affichant l'onglet des réglages de connexion TTN
- * @fn Ihm::on_pushButton_reglage_ttn_clicked()
  */
 void Ihm::on_pushButton_reglage_ttn_clicked()
 {
@@ -100,7 +93,6 @@ void Ihm::on_pushButton_reglage_ttn_clicked()
 
 /**
  * @brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
- * @fn Ihm::changerApparenceBouton
  * @param nomBouton
  */
 void Ihm::changerApparenceBouton(PagesIHM page)
@@ -149,7 +141,6 @@ void Ihm::changerApparenceBouton(PagesIHM page)
 
 /**
  * @brief Bouton qui permet de démarrer la connexion avec TTN
- * @fn Ihm::on_pushButton_connexion_ttn_clicked()
  */
 void Ihm::on_pushButton_connexion_ttn_clicked()
 {
@@ -158,7 +149,6 @@ void Ihm::on_pushButton_connexion_ttn_clicked()
 
 /**
  * @brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
- * @fn Ihm::on_pushButton_nouvelle_ruche_clicked
  */
 void Ihm::on_pushButton_nouvelle_ruche_clicked()
 {
@@ -167,7 +157,6 @@ void Ihm::on_pushButton_nouvelle_ruche_clicked()
 
 /**
  * @brief Bouton qui permet d'ouvrir la fenêtre des réglages de la ruche
- * @fn Ihm::on_pushButton_reglage_clicked
  */
 void Ihm::on_pushButton_reglage_clicked()
 {
@@ -176,7 +165,6 @@ void Ihm::on_pushButton_reglage_clicked()
 
 /**
  * @brief Bouton qui permet de supprimer la ruche selectionné
- * @fn Ihm::on_pushButton_supprimer_ruche_clicked
  */
 void Ihm::on_pushButton_supprimer_ruche_clicked()
 {
@@ -201,7 +189,6 @@ void Ihm::on_pushButton_supprimer_ruche_clicked()
 
 /**
  * @brief Méthode qui initialise les graphiques
- * @fn Ihm::initaliserGraphiques
  */
 void Ihm::initialiserGraphiques()
 {
@@ -215,7 +202,6 @@ void Ihm::initialiserGraphiques()
 
 /**
  * @brief Méthode qui affiche les nouvelles valeurs dans le graphique
- * @fn Ihm::afficherGraphiques
  */
 void Ihm::afficherGraphiques()
 {
@@ -229,7 +215,6 @@ void Ihm::afficherGraphiques()
 
 /**
  * @brief Méthode qui initialise le graphique des températures
- * @fn Ihm::initialiserGraphiqueTemperatures
  */
 void Ihm::initialiserGraphiqueTemperatures()
 {
@@ -284,7 +269,6 @@ void Ihm::initialiserGraphiqueTemperatures()
 
 /**
  * @brief Méthode qui initialise le graphique d'humidité
- * @fn Ihm::initialiserGraphiqueHumidite
  */
 void Ihm::initialiserGraphiqueHumidite()
 {
@@ -326,7 +310,6 @@ void Ihm::initialiserGraphiqueHumidite()
 
 /**
  * @brief Méthode qui initialise le graphique de l'ensoleillement
- * @fn Ihm::initialiserGraphiqueEnsoleillement
  */
 void Ihm::initialiserGraphiqueEnsoleillement()
 {
@@ -362,7 +345,6 @@ void Ihm::initialiserGraphiqueEnsoleillement()
 
 /**
  * @brief Méthode qui initialise le graphique de la pression
- * @fn Ihm::initialiserGraphiquePression
  */
 void Ihm::initialiserGraphiquePression()
 {
@@ -404,7 +386,6 @@ void Ihm::initialiserGraphiquePression()
 
 /**
  * @brief Méthode qui initialise le graphique du poids
- * @fn Ihm::initialiserGraphiquePoids
  */
 void Ihm::initialiserGraphiquePoids()
 {
@@ -446,7 +427,6 @@ void Ihm::initialiserGraphiquePoids()
 
 /**
  * @brief Méthode qui permet de change l'abscisse des graphiques
- * @fn Ihm::changerAbscisseGraphiques
  */
 void Ihm::changerAbscisseGraphiques()
 {
@@ -471,7 +451,6 @@ void Ihm::changerAbscisseGraphiques()
 
 /**
  * @brief Méthode permettant de changer la données affiché sur la vue globale
- * @fn Ihm::changerDonneesVueGlobale
  */
 void Ihm::changerDonneesVueGlobale()
 {
@@ -490,7 +469,6 @@ void Ihm::changerDonneesVueGlobale()
 
 /**
  * @brief Change l'état de connexion TTN dans l'IHM
- * @fn Ihm::changerEtatConnexion(int etat)
  * 
  * @param etat
  */
@@ -515,7 +493,6 @@ void Ihm::changerEtatConnexion(int etat)
 
 /**
  * @brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
- * @fn Ihm::closeEvent
  * 
  * @param event
  */
@@ -531,7 +508,6 @@ void Ihm::closeEvent(QCloseEvent *event)
 
 /**
  * @brief Méthode pour charger les icônes des boutons
- * @fn Ihm::chargerIconesBoutons
  */
 void Ihm::chargerIconesBoutons()
 {
@@ -544,14 +520,12 @@ void Ihm::chargerIconesBoutons()
 
 /**
  * @brief Initialise les différents widgets de l'IHM
- * @fn Ihm::initialiserWidgets
  */
 void Ihm::initialiserWidgets()
 {
     this->setWindowTitle(NOM_APPLICATION);
     ui->label_version->setText(VERSION_APPLICATION);
 
-    chargerIconesBoutons();
     ui->comboBox_liste_ruches->addItem("Nom de la ruche");
 
     ui->comboBox_reglages_graphiques->addItem("1 jour");
@@ -563,7 +537,6 @@ void Ihm::initialiserWidgets()
 
 /**
  * @brief Assure la connexion signal/slot
- * @fn Ihm::initialiserEvenements
  */
 void Ihm::initialiserEvenements()
 {
@@ -590,7 +563,6 @@ void Ihm::initialiserEvenements()
 
 /**
  * @brief Initialise l'entrée dans la barre d'état du système
- * @fn Ihm::initialiserEntreeBarreEtatSysteme
  */
 void Ihm::initialiserEntreeBarreEtatSysteme()
 {
@@ -627,7 +599,6 @@ void Ihm::initialiserEntreeBarreEtatSysteme()
 
 /**
  * @brief Méthode pour définir la température intérieure dans l'IHM
- * @fn Ihm::setValeurTemperatureInterieure
  * 
  * @param temperatureInterieure
  */
@@ -649,7 +620,6 @@ void Ihm::setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatur
 
 /**
  * @brief Méthode pour définir la température extérieure dans l'IHM
- * @fn Ihm::setValeurTemperatureExterieure
  * 
  * @param nomDeLaRuche
  * @param temperatureInterieure
@@ -671,7 +641,6 @@ void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatur
 
 /**
  * @brief Méthode pour définir l'humidite dans l'IHM
- * @fn Ihm::setValeurHumidite
  * 
  * @param nomDeLaRuche
  * @param humidite
@@ -692,7 +661,6 @@ void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horod
 
 /**
  * @brief Méthode pour définir l'ensoleillement dans l'IHM
- * @fn Ihm::setValeurEnsoleillement
  * 
  * @param nomDeLaRuche
  * @param ensoleillement
@@ -713,7 +681,6 @@ void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QStr
 
 /**
  * @brief Méthode pour définir la pression dans l'IHM
- * @fn Ihm::setValeurPression
  * 
  * @param nomDeLaRuche
  * @param pression
@@ -734,7 +701,6 @@ void Ihm::setValeurPression(QString nomDeLaRuche, int pression, QString horodata
 
 /**
  * @brief Méthode pour définir le poids dans l'IHM
- * @fn Ihm::setValeurPoids
  * 
  * @param nomDeLaRuche
  * @param poids
@@ -756,7 +722,6 @@ void Ihm::setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage)
 
 /**
  * @brief Bouton pour enregistrer la configuration TTN dans le fichier INI
- * @fn Ihm::on_pushButton_enregistrer_configuration_ttn_clicked()
  */
 void Ihm::on_pushButton_enregistrer_configuration_ttn_clicked()
 {
@@ -765,7 +730,6 @@ void Ihm::on_pushButton_enregistrer_configuration_ttn_clicked()
 
 /**
  * @brief Méthode pour ajouter une nouvelle ruche
- * @fn Ihm::ajouterNouvelleRuche
  * 
  * @param ruche
  */
@@ -782,7 +746,6 @@ void Ihm::ajouterNouvelleRuche(Ruche ruche)
 
 /**
  * @brief Méthode pour charger la configuration TTN
- * @fn Ihm::chargerConfiguration
  */
 void Ihm::chargerConfiguration()
 {
@@ -797,7 +760,6 @@ void Ihm::chargerConfiguration()
 
 /**
  * @brief Méthode pour démarrer TTN
- * @fn Ihm::demarrerTTN
  */
 void Ihm::demarrerTTN()
 {
@@ -807,7 +769,6 @@ void Ihm::demarrerTTN()
 
 /**
  * @brief Méthode pour s'abonner à un topic
- * @fn Ihm::connecterRuches
  */
 void Ihm::connecterRuches()
 {
@@ -824,7 +785,6 @@ void Ihm::connecterRuches()
 
 /**
  * @brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
- * @fn Ihm::afficherGraphiqueTemperatureInterieure
  */
 void Ihm::afficherGraphiqueTemperatureInterieure()
 {
@@ -835,7 +795,6 @@ void Ihm::afficherGraphiqueTemperatureInterieure()
 
 /**
  * @brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
- * @fn Ihm::afficherGraphiqueTemperatureExterieure
  */
 void Ihm::afficherGraphiqueTemperatureExterieure()
 {
@@ -846,7 +805,6 @@ void Ihm::afficherGraphiqueTemperatureExterieure()
 
 /**
  * @brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
- * @fn Ihm::afficherGraphiqueHumidite
  */
 void Ihm::afficherGraphiqueHumidite()
 {
@@ -857,7 +815,6 @@ void Ihm::afficherGraphiqueHumidite()
 
 /**
  * @brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
- * @fn Ihm::afficherGraphiqueEnsoleillement
  */
 void Ihm::afficherGraphiqueEnsoleillement()
 {
@@ -868,7 +825,6 @@ void Ihm::afficherGraphiqueEnsoleillement()
 
 /**
  * @brief Méthode qui met à jour les mesures de la pression dans le graphique associée
- * @fn Ihm::afficherGraphiquePression
  */
 void Ihm::afficherGraphiquePression()
 {
@@ -879,7 +835,6 @@ void Ihm::afficherGraphiquePression()
 
 /**
  * @brief Méthode qui met à jour les mesures du poids dans le graphique associée
- * @fn Ihm::afficherGraphiquePoids
  */
 void Ihm::afficherGraphiquePoids()
 {

@@ -10,7 +10,6 @@
 
 /**
  * @brief Constructeur de la classe IHMReglageRuche
- * @fn IHMReglageRuche::IHMReglageRuche
  * 
  * @param parent
  */
@@ -19,13 +18,14 @@ IHMReglageRuche::IHMReglageRuche(QWidget *parent) :
     ui(new Ui::reglageRuche)
 {
     ui->setupUi(this);
+    qDebug() << Q_FUNC_INFO;
 }
 
 /**
  * @brief Destructeur de la classe IHMReglageRuche
- * @fn IHMReglageRuche::~IHMReglageRuche
  */
 IHMReglageRuche::~IHMReglageRuche()
 {
     delete ui;
+    qDebug() << Q_FUNC_INFO;
 }

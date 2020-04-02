@@ -9,7 +9,6 @@
 
 /**
  * @brief Constructeur de la classe Configuration
- * @fn Configuration::Configuration
  * 
  * @param parent
  * @param settings
@@ -22,7 +21,6 @@ Configuration::Configuration(QObject *parent) : QObject(parent), settings(QDir::
 
 /**
  * @brief Destructeur de la classe Configuration
- * @fn Configuration::~Configuration
  */
 Configuration::~Configuration()
 {
@@ -32,7 +30,6 @@ Configuration::~Configuration()
 
 /**
  * @brief Méthode pour définir une configuration TTN
- * @fn Configuration::setConfigurationTTN
  * 
  * @param configurationTTN
  */
@@ -43,7 +40,6 @@ void Configuration::setConfigurationTTN(ConfigurationTTN configurationTTN)
 
 /**
  * @brief Méthode pour définir une configuration TTN
- * @fn Configuration::setConfigurationTTN
  * 
  * @param hostname
  * @param port
@@ -61,7 +57,6 @@ void Configuration::setConfigurationTTN(QString hostname, int port, QString user
 
 /**
  * @brief Méthode pour récupérer la configuration TTN
- * @fn Configuration::getConfigurationTTN
  * 
  * @return ConfigurationTTN
  */
@@ -72,7 +67,6 @@ ConfigurationTTN Configuration::getConfigurationTTN() const
 
 /**
  * @brief Méthode pour définir une ruche
- * @fn Configuration::setRuches
  * 
  * @param ruches
  */
@@ -83,7 +77,6 @@ void Configuration::setRuches(QVector<Ruche> ruches)
 
 /**
  * @brief Méthode pour récupérer une ruche
- * @fn Configuration::getRuches
  * 
  * @return QVector<Ruche>
  */
@@ -94,7 +87,6 @@ QVector<Ruche> Configuration::getRuches() const
 
 /**
  * @brief Méthode qui retourne le topic TTN d'une ruche
- * @fn Configuration::getTopicRuche
  * 
  * @param ruche
  * @return QString
@@ -107,7 +99,6 @@ QString Configuration::getTopicRuche(QString ruche)
 }
 /**
  * @brief Méthode pour charger la configuration TTN et les ruches depuis le fichier INI
- * @fn Configuration::charger
  */
 void Configuration::charger()
 {
@@ -118,7 +109,6 @@ void Configuration::charger()
 
 /**
  * @brief Méthode pour charger la configuration TTN
- * @fn Configuration::chargerConfigurationTTN
  */
 void Configuration::chargerConfigurationTTN()
 {
@@ -134,7 +124,6 @@ void Configuration::chargerConfigurationTTN()
 
 /**
  * @brief Méthode pour charger les ruches depuis le fichier INI
- * @fn Configuration::chargerRuches
  */
 void Configuration::chargerRuches()
 {
@@ -158,7 +147,6 @@ void Configuration::chargerRuches()
 
 /**
  * @brief Méthode pour sauvegarder la configuration TTN et les ruches dans le fichier INI
- * @fn Configuration::sauvegarder
  */
 void Configuration::sauvegarder()
 {
@@ -169,7 +157,6 @@ void Configuration::sauvegarder()
 
 /**
  * @brief Méthode pour sauvegarder la configuration TTN dans le fichier INI
- * @fn Configuration::sauvegarderConfigurationTTN
  */
 void Configuration::sauvegarderConfigurationTTN()
 {
@@ -183,7 +170,6 @@ void Configuration::sauvegarderConfigurationTTN()
 
 /**
  * @brief Méthode pour sauvegarder les ruches dans le fichier INI
- * @fn Configuration::sauvegarderRuches
  */
 void Configuration::sauvegarderRuches()
 {
