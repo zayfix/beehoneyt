@@ -8,7 +8,6 @@ package com.lasalle.beehoneyt;
 
 import android.content.Context;
 import android.util.Log;
-
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -18,6 +17,10 @@ import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import java.util.Iterator;
 
 /**
  * @class CommunicationMQTT
@@ -32,34 +35,37 @@ public class CommunicationMQTT
     /**
      * Attributs
      */
-    public MqttAndroidClient mqttAndroidClient;
+    static public MqttAndroidClient mqttAndroidClient;
     /**
      * @todo Prévoir autre chose pour configurer/stocker les paramètres de connexion TTN
      */
-    private String serverUri = "tcp://eu.thethings.network:1883";
-    private String clientId = "mes_ruches";
-    private String username = "mes_ruches"; // <ApplicationID>
-    private String password = "ttn-account-v2.vC-aqMRnLLzGkNjODWgy81kLqzxBPAT8_mE-L7U2C_w";
-    private boolean connecte;
+    private String serverUri = "tcp://eu.thethings.network:1883"; //!<  lien vers TTN
+    static public String clientId = "mes_ruches"; //!< Application ID
+    private String username = "mes_ruches"; //!<  nom d'utilisateur
+    private String password = "ttn-account-v2.vC-aqMRnLLzGkNjODWgy81kLqzxBPAT8_mE-L7U2C_w"; //!<  mot de passe TTN
 
+    /**
+     * @brief Constructeur de la classe CommunicationMQTT
+     *
+     * @fn CommunicationMQTT::CommunicationMQTT(Context context)
+     * @param context
+     */
     public CommunicationMQTT(Context context)
     {
         Log.v(TAG, "ClientMQTT " + clientId);
-        connecte = false;
         mqttAndroidClient = new MqttAndroidClient(context, serverUri, clientId);
         mqttAndroidClient.setCallback(new MqttCallbackExtended()
         {
             @Override
             public void connectComplete(boolean b, String s)
             {
-                Log.w(TAG, "connectComplete() " + s);
+                Log.w(TAG, "connectComplete() " + s + " -> " + mqttAndroidClient.isConnected());
             }
 
             @Override
             public void connectionLost(Throwable throwable)
             {
                 Log.w(TAG, "connectionLost()");
-                connecte = false;
             }
 
             @Override
@@ -78,11 +84,23 @@ public class CommunicationMQTT
         connecter();
     }
 
-    public void setCallback(MqttCallbackExtended callback)
+    /**
+     * @brief
+     *
+     * @fn CommunicationMQTT::setCallback(MqttCallbackExtended callback)
+     * @param callback le retour
+     */
+    static public void setCallback(MqttCallbackExtended callback)
     {
         mqttAndroidClient.setCallback(callback);
     }
 
+    /**
+     * @brief connection au ttn
+     *
+     * @fn CommunicationMQTT::connecter()
+     * @param
+     */
     private void connecter()
     {
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
@@ -105,7 +123,6 @@ public class CommunicationMQTT
                     disconnectedBufferOptions.setPersistBuffer(false);
                     disconnectedBufferOptions.setDeleteOldestMessages(false);
                     mqttAndroidClient.setBufferOpts(disconnectedBufferOptions);
-                    connecte = true;
                     Log.d(TAG, "onSuccess() " + serverUri + " " + clientId);
                 }
 
@@ -122,11 +139,30 @@ public class CommunicationMQTT
         }
     }
 
+    /**
+     * @brief reconnection au ttn
+     *
+     * @fn CommunicationMQTT::reconnecter()
+     * @param
+     */
+    public void reconnecter()
+    {
+        Log.w(TAG, "mqttAndroidClient : reconnecter");
+        if (estConnecte())
+            deconnecter();
+        connecter();
+    }
+
+    /**
+     * @brief deconetion du ttn
+     *
+     * @fn CommunicationMQTT::deconnecter()
+     * @param
+     */
     public void deconnecter()
     {
         Log.d(TAG, "deconnecter() " + serverUri + " " + clientId);
-        try
-        {
+        try {
             IMqttToken disconToken = mqttAndroidClient.disconnect();
             disconToken.setActionCallback(new IMqttActionListener()
             {
@@ -134,7 +170,6 @@ public class CommunicationMQTT
                 public void onSuccess(IMqttToken asyncActionToken)
                 {
                     Log.d(TAG, "onSuccess() : " + serverUri + " " + clientId);
-                    connecte = false;
                 }
 
                 @Override
@@ -150,11 +185,161 @@ public class CommunicationMQTT
         }
     }
 
-    public boolean estConnecte()
+    /**
+     * @brief boolaine retourne si le ttn est connecter
+     *
+     * @fn CommunicationMQTT::estConnecte()
+     * @param
+     */
+    static public boolean estConnecte()
     {
-        Log.w(TAG,"estConnecte() " + mqttAndroidClient.isConnected() + "" + connecte);
+        Log.w(TAG, "estConnecte() " + mqttAndroidClient.isConnected());
 
-        //return mqttAndroidClient.isConnected();
-        return connecte;
+        return mqttAndroidClient.isConnected();
+    }
+
+    /**
+     * @brief S'abone a un device
+     *
+     * @fn CommunicationMQTT::souscrireTopic(String topic)
+     * @param topic le topic au quel s'aboner
+     */
+    static public boolean souscrireTopic(String topic)
+    {
+        String subTopic = clientId + "/devices/" + topic + "/up";
+        Log.w(TAG, "MqttAndroidClient : souscrire -> " + subTopic);
+        try
+        {
+            final boolean[] retour = {false};
+            mqttAndroidClient.subscribe(subTopic, 0, null, new IMqttActionListener()
+            {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken)
+                {
+                    Log.w(TAG, "souscrire : onSuccess");
+                    retour[0] = true;
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception)
+                {
+                    Log.w(TAG, "souscrire : onFailure");
+                    retour[0] = false;
+                }
+            });
+            return retour[0];
+        }
+        catch (MqttException ex)
+        {
+            Log.e(TAG, "souscrire : exception");
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * @brief decode le message recu
+     *
+     * @fn CommunicationMQTT::decoderMessage(String message)
+     * @param message le message reçu
+     */
+    static public void decoderMessage(String message)
+    {
+        try
+        {
+            JSONObject json = null;
+            Iterator<String> it = null;
+
+            json = new JSONObject(message);
+            int port = json.getInt("port");
+
+            it = json.keys();
+            while (it.hasNext())
+            {
+                String cle = it.next();
+                Log.i(TAG, "clé = " + cle);
+                Log.i(TAG, "valeur = " + json.getString(cle));
+                //Log.i(TAG, "type = " + json.get(cle).getClass());
+
+                if (cle.equals("payload_fields"))
+                {
+                    decoderPayload(port, json.getString(cle));
+                }
+            }
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @brief d'ecode le payload
+     * @fn CommunicationMQTT::decoderPayload(String payload)
+     * @param payload
+     */
+    static public void decoderPayload(int port, String payload)
+    {
+        /**
+         * @todo Gérer le numéro de port
+         */
+        try
+        {
+            JSONObject json = null;
+            json = new JSONObject(payload);
+
+            Iterator<String> it = null;
+            it = json.keys();
+            while (it.hasNext())
+            {
+                String cle = it.next();
+                if (cle.equals("temperature"))
+                {
+                    Log.i(TAG, "temperature = " + json.getString(cle));
+                }
+                else if (cle.equals("humidite"))
+                {
+                    Log.i(TAG, "humidite = " + json.getString(cle));
+                }
+                else if (cle.equals("ensoleillement"))
+                {
+                    Log.i(TAG, "ensoleillement = " + json.getString(cle));
+                }
+                else if (cle.equals("pression"))
+                {
+                    Log.i(TAG, "pression = " + json.getString(cle));
+                }
+                else if (cle.equals("poids"))
+                {
+                    Log.i(TAG, "poids = " + json.getString(cle));
+                }
+            }
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    static public String extraireHorodatage(String message)
+    {
+        String date = "";
+
+        try
+        {
+            JSONObject json = null;
+            json = new JSONObject(message);
+
+            date = json.getJSONObject("metadata").getString("time");
+            date = date.substring(0, 10) + " " + date.substring(11, 19);
+            Log.d(TAG, "Horodatage : " + date + " <- time : " + json.getJSONObject("metadata").getString("time"));
+
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+        return  date;
     }
 }

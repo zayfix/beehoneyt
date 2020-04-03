@@ -1,0 +1,4233 @@
+format 222
+"beehoneyt-desktop" // beehoneyt-desktop
+  revision 5
+  modified_by 2 "zayfix"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  cpp_h_dir "C:\\Users\\zayfix\\Desktop\\bee-honey-t\\trunk\\beehoneyt-desktop/"
+  cpp_src_dir "C:\\Users\\zayfix\\Desktop\\bee-honey-t\\trunk\\beehoneyt-desktop/"
+  classview 128002 "beehoneyt-desktop"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 128002 "Communication"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@class   Communication
+@brief   Permet de recevoir les données
+@author  ACKERMANN Théo
+@version 0.2
+"
+      classrelation 128002 // <generalisation>
+	relation 128002 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128002 // <generalisation>
+	  b parent class_ref 128130 // typedef1
+      end
+
+      extra_member 128002 "Q_OBJECT"
+	
+	cpp "  Q_OBJECT" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 128002 "Communication"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param inout name "parent" explicit_type "QObject"
+	    defaultvalue "nullptr"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@file    communication.cpp
+//@brief   Déclaration de la classe Communication
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Communication
+//
+//@param parent
+//
+
+${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} : QObject(parent), client(new QMqttClient(this))
+${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128130 "~Communication"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Destructeur de la classe Communication
+//
+
+${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128258 "connecterTTN"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 4
+	  param in name "hostname" explicit_type "QString"
+	  param in name "port" explicit_type "int"
+	  param in name "username" explicit_type "QString"
+	  param in name "password" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour se connecter à TTN
+//
+//@param hostname
+//@param port
+//@param username
+//@param password
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128386 "souscrireTopic"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "topic" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour s'abonner à un topic TTN
+//
+//@param topic
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128514 "desabonnerTopic"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "topic" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour se désabonner d'un topic TTN
+//
+//@param topic
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128002 "client"
+	private explicit_type "QMqttClient"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128130 "subscription"
+	private explicit_type "QMqttSubscription"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 128130 // ihm (<unidirectional association>)
+	relation 128130 --->
+	  a role_name "ihm" private
+	    comment "!< interface utilisateur"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128130 // ihm (<unidirectional association>)
+	  b parent class_ref 128258 // Ihm
+      end
+
+      operation 128642 "extraireHorodatage"
+	preserve_cpp_body_indent private explicit_return_type "QString"
+	nparams 1
+	  param in name "objetJSON" explicit_type "QJsonObject"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour extraire le temps de l'objet JSON
+//
+//@param objetJSON
+//@return QString
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128770 "extraireDeviceID"
+	preserve_cpp_body_indent private explicit_return_type "QString"
+	nparams 3
+	  param in name "objetJSON" explicit_type "QJsonObject"
+	  param in name "listeCles" explicit_type "QStringList"
+	  param in name "position" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour extraire le device ID de l'objet JSON
+//
+//@param objetJSON
+//@param listeCles
+//@param position
+//@return QString
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128898 "extraireTemperature"
+	preserve_cpp_body_indent private explicit_return_type "double"
+	nparams 1
+	  param in name "objetJSON" explicit_type "QJsonObject"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour extraire la temperature de l'objet JSON
+//
+//@param objetJSON
+//@return double
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129026 "extraireHumidite"
+	preserve_cpp_body_indent private explicit_return_type "double"
+	nparams 1
+	  param in name "objetJSON" explicit_type "QJsonObject"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour extraire l'humidité de l'objet JSON
+//
+//@param objetJSON
+//@return double
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129154 "extraireEnsoleillement"
+	preserve_cpp_body_indent private explicit_return_type "int"
+	nparams 1
+	  param in name "objetJSON" explicit_type "QJsonObject"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour extraire l'ensoleillement de l'objet JSON
+//
+//@param objetJSON
+//@return int
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129282 "extrairePression"
+	preserve_cpp_body_indent private explicit_return_type "int"
+	nparams 1
+	  param in name "objetJSON" explicit_type "QJsonObject"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour extraire la pression de l'objet JSON
+//
+//@param objetJSON
+//@return int
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129410 "extrairePoids"
+	preserve_cpp_body_indent private explicit_return_type "double"
+	nparams 1
+	  param in name "objetJSON" explicit_type "QJsonObject"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour extraire le poids le l'objet JSON
+//
+//@param objetJSON
+//@return double
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129538 "formaterHorodatage"
+	preserve_cpp_body_indent private explicit_return_type "QString"
+	nparams 1
+	  param in name "horodatageBrut" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour mettre dans le bon format l'horodatage reçu
+//
+//@param horodatageBrut
+//@return QString
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128130 "slots"
+	
+	cpp "  public slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 129666 "decoderJson"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "json" explicit_type "QByteArray"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour décoder le JSON reçu
+//
+//@param json
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129794 "changerEtatConnexion"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour notifier un changement d'état de la connexion TTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128258 "signals"
+	
+	cpp "  signals:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 129922 "nouvelleValeurTemperature"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "temperature" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130050 "nouvelleValeurTemperatureExterieure"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "temperatureExterieure" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130178 "nouvelleValeurEnsoleillement"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "ensoleillement" explicit_type "int"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130306 "nouvelleValeurHumidite"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "humidite" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130434 "nouvelleValeurPression"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "pression" explicit_type "int"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130562 "nouvelleValeurPoids"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "poids" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130690 "nouvelEtatConnexion"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "etat" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 128130 "typedef1"
+      visibility package stereotype "typedef" explicit_base_type "QObject"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 128258 "Ihm"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@class   Ihm
+@brief   La fenêtre principale de l'application
+@author  ACKERMANN Théo
+@version 0.2
+"
+      classrelation 128642 // <generalisation>
+	relation 128642 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128642 // <generalisation>
+	  b parent class_ref 128898 // typedef2
+      end
+
+      extra_member 128642 "Q_OBJECT"
+	
+	cpp "  Q_OBJECT" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 132610 "Ihm"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param inout name "parent" explicit_type "QWidget"
+	    defaultvalue "nullptr"
+	cpp_decl "    ${comment}${inline}explicit ${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@file    ihm.cpp
+//@brief   Déclaration de la classe Ihm
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Ihm
+//
+//@param parent
+//
+
+//
+//@file    ihm.cpp
+//@brief   Déclaration de la classe Ihm
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Ihm
+//
+//@param parent
+//
+
+//
+//@file    ihm.cpp
+//@brief   Déclaration de la classe Ihm
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Ihm
+//
+//@param parent
+//
+
+//
+//@file    ihm.cpp
+//@brief   Déclaration de la classe Ihm
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Ihm
+//
+//@param parent
+//
+
+//
+//@file    ihm.cpp
+//@brief   Déclaration de la classe Ihm
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Ihm
+//
+//@param parent
+//
+
+//
+//@file    ihm.cpp
+//@brief   Déclaration de la classe Ihm
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Ihm
+//
+//@param parent
+//
+
+${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
+ :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
+ :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
+ :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
+ :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
+ :QMainWindow(parent),ui(new Ui::ihm),ihmNouvelleRuche(new IHMNouvelleRuche),ihmReglageRuche(new IHMReglageRuche()), iconeEtatSysteme(new QSystemTrayIcon(this)), communication(new Communication(this)), configuration(new Configuration(this))
+${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132738 "~Ihm"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Destructeur de la classe Ihm
+//
+
+//
+//@brief Destructeur de la classe Ihm
+//
+
+//
+//@brief Destructeur de la classe Ihm
+//
+
+//
+//@brief Destructeur de la classe Ihm
+//
+
+//
+//@brief Destructeur de la classe Ihm
+//
+
+//
+//@brief Destructeur de la classe Ihm
+//
+
+${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132866 "initialiserGraphiques"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui initialise les graphiques
+//
+
+//
+//@brief Méthode qui initialise les graphiques
+//
+
+//
+//@brief Méthode qui initialise les graphiques
+//
+
+//
+//@brief Méthode qui initialise les graphiques
+//
+
+//
+//@brief Méthode qui initialise les graphiques
+//
+
+//
+//@brief Méthode qui initialise les graphiques
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132994 "initialiserGraphiqueTemperatures"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui initialise le graphique des températures
+//
+
+//
+//@brief Méthode qui initialise le graphique des températures
+//
+
+//
+//@brief Méthode qui initialise le graphique des températures
+//
+
+//
+//@brief Méthode qui initialise le graphique des températures
+//
+
+//
+//@brief Méthode qui initialise le graphique des températures
+//
+
+//
+//@brief Méthode qui initialise le graphique des températures
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133122 "initialiserGraphiqueHumidite"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui initialise le graphique d'humidité
+//
+
+//
+//@brief Méthode qui initialise le graphique d'humidité
+//
+
+//
+//@brief Méthode qui initialise le graphique d'humidité
+//
+
+//
+//@brief Méthode qui initialise le graphique d'humidité
+//
+
+//
+//@brief Méthode qui initialise le graphique d'humidité
+//
+
+//
+//@brief Méthode qui initialise le graphique d'humidité
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133250 "initialiserGraphiqueEnsoleillement"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui initialise le graphique de l'ensoleillement
+//
+
+//
+//@brief Méthode qui initialise le graphique de l'ensoleillement
+//
+
+//
+//@brief Méthode qui initialise le graphique de l'ensoleillement
+//
+
+//
+//@brief Méthode qui initialise le graphique de l'ensoleillement
+//
+
+//
+//@brief Méthode qui initialise le graphique de l'ensoleillement
+//
+
+//
+//@brief Méthode qui initialise le graphique de l'ensoleillement
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133378 "initialiserGraphiquePression"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui initialise le graphique de la pression
+//
+
+//
+//@brief Méthode qui initialise le graphique de la pression
+//
+
+//
+//@brief Méthode qui initialise le graphique de la pression
+//
+
+//
+//@brief Méthode qui initialise le graphique de la pression
+//
+
+//
+//@brief Méthode qui initialise le graphique de la pression
+//
+
+//
+//@brief Méthode qui initialise le graphique de la pression
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133506 "initialiserGraphiquePoids"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui initialise le graphique du poids
+//
+
+//
+//@brief Méthode qui initialise le graphique du poids
+//
+
+//
+//@brief Méthode qui initialise le graphique du poids
+//
+
+//
+//@brief Méthode qui initialise le graphique du poids
+//
+
+//
+//@brief Méthode qui initialise le graphique du poids
+//
+
+//
+//@brief Méthode qui initialise le graphique du poids
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133634 "initialiserGraphiqueActivite"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128770 "slots"
+	
+	cpp "  public slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 133762 "setValeurTemperatureInterieure"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "temperatureInterieure" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir la température intérieure dans l'IHM
+//
+//@param temperatureInterieure
+//
+
+//
+//@brief Méthode pour définir la température intérieure dans l'IHM
+//
+//@param temperatureInterieure
+//
+
+//
+//@brief Méthode pour définir la température intérieure dans l'IHM
+//
+//@param temperatureInterieure
+//
+
+//
+//@brief Méthode pour définir la température intérieure dans l'IHM
+//
+//@param temperatureInterieure
+//
+
+//
+//@brief Méthode pour définir la température intérieure dans l'IHM
+//
+//@param temperatureInterieure
+//
+
+//
+//@brief Méthode pour définir la température intérieure dans l'IHM
+//
+//@param temperatureInterieure
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133890 "setValeurTemperatureExterieure"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "temperatureExterieure" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir la température extérieure dans l'IHM
+//
+//@param nomDeLaRuche
+//@param temperatureInterieure
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la température extérieure dans l'IHM
+//
+//@param nomDeLaRuche
+//@param temperatureInterieure
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la température extérieure dans l'IHM
+//
+//@param nomDeLaRuche
+//@param temperatureInterieure
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la température extérieure dans l'IHM
+//
+//@param nomDeLaRuche
+//@param temperatureInterieure
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la température extérieure dans l'IHM
+//
+//@param nomDeLaRuche
+//@param temperatureInterieure
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la température extérieure dans l'IHM
+//
+//@param nomDeLaRuche
+//@param temperatureInterieure
+//@param horodatage
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134018 "setValeurHumidite"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "humidite" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir l'humidite dans l'IHM
+//
+//@param nomDeLaRuche
+//@param humidite
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'humidite dans l'IHM
+//
+//@param nomDeLaRuche
+//@param humidite
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'humidite dans l'IHM
+//
+//@param nomDeLaRuche
+//@param humidite
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'humidite dans l'IHM
+//
+//@param nomDeLaRuche
+//@param humidite
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'humidite dans l'IHM
+//
+//@param nomDeLaRuche
+//@param humidite
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'humidite dans l'IHM
+//
+//@param nomDeLaRuche
+//@param humidite
+//@param horodatage
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134146 "setValeurEnsoleillement"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "ensoleillement" explicit_type "int"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir l'ensoleillement dans l'IHM
+//
+//@param nomDeLaRuche
+//@param ensoleillement
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'ensoleillement dans l'IHM
+//
+//@param nomDeLaRuche
+//@param ensoleillement
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'ensoleillement dans l'IHM
+//
+//@param nomDeLaRuche
+//@param ensoleillement
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'ensoleillement dans l'IHM
+//
+//@param nomDeLaRuche
+//@param ensoleillement
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'ensoleillement dans l'IHM
+//
+//@param nomDeLaRuche
+//@param ensoleillement
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir l'ensoleillement dans l'IHM
+//
+//@param nomDeLaRuche
+//@param ensoleillement
+//@param horodatage
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134274 "setValeurPression"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "pression" explicit_type "int"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir la pression dans l'IHM
+//
+//@param nomDeLaRuche
+//@param pression
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la pression dans l'IHM
+//
+//@param nomDeLaRuche
+//@param pression
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la pression dans l'IHM
+//
+//@param nomDeLaRuche
+//@param pression
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la pression dans l'IHM
+//
+//@param nomDeLaRuche
+//@param pression
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la pression dans l'IHM
+//
+//@param nomDeLaRuche
+//@param pression
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir la pression dans l'IHM
+//
+//@param nomDeLaRuche
+//@param pression
+//@param horodatage
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134402 "setValeurPoids"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 3
+	  param in name "nomDeLaRuche" explicit_type "QString"
+	  param in name "poids" explicit_type "double"
+	  param in name "horodatage" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir le poids dans l'IHM
+//
+//@param nomDeLaRuche
+//@param poids
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir le poids dans l'IHM
+//
+//@param nomDeLaRuche
+//@param poids
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir le poids dans l'IHM
+//
+//@param nomDeLaRuche
+//@param poids
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir le poids dans l'IHM
+//
+//@param nomDeLaRuche
+//@param poids
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir le poids dans l'IHM
+//
+//@param nomDeLaRuche
+//@param poids
+//@param horodatage
+//
+
+//
+//@brief Méthode pour définir le poids dans l'IHM
+//
+//@param nomDeLaRuche
+//@param poids
+//@param horodatage
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128898 "slots"
+	
+	cpp "  private slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 134530 "on_pushButton_ruches_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton/icône affichant l'onglet des données de la ruche selectionné
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des données de la ruche selectionné
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des données de la ruche selectionné
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des données de la ruche selectionné
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des données de la ruche selectionné
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des données de la ruche selectionné
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134658 "on_pushButton_mesures_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton/icône affichant l'onglet des mesures
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des mesures
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des mesures
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des mesures
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des mesures
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des mesures
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134786 "on_pushButton_graphiques_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton/icône affichant l'onglet des graphiques
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des graphiques
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des graphiques
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des graphiques
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des graphiques
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des graphiques
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134914 "on_pushButton_alertes_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton/icône affichant l'onglet des alertes
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des alertes
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des alertes
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des alertes
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des alertes
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des alertes
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135042 "on_pushButton_nouvelle_ruche_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre de création du nouvelle ruche
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135170 "on_pushButton_reglage_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton qui permet d'ouvrir la fenêtre des réglages de la ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre des réglages de la ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre des réglages de la ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre des réglages de la ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre des réglages de la ruche
+//
+
+//
+//@brief Bouton qui permet d'ouvrir la fenêtre des réglages de la ruche
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135298 "on_pushButton_supprimer_ruche_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton qui permet de supprimer la ruche selectionné
+//
+
+//
+//@brief Bouton qui permet de supprimer la ruche selectionné
+//
+
+//
+//@brief Bouton qui permet de supprimer la ruche selectionné
+//
+
+//
+//@brief Bouton qui permet de supprimer la ruche selectionné
+//
+
+//
+//@brief Bouton qui permet de supprimer la ruche selectionné
+//
+
+//
+//@brief Bouton qui permet de supprimer la ruche selectionné
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135426 "on_pushButton_reglage_ttn_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton/icône affichant l'onglet des réglages de connexion TTN
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des réglages de connexion TTN
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des réglages de connexion TTN
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des réglages de connexion TTN
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des réglages de connexion TTN
+//
+
+//
+//@brief Bouton/icône affichant l'onglet des réglages de connexion TTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135554 "on_pushButton_connexion_ttn_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton qui permet de démarrer la connexion avec TTN
+//
+
+//
+//@brief Bouton qui permet de démarrer la connexion avec TTN
+//
+
+//
+//@brief Bouton qui permet de démarrer la connexion avec TTN
+//
+
+//
+//@brief Bouton qui permet de démarrer la connexion avec TTN
+//
+
+//
+//@brief Bouton qui permet de démarrer la connexion avec TTN
+//
+
+//
+//@brief Bouton qui permet de démarrer la connexion avec TTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135682 "on_pushButton_enregistrer_configuration_ttn_clicked"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Bouton pour enregistrer la configuration TTN dans le fichier INI
+//
+
+//
+//@brief Bouton pour enregistrer la configuration TTN dans le fichier INI
+//
+
+//
+//@brief Bouton pour enregistrer la configuration TTN dans le fichier INI
+//
+
+//
+//@brief Bouton pour enregistrer la configuration TTN dans le fichier INI
+//
+
+//
+//@brief Bouton pour enregistrer la configuration TTN dans le fichier INI
+//
+
+//
+//@brief Bouton pour enregistrer la configuration TTN dans le fichier INI
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135810 "changerAbscisseGraphiques"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui permet de change l'abscisse des graphiques
+//
+
+//
+//@brief Méthode qui permet de change l'abscisse des graphiques
+//
+
+//
+//@brief Méthode qui permet de change l'abscisse des graphiques
+//
+
+//
+//@brief Méthode qui permet de change l'abscisse des graphiques
+//
+
+//
+//@brief Méthode qui permet de change l'abscisse des graphiques
+//
+
+//
+//@brief Méthode qui permet de change l'abscisse des graphiques
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135938 "changerDonneesVueGlobale"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode permettant de changer la données affiché sur la vue globale
+//
+
+//
+//@brief Méthode permettant de changer la données affiché sur la vue globale
+//
+
+//
+//@brief Méthode permettant de changer la données affiché sur la vue globale
+//
+
+//
+//@brief Méthode permettant de changer la données affiché sur la vue globale
+//
+
+//
+//@brief Méthode permettant de changer la données affiché sur la vue globale
+//
+
+//
+//@brief Méthode permettant de changer la données affiché sur la vue globale
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136066 "changerEtatConnexion"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "etat" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Change l'état de connexion TTN dans l'IHM
+//
+//@param etat
+//
+
+//
+//@brief Change l'état de connexion TTN dans l'IHM
+//
+//@param etat
+//
+
+//
+//@brief Change l'état de connexion TTN dans l'IHM
+//
+//@param etat
+//
+
+//
+//@brief Change l'état de connexion TTN dans l'IHM
+//
+//@param etat
+//
+
+//
+//@brief Change l'état de connexion TTN dans l'IHM
+//
+//@param etat
+//
+
+//
+//@brief Change l'état de connexion TTN dans l'IHM
+//
+//@param etat
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136194 "ajouterNouvelleRuche"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "ruche" type class_ref 128642 // Ruche
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour ajouter une nouvelle ruche
+//
+//@param ruche
+//
+
+//
+//@brief Méthode pour ajouter une nouvelle ruche
+//
+//@param ruche
+//
+
+//
+//@brief Méthode pour ajouter une nouvelle ruche
+//
+//@param ruche
+//
+
+//
+//@brief Méthode pour ajouter une nouvelle ruche
+//
+//@param ruche
+//
+
+//
+//@brief Méthode pour ajouter une nouvelle ruche
+//
+//@param ruche
+//
+
+//
+//@brief Méthode pour ajouter une nouvelle ruche
+//
+//@param ruche
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136322 "closeEvent"
+	preserve_cpp_body_indent protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" explicit_type "QCloseEvent"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} * ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
+//
+//@param event
+//
+
+//
+//@brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
+//
+//@param event
+//
+
+//
+//@brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
+//
+//@param event
+//
+
+//
+//@brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
+//
+//@param event
+//
+
+//
+//@brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
+//
+//@param event
+//
+
+//
+//@brief Méthode redéfinie qui s'exécute pour chaque évènement reçu par la fenêtre principale
+//
+//@param event
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 129538 "ui"
+	private explicit_type "Ui::ihm"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< interface utilisateur"
+      end
+
+      classrelation 128770 // ihmNouvelleRuche (<unidirectional association>)
+	relation 128770 --->
+	  a role_name "ihmNouvelleRuche" private
+	    comment "!< association vers l'IHM de création d'une nouvelle ruche"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128770 // ihmNouvelleRuche (<unidirectional association>)
+	  b parent class_ref 129026 // IHMNouvelleRuche
+      end
+
+      classrelation 128898 // ihmReglageRuche (<unidirectional association>)
+	relation 128898 --->
+	  a role_name "ihmReglageRuche" private
+	    comment "!< association vers l'IHM de réglage d'une ruche"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128898 // ihmReglageRuche (<unidirectional association>)
+	  b parent class_ref 129154 // IHMReglageRuche
+      end
+
+      attribute 129666 "iconeEtatSysteme"
+	private explicit_type "QSystemTrayIcon"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< entrée dans la barre d'état du système"
+      end
+
+      classrelation 129026 // communication (<unidirectional association>)
+	relation 129026 --->
+	  a role_name "communication" private
+	    comment "!< association vers la classe Communication"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129026 // communication (<unidirectional association>)
+	  b parent class_ref 128002 // Communication
+      end
+
+      classrelation 129154 // configuration (<unidirectional association>)
+	relation 129154 --->
+	  a role_name "configuration" private
+	    comment "!< association vers la classe Configuration"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129154 // configuration (<unidirectional association>)
+	  b parent class_ref 128514 // Configuration
+      end
+
+      classrelation 129282 // ruches (<directional composition>)
+	relation 129282 *-->
+	  stereotype "QVector"
+	  a role_name "ruches" private
+	    comment "!< les ruches"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129282 // ruches (<directional composition>)
+	  b parent class_ref 128642 // Ruche
+      end
+
+      attribute 129794 "temperatureInterieure"
+	private explicit_type "QLineSeries"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< La courbe de la température intérieure."
+      end
+
+      attribute 129922 "mesuresTemperatureInterieure"
+	private explicit_type "QPointF"
+	stereotype "QVector"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Les mesures pour la courbe de la température intérieure."
+      end
+
+      attribute 130050 "temperatureExterieure"
+	private explicit_type "QLineSeries"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< La courbe de la température extérieure."
+      end
+
+      attribute 130178 "mesuresTemperatureExterieure"
+	private explicit_type "QPointF"
+	stereotype "QVector"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Les mesures pour la courbe de la température extérieure."
+      end
+
+      attribute 130306 "humidite"
+	private explicit_type "QLineSeries"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< La courbe de l'humidite."
+      end
+
+      attribute 130434 "mesuresHumidite"
+	private explicit_type "QPointF"
+	stereotype "QVector"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Les mesures pour la courbe de l'humidité."
+      end
+
+      attribute 130562 "ensoleillement"
+	private explicit_type "QLineSeries"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< La courbe de l'ensoleillement."
+      end
+
+      attribute 130690 "mesuresEnsoleillement"
+	private explicit_type "QPointF"
+	stereotype "QVector"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Les mesures pour la courbe de l'ensoleillement."
+      end
+
+      attribute 130818 "pression"
+	private explicit_type "QLineSeries"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< La courbe de la pression."
+      end
+
+      attribute 130946 "mesuresPression"
+	private explicit_type "QPointF"
+	stereotype "QVector"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Les mesures pour la courbe de la pression."
+      end
+
+      attribute 131074 "poids"
+	private explicit_type "QLineSeries"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< La courbe du poids."
+      end
+
+      attribute 131202 "mesuresPoids"
+	private explicit_type "QPointF"
+	stereotype "QVector"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Les mesures pour la courbe du poids."
+      end
+
+      operation 136450 "chargerIconesBoutons"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour charger les icônes des boutons
+//
+
+//
+//@brief Méthode pour charger les icônes des boutons
+//
+
+//
+//@brief Méthode pour charger les icônes des boutons
+//
+
+//
+//@brief Méthode pour charger les icônes des boutons
+//
+
+//
+//@brief Méthode pour charger les icônes des boutons
+//
+
+//
+//@brief Méthode pour charger les icônes des boutons
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136578 "changerApparenceBouton"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "page" type class_ref 128770 // PagesIHM
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+//
+//@param nomBouton
+//
+
+//
+//@brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+//
+//@param nomBouton
+//
+
+//
+//@brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+//
+//@param nomBouton
+//
+
+//
+//@brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+//
+//@param nomBouton
+//
+
+//
+//@brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+//
+//@param nomBouton
+//
+
+//
+//@brief Méthode pour changer l'apparence des bouton selon le bouton cliqué
+//
+//@param nomBouton
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136706 "initialiserWidgets"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Initialise les différents widgets de l'IHM
+//
+
+//
+//@brief Initialise les différents widgets de l'IHM
+//
+
+//
+//@brief Initialise les différents widgets de l'IHM
+//
+
+//
+//@brief Initialise les différents widgets de l'IHM
+//
+
+//
+//@brief Initialise les différents widgets de l'IHM
+//
+
+//
+//@brief Initialise les différents widgets de l'IHM
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136834 "initialiserEvenements"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Assure la connexion signal/slot
+//
+
+//
+//@brief Assure la connexion signal/slot
+//
+
+//
+//@brief Assure la connexion signal/slot
+//
+
+//
+//@brief Assure la connexion signal/slot
+//
+
+//
+//@brief Assure la connexion signal/slot
+//
+
+//
+//@brief Assure la connexion signal/slot
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136962 "initialiserEntreeBarreEtatSysteme"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Initialise l'entrée dans la barre d'état du système
+//
+
+//
+//@brief Initialise l'entrée dans la barre d'état du système
+//
+
+//
+//@brief Initialise l'entrée dans la barre d'état du système
+//
+
+//
+//@brief Initialise l'entrée dans la barre d'état du système
+//
+
+//
+//@brief Initialise l'entrée dans la barre d'état du système
+//
+
+//
+//@brief Initialise l'entrée dans la barre d'état du système
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137090 "chargerConfiguration"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour charger la configuration TTN
+//
+
+//
+//@brief Méthode pour charger la configuration TTN
+//
+
+//
+//@brief Méthode pour charger la configuration TTN
+//
+
+//
+//@brief Méthode pour charger la configuration TTN
+//
+
+//
+//@brief Méthode pour charger la configuration TTN
+//
+
+//
+//@brief Méthode pour charger la configuration TTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137218 "demarrerTTN"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour démarrer TTN
+//
+
+//
+//@brief Méthode pour démarrer TTN
+//
+
+//
+//@brief Méthode pour démarrer TTN
+//
+
+//
+//@brief Méthode pour démarrer TTN
+//
+
+//
+//@brief Méthode pour démarrer TTN
+//
+
+//
+//@brief Méthode pour démarrer TTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137346 "connecterRuches"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour s'abonner à un topic
+//
+
+//
+//@brief Méthode pour s'abonner à un topic
+//
+
+//
+//@brief Méthode pour s'abonner à un topic
+//
+
+//
+//@brief Méthode pour s'abonner à un topic
+//
+
+//
+//@brief Méthode pour s'abonner à un topic
+//
+
+//
+//@brief Méthode pour s'abonner à un topic
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137474 "afficherGraphiqueTemperatureInterieure"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température intérieure dans le graphique associée
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137602 "afficherGraphiqueTemperatureExterieure"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la température extérieure dans le graphique associée
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137730 "afficherGraphiqueHumidite"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'humidité dans le graphique associée
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137858 "afficherGraphiqueEnsoleillement"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137986 "afficherGraphiquePression"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui met à jour les mesures de la pression dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la pression dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la pression dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la pression dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la pression dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures de la pression dans le graphique associée
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 138114 "afficherGraphiquePoids"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui met à jour les mesures du poids dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures du poids dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures du poids dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures du poids dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures du poids dans le graphique associée
+//
+
+//
+//@brief Méthode qui met à jour les mesures du poids dans le graphique associée
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 138242 "afficherGraphiques"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui affiche les nouvelles valeurs dans le graphique
+//
+
+//
+//@brief Méthode qui affiche les nouvelles valeurs dans le graphique
+//
+
+//
+//@brief Méthode qui affiche les nouvelles valeurs dans le graphique
+//
+
+//
+//@brief Méthode qui affiche les nouvelles valeurs dans le graphique
+//
+
+//
+//@brief Méthode qui affiche les nouvelles valeurs dans le graphique
+//
+
+//
+//@brief Méthode qui affiche les nouvelles valeurs dans le graphique
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 129026 "signals"
+	
+	cpp "  signals:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 138370 "sauvegarderConfigurationTTN"
+	private explicit_return_type "void"
+	nparams 4
+	  param in name "hostname" explicit_type "QString"
+	  param in name "port" explicit_type "int"
+	  param in name "username" explicit_type "QString"
+	  param in name "password" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 128386 "ConfigurationTTN"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@brief Structure qui définit la configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN)
+@struct ConfigurationTTN
+"
+      attribute 128258 "hostname"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nom du serveur TTN"
+      end
+
+      attribute 128386 "port"
+	public explicit_type "int"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le numero de port TTN"
+      end
+
+      attribute 128514 "username"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le compte d'accès TTN"
+      end
+
+      attribute 128642 "password"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le mote de passe du compte TTN"
+      end
+    end
+
+    class 128514 "Configuration"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@class   Configuration
+@brief   Gère le fichier INI
+@author  ACKERMANN Théo
+@version 0.2
+"
+      classrelation 128258 // <generalisation>
+	relation 128258 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128258 // <generalisation>
+	  b parent class_ref 128130 // typedef1
+      end
+
+      extra_member 128386 "Q_OBJECT"
+	
+	cpp "  Q_OBJECT" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 130818 "Configuration"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param inout name "parent" explicit_type "QObject"
+	    defaultvalue "nullptr"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@file    configuration.cpp
+//@brief   Déclaration de la classe Configuration
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe Configuration
+//
+//@param parent
+//@param settings
+//
+
+${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} : QObject(parent), settings(QDir::currentPath() + \"/configuration.ini\", QSettings::IniFormat)
+${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130946 "~Configuration"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Destructeur de la classe Configuration
+//
+
+${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131074 "getConfigurationTTN"
+	preserve_cpp_body_indent const public return_type class_ref 128386 // ConfigurationTTN
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour récupérer la configuration TTN
+//
+//@return ConfigurationTTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131202 "getRuches"
+	preserve_cpp_body_indent const public explicit_return_type "QVector<Ruche>"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour récupérer une ruche
+//
+//@return QVector<Ruche>
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131330 "getTopicRuche"
+	preserve_cpp_body_indent public explicit_return_type "QString"
+	nparams 1
+	  param in name "ruche" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui retourne le topic TTN d'une ruche
+//
+//@param ruche
+//@return QString
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128514 "slots"
+	
+	cpp "  public slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 131458 "setConfigurationTTN"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "configurationTTN" type class_ref 128386 // ConfigurationTTN
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir une configuration TTN
+//
+//@param configurationTTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131586 "setConfigurationTTN"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 4
+	  param in name "hostname" explicit_type "QString"
+	  param in name "port" explicit_type "int"
+	  param in name "username" explicit_type "QString"
+	  param in name "password" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir une configuration TTN
+//
+//@param hostname
+//@param port
+//@param username
+//@param password
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131714 "setRuches"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "ruches" explicit_type "QVector<Ruche>"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour définir une ruche
+//
+//@param ruches
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128770 "settings"
+	private explicit_type "QSettings"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< objet pour gérer un fichier .ini"
+      end
+
+      classrelation 128386 // configurationTTN (<directional composition>)
+	relation 128386 *-->
+	  a role_name "configurationTTN" private
+	    comment "!< configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN)"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 128386 // configurationTTN (<directional composition>)
+	  b parent class_ref 128386 // ConfigurationTTN
+      end
+
+      classrelation 128514 // ruches (<directional composition>)
+	relation 128514 *-->
+	  stereotype "QVector"
+	  a role_name "ruches" private
+	    comment "!< les ruches"
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128514 // ruches (<directional composition>)
+	  b parent class_ref 128642 // Ruche
+      end
+
+      operation 131842 "charger"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour charger la configuration TTN et les ruches depuis le fichier INI
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131970 "chargerConfigurationTTN"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour charger la configuration TTN
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132098 "chargerRuches"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour charger les ruches depuis le fichier INI
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132226 "sauvegarder"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour sauvegarder la configuration TTN et les ruches dans le fichier INI
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132354 "sauvegarderConfigurationTTN"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour sauvegarder la configuration TTN dans le fichier INI
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132482 "sauvegarderRuches"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour sauvegarder les ruches dans le fichier INI
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 128642 "Ruche"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@brief Structure qui définit une ruche
+@struct Ruche
+"
+      attribute 131586 "nom"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nom de la ruche"
+      end
+
+      attribute 131714 "topicTTN"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le topic TTN associé à la ruche"
+      end
+
+      attribute 131842 "miseEnService"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< la date de mise en service"
+      end
+
+      attribute 131970 "adresse"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< l'adresse"
+      end
+
+      attribute 132098 "latitude"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< la latitude"
+      end
+
+      attribute 132226 "longitude"
+	public explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< la longitude"
+      end
+
+      operation 139778 "operator =="
+	const cpp_inline public explicit_return_type "bool"
+	nparams 1
+	  param in name "r" type class_ref 128642 // Ruche
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract} {
+        // le nom aussi ?
+        if(this->topicTTN != r.topicTTN)
+                return false;
+        return true;
+    };
+"
+	
+	
+	
+	
+      end
+
+      operation 139906 "operator !="
+	const cpp_inline public explicit_return_type "bool"
+	nparams 1
+	  param in name "r" type class_ref 128642 // Ruche
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract} {
+        return !(*this == r);
+    };
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 128770 "PagesIHM"
+      visibility package stereotype "enum"
+      cpp_decl "${comment}enum ${name} {
+${items}};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@enum PagesIHM
+@brief Définit les numéros de page de l'IHM
+"
+      attribute 128898 "PAGE_ACCUEIL"
+	public type class_ref 128770 // PagesIHM
+	cpp_decl "  ${name}${value},${comment}"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129026 "PAGE_VUE_GLOBALE"
+	public type class_ref 128770 // PagesIHM
+	cpp_decl "  ${name}${value},${comment}"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129154 "PAGE_GRAPHIQUES"
+	public type class_ref 128770 // PagesIHM
+	cpp_decl "  ${name}${value},${comment}"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129282 "PAGE_ALERTES"
+	public type class_ref 128770 // PagesIHM
+	cpp_decl "  ${name}${value},${comment}"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129410 "PAGE_REGLAGES_TTN"
+	public type class_ref 128770 // PagesIHM
+	cpp_decl "  ${name}${value},${comment}"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 128898 "typedef2"
+      visibility package stereotype "typedef" explicit_base_type "QMainWindow"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 129026 "IHMNouvelleRuche"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@class   IHMNouvelleRuche
+@brief   La fenêtre pour créer une nouvelle ruche
+@author  ACKERMANN Théo
+@version 0.2
+"
+      classrelation 129410 // <generalisation>
+	relation 129410 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129410 // <generalisation>
+	  b parent class_ref 129282 // typedef3
+      end
+
+      extra_member 129154 "Q_OBJECT"
+	
+	cpp "  Q_OBJECT" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 138498 "IHMNouvelleRuche"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param inout name "parent" explicit_type "QWidget"
+	    defaultvalue "nullptr"
+	cpp_decl "    ${comment}${inline}explicit ${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@file    nouvelleruche.cpp
+//@brief   Déclaration de la classe IHMNouvelleRuche
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe IHMNouvelleRuche
+//
+//@param parent
+//
+
+${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :
+    QDialog(parent),
+    ui(new Ui::nouvelleRuche)
+${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 138626 "~IHMNouvelleRuche"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Destructeur de la classe IHMNouvelleRuche
+//
+
+${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 138754 "closeEvent"
+	preserve_cpp_body_indent protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" explicit_type "QCloseEvent"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} * ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour empêcher la fermeture de la fenetre si la ligne de TTN est vide.
+//
+//@param event
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 129282 "slots"
+	
+	cpp "  private slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 138882 "on_buttonBox_accepted"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui est effectuée si le bouton de confirmation de la fenêtre est pressé.
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 139010 "on_buttonBox_rejected"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode qui est effectuée si le bouton d'annulation de la fenêtre est pressé.
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 139138 "verifier"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour activer/désactiver le bouton de confirmation selon si une valeur de topic TTN a été entrée.
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 131330 "ui"
+	private explicit_type "Ui::nouvelleRuche"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< interface"
+      end
+
+      operation 139266 "nettoyerIHM"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Méthode pour supprimer les données entré dans l'IHM
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 129410 "signals"
+	
+	cpp "  signals:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 139394 "nouvelleRuche"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "" type class_ref 128642 // Ruche
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 129154 "IHMReglageRuche"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@class   IHMReglageRuche
+@brief   La fenêtre pour changer les réglages de la ruche
+@author  ACKERMANN Théo
+@version 0.2
+"
+      classrelation 129538 // <generalisation>
+	relation 129538 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129538 // <generalisation>
+	  b parent class_ref 129282 // typedef3
+      end
+
+      extra_member 129538 "Q_OBJECT"
+	
+	cpp "  Q_OBJECT" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 139522 "IHMReglageRuche"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param inout name "parent" explicit_type "QWidget"
+	    defaultvalue "nullptr"
+	cpp_decl "    ${comment}${inline}explicit ${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@file    reglageruche.cpp
+//@brief   Déclaration de la classe IHMReglageRuche
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+//
+//@brief Constructeur de la classe IHMReglageRuche
+//
+//@param parent
+//
+
+${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :
+    QDialog(parent),
+    ui(new Ui::reglageRuche)
+${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 139650 "~IHMReglageRuche"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//
+//@brief Destructeur de la classe IHMReglageRuche
+//
+
+${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 131458 "ui"
+	private explicit_type "Ui::reglageRuche"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< interface"
+      end
+    end
+
+    class 129282 "typedef3"
+      visibility package stereotype "typedef" explicit_base_type "QDialog"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+  end
+
+  deploymentview 128002 "beehoneyt-desktop"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128002 "communication"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 128002 // Communication
+      end
+    end
+
+    artifact 128130 "configuration"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 128386 // ConfigurationTTN
+	class_ref 128514 // Configuration
+      end
+    end
+
+    artifact 128258 "Bee-honey't"
+      stereotype "executable"
+      associated_artifacts
+      end
+    end
+
+    artifact 128386 "nouvelleruche"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 129026 // IHMNouvelleRuche
+      end
+    end
+
+    artifact 128514 "reglageruche"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 129154 // IHMReglageRuche
+      end
+    end
+
+    artifact 128642 "ruche"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 128642 // Ruche
+      end
+    end
+
+    artifact 128770 "main"
+      stereotype "source"
+      cpp_src "//
+//@file    main.cpp
+//@brief   Programme principal de l'application desktop qui crée et affiche l'ihm principale
+//@author  ACKERMANN Théo
+//@version 0.2
+//
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QString locale = QLocale::system().name().section('_', 0, 0);
+    QTranslator translator;
+    translator.load(QString(\"qt_\") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&translator);
+
+    Ihm w;
+    w.show();
+
+    return a.exec();
+}
+"
+      associated_elems
+      end
+    end
+  end
+
+  usecaseview 128002 "Cas_utilisation"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    usecasediagram 141314 "cas_utilisation"
+      usecasediagramsettings end
+      size A4
+    end
+
+    class 135810 "Apiculteur"
+      visibility package stereotype "actor"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    usecase 128002 "Visualiser les donn�es"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128130 "G�rer les ruches"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128258 "Ajouter une ruche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 128002
+	---|>
+	  on usecase_ref 128130 // G�rer les ruches
+      end
+    end
+
+    usecase 128386 "Editer une ruche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 128130
+	---|>
+	  on usecase_ref 128130 // G�rer les ruches
+      end
+    end
+
+    usecase 128514 "Supprimer une ruche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 128258
+	---|>
+	  on usecase_ref 128130 // G�rer les ruches
+      end
+    end
+
+    sequencediagram 128130 "Diagramme de s�quence - d�marrage"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    sequencediagram 134658 "Diagramme de s�quence - Reception donn�es"
+      sequencediagramsettings drawing_language c++ end
+      overlapping_bars size A4
+    end
+  end
+
+  classview 134530 "Vue_classe"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 134786 "Diagramme de classes - Complet"
+      classdiagramsettings member_max_width 0 end
+      size B
+    end
+
+    classdiagram 128002 "Diagramme de classes - R�duit"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size A2
+    end
+  end
+
+  deploymentview 134530 "Vue_d�ploiement"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    deploymentdiagram 141442 "Vue_d�ploiement"
+      deploymentdiagramsettings
+       end
+      size A3
+    end
+
+    deploymentnode 128130 "Tablette"
+    end
+
+    deploymentnode 128258 "PC"
+    end
+
+    deploymentnode 134786 "Routeur"
+    end
+
+    deploymentnode 134914 "The Things Gateway"
+    end
+
+    deploymentnode 135042 "The Things Uno"
+    end
+  end
+end

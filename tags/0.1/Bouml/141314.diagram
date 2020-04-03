@@ -1,0 +1,37 @@
+format 222
+
+classcanvas 128002 class_ref 135810 // Apiculteur
+  simpleclassdiagramsettings end
+  xyz 179 389 2000
+end
+subject 128130 "PC"
+  xyzwh 282 253 2000 488 350
+usecasecanvas 128258 usecase_ref 128002 // Visualiser les données
+  xyzwh 418 295 3005 64 32 label_xy 411 331
+end
+usecasecanvas 128514 usecase_ref 128130 // Gérer les ruches
+  xyzwh 419 410 3005 64 32 label_xy 385 449
+end
+usecasecanvas 128770 usecase_ref 128258 // Ajouter une ruche
+  xyzwh 605 326 3005 64 32 label_xy 594 358
+end
+usecasecanvas 129154 usecase_ref 128386 // Editer une ruche
+  xyzwh 608 428 3005 64 32 label_xy 601 460
+end
+usecasecanvas 129410 usecase_ref 128514 // Supprimer une ruche
+  xyzwh 560 528 3005 64 32 label_xy 542 560
+end
+line 128386 ----
+  from ref 128002 z 3006 to ref 128258
+line 128642 ----
+  from ref 128002 z 3006 to ref 128514
+simplerelationcanvas 129026 simplerelation_ref 128002
+  from ref 128770 z 3006 to ref 128514
+end
+simplerelationcanvas 129282 simplerelation_ref 128130
+  from ref 129154 z 3006 to ref 128514
+end
+simplerelationcanvas 129538 simplerelation_ref 128258
+  from ref 129410 z 3006 to ref 128514
+end
+end

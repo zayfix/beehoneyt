@@ -1,0 +1,9 @@
+class IHMReglageRuche
+!!!139522.cpp!!!	IHMReglageRuche(inout parent : QWidget = nullptr)
+
+    ui->setupUi(this);
+    qDebug() << Q_FUNC_INFO;
+!!!139650.cpp!!!	~IHMReglageRuche()
+
+    delete ui;
+    qDebug() << Q_FUNC_INFO;

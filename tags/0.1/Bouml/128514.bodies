@@ -1,0 +1,95 @@
+class Configuration
+!!!130818.cpp!!!	Configuration(inout parent : QObject = nullptr)
+
+    qDebug() << Q_FUNC_INFO;
+    charger();
+!!!130946.cpp!!!	~Configuration()
+
+    sauvegarder();
+    qDebug() << Q_FUNC_INFO;
+!!!131074.cpp!!!	getConfigurationTTN() : ConfigurationTTN
+
+    return configurationTTN;
+!!!131202.cpp!!!	getRuches() : QVector<Ruche>
+
+    return ruches;
+!!!131330.cpp!!!	getTopicRuche(in ruche : QString) : QString
+
+    ruche = ruche.replace(" ","");
+    ruche = ruche + "/TopicTTN";
+    return settings.value(ruche).toString();
+!!!131458.cpp!!!	setConfigurationTTN(in configurationTTN : ConfigurationTTN) : void
+
+    this->configurationTTN = configurationTTN;
+!!!131586.cpp!!!	setConfigurationTTN(in hostname : QString, in port : int, in username : QString, in password : QString) : void
+
+    configurationTTN.hostname = hostname;
+    configurationTTN.port = port;
+    configurationTTN.username = username;
+    configurationTTN.password = password;
+    qDebug() << Q_FUNC_INFO << configurationTTN.hostname << configurationTTN.port <<  configurationTTN.username << configurationTTN.password;
+!!!131714.cpp!!!	setRuches(in ruches : QVector<Ruche>) : void
+
+    this->ruches = ruches;
+!!!131842.cpp!!!	charger() : void
+
+    qDebug() << Q_FUNC_INFO << settings.allKeys() << settings.childKeys();
+    chargerConfigurationTTN();
+    chargerRuches();
+!!!131970.cpp!!!	chargerConfigurationTTN() : void
+
+    settings.beginGroup("TTN");
+    configurationTTN.hostname = settings.value("Hostname").toString();
+    configurationTTN.port = settings.value("Port").toInt();
+    configurationTTN.username = settings.value("Username").toString();
+    configurationTTN.password = settings.value("Password").toString();
+    settings.endGroup();
+    settings.sync();
+    qDebug() << Q_FUNC_INFO << configurationTTN.hostname << configurationTTN.port <<  configurationTTN.username << configurationTTN.password;
+!!!132098.cpp!!!	chargerRuches() : void
+
+    int nbRuches = settings.value("NbRuches", 0).toInt();
+    qDebug() << Q_FUNC_INFO << nbRuches;
+    for(int i = 0; i < nbRuches; i++)
+    {
+        Ruche ruche;
+        QString nomRuche = "Ruche" + QString::number(i+1);
+        settings.beginGroup(nomRuche);
+        ruche.nom = settings.value("Nom").toString();
+        ruche.topicTTN = settings.value("TopicTTN").toString();
+        ruche.miseEnService = settings.value("MiseEnService").toString();
+        ruche.adresse = settings.value("Adresse").toString();
+        ruche.latitude = settings.value("Latitude").toString();
+        ruche.longitude = settings.value("Longitude").toString();
+        settings.endGroup();
+        ruches.push_back(ruche);
+    }
+!!!132226.cpp!!!	sauvegarder() : void
+
+    qDebug() << Q_FUNC_INFO;
+    sauvegarderConfigurationTTN();
+    sauvegarderRuches();
+!!!132354.cpp!!!	sauvegarderConfigurationTTN() : void
+
+    settings.beginGroup("TTN");
+    settings.setValue("Hostname", configurationTTN.hostname);
+    settings.setValue("Port", configurationTTN.port);
+    settings.setValue("Username", configurationTTN.username);
+    settings.setValue("Password", configurationTTN.password);
+    settings.endGroup();
+!!!132482.cpp!!!	sauvegarderRuches() : void
+
+    qDebug() << Q_FUNC_INFO << ruches.size();
+    for(int i = 0; i < ruches.size(); i++)
+    {
+        QString nomRuche = "Ruche" + QString::number(i+1);
+        settings.beginGroup(nomRuche);
+        settings.setValue("Nom", ruches[i].nom);
+        settings.setValue("TopicTTN", ruches[i].topicTTN);
+        settings.setValue("MiseEnService", ruches[i].miseEnService);
+        settings.setValue("Adresse", ruches[i].adresse);
+        settings.setValue("Latitude", ruches[i].latitude);
+        settings.setValue("Longitude", ruches[i].longitude);
+        settings.endGroup();
+    }
+    settings.setValue("NbRuches", ruches.size());

@@ -1,0 +1,133 @@
+class Communication
+!!!128002.cpp!!!	Communication(inout parent : QObject = nullptr)
+
+    qDebug() << Q_FUNC_INFO;
+    connect(client, SIGNAL(stateChanged(ClientState)), this, SLOT(changerEtatConnexion()));
+    connect(client, SIGNAL(messageReceived(const QByteArray &, const QMqttTopicName &)), this, SLOT(decoderJson(const QByteArray &)));
+!!!128130.cpp!!!	~Communication()
+
+    if(client->state() == QMqttClient::Connected)
+    {
+        client->disconnectFromHost();
+    }
+    qDebug() << Q_FUNC_INFO;
+!!!128258.cpp!!!	connecterTTN(in hostname : QString, in port : int, in username : QString, in password : QString) : void
+
+    qDebug() << Q_FUNC_INFO << hostname << port << username << password;
+    if(client->state() == QMqttClient::Disconnected)
+    {
+        client->setHostname(hostname);
+        client->setPort(port);
+        client->setUsername(username);
+        client->setPassword(password);
+        client->connectToHost();
+    }
+    else if(client->state() == QMqttClient::Connected)
+    {
+        client->disconnectFromHost();
+    }
+!!!128386.cpp!!!	souscrireTopic(in topic : QString) : void
+
+    if(client->state() == QMqttClient::Connected)
+    {
+        subscription = client->subscribe(QMqttTopicFilter(topic));
+        qDebug() << Q_FUNC_INFO << topic;
+    }
+!!!128514.cpp!!!	desabonnerTopic(in topic : QString) : void
+
+    if(client->state() == QMqttClient::Connected)
+    {
+        client->unsubscribe(topic);
+        qDebug() << Q_FUNC_INFO << topic;
+    }
+!!!128642.cpp!!!	extraireHorodatage(in objetJSON : QJsonObject) : QString
+
+    return objetJSON.value(QString("time")).toString();
+!!!128770.cpp!!!	extraireDeviceID(in objetJSON : QJsonObject, in listeCles : QStringList, in position : int) : QString
+
+    return objetJSON[listeCles.at(position)].toString();
+!!!128898.cpp!!!	extraireTemperature(in objetJSON : QJsonObject) : double
+
+    return objetJSON.value(QString("temperature")).toDouble();
+!!!129026.cpp!!!	extraireHumidite(in objetJSON : QJsonObject) : double
+
+    return objetJSON.value(QString("humidite")).toDouble();
+!!!129154.cpp!!!	extraireEnsoleillement(in objetJSON : QJsonObject) : int
+
+    return objetJSON.value(QString("ensoleillement")).toInt();
+!!!129282.cpp!!!	extrairePression(in objetJSON : QJsonObject) : int
+
+    return objetJSON.value(QString("pression")).toInt();
+!!!129410.cpp!!!	extrairePoids(in objetJSON : QJsonObject) : double
+
+    return objetJSON.value(QString("poids")).toDouble();
+!!!129538.cpp!!!	formaterHorodatage(in horodatageBrut : QString) : QString
+
+    QDateTime horodatage = QDateTime::fromString(horodatageBrut, Qt::ISODate).toLocalTime();
+    return horodatage.toString("dd/MM/yyyy HH:mm:ss");
+!!!129666.cpp!!!	decoderJson(in json : QByteArray) : void
+
+    QJsonDocument documentJSON = QJsonDocument::fromJson(json);
+    QString nomDeLaRuche;
+    QString horodatage;
+
+    qDebug() << Q_FUNC_INFO << json;
+    if(!documentJSON.isNull())
+    {
+        QJsonObject objetJSON = documentJSON.object();
+        QStringList listeCles = objetJSON.keys();
+        // les clés sont triés alphabétiquement
+        for(int i = 0; i < listeCles.count()-1; i++)
+        {
+            if(listeCles.at(i) == "dev_id")
+            {
+                nomDeLaRuche = extraireDeviceID(objetJSON, listeCles, i);
+            }
+            if(listeCles.at(i) == "metadata")
+            {                
+                horodatage = formaterHorodatage(extraireHorodatage(objetJSON[listeCles.at(i)].toObject()));
+            }            
+            if(listeCles.at(i) == "payload_fields")
+            {
+                QJsonObject objet = objetJSON[listeCles.at(i)].toObject();
+
+                if(objet.contains("temperature"))
+                {
+                    emit nouvelleValeurTemperature(nomDeLaRuche, extraireTemperature(objet), horodatage);
+                }
+                if(objet.contains("humidite"))
+                {
+                    emit nouvelleValeurHumidite(nomDeLaRuche, extraireHumidite(objet), horodatage);
+                }
+                if(objet.contains("ensoleillement"))
+                {
+                    emit nouvelleValeurEnsoleillement(nomDeLaRuche, extraireEnsoleillement(objet), horodatage);
+                }
+                if(objet.contains("pression"))
+                {
+                    emit nouvelleValeurPression(nomDeLaRuche, extrairePression(objet), horodatage);
+                }
+                if(objet.contains("poids"))
+                {
+                    emit nouvelleValeurPoids(nomDeLaRuche, extrairePoids(objet), horodatage);
+                }
+            }
+        }
+    }
+!!!129794.cpp!!!	changerEtatConnexion() : void
+
+    QString message;
+    switch(client->state())
+    {
+        case 0:
+            message = "Déconnecté";
+            break;
+        case 1:
+            message = "En cours de connexion";
+            break;
+        case 2:
+            message = "Connecté";
+            break;
+    }
+    qDebug()<< Q_FUNC_INFO << client->state() << message;
+    emit nouvelEtatConnexion(client->state());

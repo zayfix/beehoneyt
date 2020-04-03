@@ -1,0 +1,116 @@
+format 222
+
+classinstance 128002 class_ref 128002 // Communication
+  name ""   xyz 210 4 2000 life_line_z 2000
+classinstance 128642 class_ref 128258 // Ihm
+  name ""   xyz 560 4 2000 life_line_z 2000
+durationcanvas 128130 classinstance_ref 128002 // :Communication
+  xyzwh 248 70 2010 11 360
+  overlappingdurationcanvas 131842
+    xyzwh 254 99 2020 11 27
+  end
+  overlappingdurationcanvas 132098
+    xyzwh 254 143 2020 11 25
+  end
+  overlappingdurationcanvas 132354
+    xyzwh 254 191 2020 11 25
+  end
+  overlappingdurationcanvas 132866
+    xyzwh 254 232 2020 11 29
+  end
+  overlappingdurationcanvas 133378
+    xyzwh 254 281 2020 11 32
+  end
+  overlappingdurationcanvas 133890
+    xyzwh 254 333 2020 11 32
+  end
+  overlappingdurationcanvas 134402
+    xyzwh 254 384 2020 11 30
+  end
+end
+durationcanvas 132610 classinstance_ref 128642 // :Ihm
+  xyzwh 579 205 2010 11 25
+end
+durationcanvas 133122 classinstance_ref 128642 // :Ihm
+  xyzwh 579 250 2010 11 25
+end
+durationcanvas 133634 classinstance_ref 128642 // :Ihm
+  xyzwh 579 302 2010 11 25
+end
+durationcanvas 134146 classinstance_ref 128642 // :Ihm
+  xyzwh 579 354 2010 11 25
+end
+durationcanvas 134658 classinstance_ref 128642 // :Ihm
+  xyzwh 579 403 2010 11 25
+end
+reflexivemsg 128258 asynchronous
+  to durationcanvas_ref 128130
+  yz 71 2015 msg operation_ref 129666 // "decoderJson(in json : QByteArray) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 233 57
+reflexivemsg 131970 asynchronous
+  to durationcanvas_ref 131842
+  yz 102 2025 msg operation_ref 128770 // "extraireDeviceID(in objetJSON : QJsonObject, in listeCles : QStringList, in position : int) : QString"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 231 88
+reflexivemsg 132226 asynchronous
+  to durationcanvas_ref 132098
+  yz 144 2025 msg operation_ref 129538 // "formaterHorodatage(in horodatageBrut : QString) : QString"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 222 130
+reflexivemsg 132482 asynchronous
+  to durationcanvas_ref 132354
+  yz 192 2025 msg operation_ref 128898 // "extraireTemperature(in objetJSON : QJsonObject) : double"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 222 178
+msg 132738 asynchronous
+  from durationcanvas_ref 132354
+  to durationcanvas_ref 132610
+  yz 205 2030 msg operation_ref 133762 // "setValeurTemperatureInterieure(in nomDeLaRuche : QString, in temperatureInterieure : double, in horodatage : QString) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 342 191
+reflexivemsg 132994 asynchronous
+  to durationcanvas_ref 132866
+  yz 233 2025 msg operation_ref 129026 // "extraireHumidite(in objetJSON : QJsonObject) : double"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 232 219
+msg 133250 asynchronous
+  from durationcanvas_ref 132866
+  to durationcanvas_ref 133122
+  yz 250 2030 msg operation_ref 134018 // "setValeurHumidite(in nomDeLaRuche : QString, in humidite : double, in horodatage : QString) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 375 236
+reflexivemsg 133506 asynchronous
+  to durationcanvas_ref 133378
+  yz 282 2025 msg operation_ref 129154 // "extraireEnsoleillement(in objetJSON : QJsonObject) : int"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 218 268
+msg 133762 asynchronous
+  from durationcanvas_ref 133378
+  to durationcanvas_ref 133634
+  yz 302 2030 msg operation_ref 134146 // "setValeurEnsoleillement(in nomDeLaRuche : QString, in ensoleillement : int, in horodatage : QString) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 361 288
+reflexivemsg 134018 asynchronous
+  to durationcanvas_ref 133890
+  yz 334 2025 msg operation_ref 129282 // "extrairePression(in objetJSON : QJsonObject) : int"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 231 320
+msg 134274 asynchronous
+  from durationcanvas_ref 133890
+  to durationcanvas_ref 134146
+  yz 354 2025 msg operation_ref 134274 // "setValeurPression(in nomDeLaRuche : QString, in pression : int, in horodatage : QString) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 374 340
+reflexivemsg 134530 asynchronous
+  to durationcanvas_ref 134402
+  yz 385 2025 msg operation_ref 129410 // "extrairePoids(in objetJSON : QJsonObject) : double"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 239 371
+msg 134786 asynchronous
+  from durationcanvas_ref 134402
+  to durationcanvas_ref 134658
+  yz 403 2030 msg operation_ref 134402 // "setValeurPoids(in nomDeLaRuche : QString, in poids : double, in horodatage : QString) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 382 389
+end

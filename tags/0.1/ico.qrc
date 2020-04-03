@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="ruche.png">ico/ruche.png</file>
+        <file alias="graphiques.png">ico/graphiques.png</file>
+        <file alias="alertes.png">ico/alertes.png</file>
+        <file alias="reglages.png">ico/reglages.png</file>
+        <file alias="vue_globale.png">ico/vue_globale.png</file>
+        <file alias="on.png">ico/on.png</file>
+        <file alias="off.png">ico/off.png</file>
+	<file alias="connexion.png">ico/connexion.png</file>
+    </qresource>
+</RCC>

@@ -19,6 +19,10 @@ import java.util.List;
  */
 
 /**
+ * Logcat : MainActivity:|RucheActivity:|Ruche:|CommunicationMQTT:
+ */
+
+/**
  * @class MainActivity
  * @brief Déclaration de la classe MainActivity
  */
@@ -76,9 +80,9 @@ public class MainActivity extends AppCompatActivity
         adapter = new RucheAdapter(this, ruches);
         recyclerView.setAdapter(adapter);
 
-        recupererRuches();
-
         communicationMQTT = new CommunicationMQTT(getApplicationContext());
+
+        recupererRuches();
     }
 
     /**
@@ -90,10 +94,10 @@ public class MainActivity extends AppCompatActivity
     {
         // Pour les tests
         List<Ruche> listeRuches = Arrays.asList(
-                new Ruche("Ruche_Alexis", "ruche_alexis", communicationMQTT),
-                new Ruche("Ruche 1", "ruche_1", communicationMQTT),
-                new Ruche("Ruche 2", "ruche_2", communicationMQTT),
-                new Ruche("Ruche 3", "ruche_3", communicationMQTT)
+                new Ruche("Ruche_Alexis", "ruche_alexis"),
+                new Ruche("Ruche 1", "ruche_1"),
+                new Ruche("Ruche 2", "ruche_2"),
+                new Ruche("Ruche 3", "ruche_3")
         );
 
         listeRuches.get(0).setPoids(1148);
@@ -124,4 +128,6 @@ public class MainActivity extends AppCompatActivity
         swipeRefreshLayout.setRefreshing(false);
         adapter.notifyDataSetChanged();
     }
+
 }
+

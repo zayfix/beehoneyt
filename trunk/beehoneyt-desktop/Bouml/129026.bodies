@@ -1,0 +1,54 @@
+class IHMNouvelleRuche
+!!!138498.cpp!!!	IHMNouvelleRuche(inout parent : QWidget = nullptr)
+
+    ui->setupUi(this);
+    qDebug() << Q_FUNC_INFO;
+    ui->dateEdit_mise_en_service->setDate(QDate::currentDate());
+    QPushButton *ok = ui->buttonBox->button(QDialogButtonBox::Ok);
+    ok->setEnabled(false);
+    connect(ui->lineEdit_ttn, SIGNAL(textChanged(QString)), this, SLOT(verifier()));
+!!!138626.cpp!!!	~IHMNouvelleRuche()
+
+    delete ui;
+    qDebug() << Q_FUNC_INFO;
+!!!138754.cpp!!!	closeEvent(inout event : QCloseEvent) : void
+
+    qDebug() << Q_FUNC_INFO;
+    if(ui->lineEdit_ttn->text().isEmpty())
+    {
+        event->ignore();
+        ui->label_affichage_erreur->setText("Veuillez renseigner un topic TTN.");
+    }
+!!!138882.cpp!!!	on_buttonBox_accepted() : void
+
+    Ruche ruche;
+    ruche.nom = ui->lineEdit_nom->text();
+    ruche.topicTTN = ui->lineEdit_ttn->text();
+    ruche.adresse = ui->lineEdit_adresse->text();
+    ruche.miseEnService = ui->dateEdit_mise_en_service->date().toString("dd/MM/yyyy");
+    ruche.latitude = ui->lineEdit_latitude->text();
+    ruche.longitude = ui->lineEdit_longitude->text();
+    emit nouvelleRuche(ruche);
+!!!139010.cpp!!!	on_buttonBox_rejected() : void
+
+    nettoyerIHM();
+!!!139138.cpp!!!	verifier() : void
+
+    QPushButton *ok = ui->buttonBox->button(QDialogButtonBox::Ok);
+    if(!ui->lineEdit_ttn->text().isEmpty())
+    {
+        ok->setEnabled(true);
+    }
+    else
+    {
+        ok->setEnabled(false);
+    }
+!!!139266.cpp!!!	nettoyerIHM() : void
+
+    ui->lineEdit_nom->clear();
+    ui->lineEdit_ttn->clear();
+    ui->lineEdit_adresse->clear();
+    ui->lineEdit_longitude->clear();
+    ui->lineEdit_latitude->clear();
+
+    ui->label_affichage_erreur->clear();

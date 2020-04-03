@@ -1,0 +1,84 @@
+format 222
+
+classinstance 128130 class_ref 128258 // Ihm
+  name ""   xyz 237.2 4.2 2000 life_line_z 2000
+classinstance 130306 class_ref 128514 // Configuration
+  name ""   xyz 500.8 4.2 2000 life_line_z 2000
+classinstance 131458 class_ref 128002 // Communication
+  name ""   xyz 745.6 10.6 2000 life_line_z 2000
+durationcanvas 128898 classinstance_ref 128130 // :Ihm
+  xyzwh 256 86 2010 11 44
+end
+durationcanvas 129154 classinstance_ref 128130 // :Ihm
+  xyzwh 256 144 2010 11 40
+end
+durationcanvas 129410 classinstance_ref 128130 // :Ihm
+  xyzwh 256 208 2010 11 40
+end
+durationcanvas 129666 classinstance_ref 128130 // :Ihm
+  xyzwh 256 268 2010 11 40
+end
+durationcanvas 129922 classinstance_ref 128130 // :Ihm
+  xyzwh 256 329 2010 11 40
+end
+durationcanvas 130434 classinstance_ref 130306 // :Configuration
+  xyzwh 534 108 2010 11 47
+end
+durationcanvas 130946 classinstance_ref 128130 // :Ihm
+  xyzwh 256 399 2010 11 87
+end
+durationcanvas 131202 classinstance_ref 130306 // :Configuration
+  xyzwh 534 422 2010 11 25
+end
+durationcanvas 131842 classinstance_ref 131458 // :Communication
+  xyzwh 783 458 2010 11 25
+end
+reflexivemsg 129026 asynchronous
+  to durationcanvas_ref 128898
+  yz 87 2015 msg operation_ref 137090 // "chargerConfiguration() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 221 73
+reflexivemsg 129282 asynchronous
+  to durationcanvas_ref 129154
+  yz 146 2015 msg operation_ref 136450 // "chargerIconesBoutons() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 215 132
+reflexivemsg 129538 asynchronous
+  to durationcanvas_ref 129410
+  yz 208 2015 msg operation_ref 136834 // "initialiserEvenements() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 220 194
+reflexivemsg 129794 asynchronous
+  to durationcanvas_ref 129666
+  yz 269 2015 msg operation_ref 136706 // "initialiserWidgets() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 230 255
+reflexivemsg 130050 asynchronous
+  to durationcanvas_ref 129922
+  yz 331 2015 msg operation_ref 132866 // "initialiserGraphiques() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 222 317
+msg 130562 asynchronous
+  from durationcanvas_ref 128898
+  to durationcanvas_ref 130434
+  yz 108 2020 msg operation_ref 131202 // "getRuches() : QVector<Ruche>"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 370 94
+reflexivemsg 131074 asynchronous
+  to durationcanvas_ref 130946
+  yz 401 2015 msg operation_ref 137218 // "demarrerTTN() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 241 387
+msg 131330 asynchronous
+  from durationcanvas_ref 130946
+  to durationcanvas_ref 131202
+  yz 423 2015 msg operation_ref 131074 // "getConfigurationTTN() : ConfigurationTTN"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 347 409
+msg 131970 asynchronous
+  from durationcanvas_ref 130946
+  to durationcanvas_ref 131842
+  yz 469 2015 msg operation_ref 128258 // "connecterTTN(in hostname : QString, in port : int, in username : QString, in password : QString) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 487 455
+end

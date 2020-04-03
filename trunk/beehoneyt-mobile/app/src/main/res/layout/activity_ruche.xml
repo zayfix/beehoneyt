@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".RucheActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/nom_ruche"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom : " />
+
+        <TextView
+            android:id="@+id/topic_ruche"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Topic  : " />
+
+        <TextView
+            android:id="@+id/message_ruche"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Message  : " />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

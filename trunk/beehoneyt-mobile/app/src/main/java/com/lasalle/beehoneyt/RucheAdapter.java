@@ -54,6 +54,7 @@ public class RucheAdapter extends RecyclerView.Adapter<RuchesViewHolder>
                 Log.d(TAG, "onClick: click sur : " + ruche);
                 Toast.makeText(mContext, ruche.getNom(), Toast.LENGTH_SHORT).show();
 
+                ruche.souscrireTopic();
                 Intent intent = new Intent(mContext, RucheActivity.class);
                 intent.putExtra("Ruche", (Serializable) ruche);
                 mContext.startActivity(intent);

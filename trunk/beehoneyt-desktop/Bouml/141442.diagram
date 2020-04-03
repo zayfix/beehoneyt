@@ -1,0 +1,39 @@
+format 222
+
+deploymentnodecanvas 128130 deploymentnode_ref 128130 // Tablette
+  xyzwh 143 367 2000 281 173
+end
+deploymentnodecanvas 128258 deploymentnode_ref 128258 // PC
+  xyzwh 151 111 2000 275 165
+end
+artifactcanvas 128642 artifact_ref 128258 // Bee-honey't
+  xyz 213 169 2000
+end
+artifactcanvas 128770 artifact_ref 128258 // Bee-honey't
+  xyz 209.5 439.5 2000
+end
+deploymentnodecanvas 128898 deploymentnode_ref 134786 // Routeur
+  xyzwh 550 310 2000 59 32
+end
+deploymentnodecanvas 129538 deploymentnode_ref 134914 // The Things Gateway
+  xyzwh 700 310 2000 122 32
+end
+deploymentnodecanvas 129794 deploymentnode_ref 135042 // The Things Uno
+  name "ruche_1"
+  xyzwh 596 483 2000 136 32
+end
+deploymentnodecanvas 129922 deploymentnode_ref 135042 // The Things Uno
+  name "ruche_2"
+  xyzwh 795 482 2000 136 32
+end
+line 129282 ---- decenter_end 151
+  from ref 128258 z 2001 label "WiFi" max_width 255 xyz 482 267 3000 stereotype "<<SANS FIL>>" xyz 444 292 3000 to ref 128898
+line 129410 ----
+  from ref 128130 z 2001 label "WiFi" max_width 255 xyz 479 344 3000 stereotype "<<SANS FIL>>" xyz 473 367 3000 to ref 128898
+line 129666 ----
+  from ref 128898 z 2001 label "WiFi" max_width 255 xyz 643 311 3000 stereotype "<<SANS FIL>>" xyz 618 325 3000 to ref 129538
+line 130818 ----
+  from ref 129794 z 2001 to ref 129538
+line 130946 ----
+  from ref 129922 z 2001 to ref 129538
+end
