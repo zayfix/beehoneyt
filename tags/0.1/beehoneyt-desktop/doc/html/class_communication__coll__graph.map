@@ -1,0 +1,10 @@
+<map id="Communication" name="Communication">
+<area shape="rect" id="node3" href="$class_ihm.html" title="La fenêtre principale de l&#39;application. " alt="" coords="356,549,593,1668"/>
+<area shape="rect" id="node2" href="$class_q_object.html" title="{QObject\n||}" alt="" coords="626,27,697,105"/>
+<area shape="rect" id="node8" href="$class_configuration.html" title="Gère le fichier INI. " alt="" coords="725,197,937,479"/>
+<area shape="rect" id="node4" href="$class_q_main_window.html" title="{QMainWindow\n||}" alt="" coords="5,299,112,377"/>
+<area shape="rect" id="node5" href="$class_i_h_m_reglage_ruche.html" title="La fenêtre pour changer les réglages de la ruche. " alt="" coords="137,292,298,384"/>
+<area shape="rect" id="node6" href="$class_q_dialog.html" title="{QDialog\n||}" alt="" coords="260,27,329,105"/>
+<area shape="rect" id="node7" href="$class_i_h_m_nouvelle_ruche.html" title="La fenêtre pour créer une nouvelle ruche. " alt="" coords="323,255,501,421"/>
+<area shape="rect" id="node9" href="$struct_configuration_t_t_n.html" title="Structure qui définit la configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN) ..." alt="" coords="768,5,893,127"/>
+</map>

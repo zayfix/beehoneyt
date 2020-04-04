@@ -1,0 +1,38 @@
+format 222
+
+deploymentnodecanvas 128170 deploymentnode_ref 134570 // Tablette
+  xyzwh 22 19 2000 107 95
+end
+deploymentnodecanvas 128298 deploymentnode_ref 134698 // Pc
+  xyzwh 17 174 2000 107 93
+end
+deploymentnodecanvas 128426 deploymentnode_ref 134826 // Routeur
+  xyzwh 266 138 2000 59 32
+end
+deploymentnodecanvas 128554 deploymentnode_ref 134954 // The Thing Gateway
+  xyzwh 462 140 2000 116 32
+end
+deploymentnodecanvas 128682 deploymentnode_ref 135082 // The Things Uno
+  name "ruche_1"
+  xyzwh 385 261 2005 136 32
+end
+deploymentnodecanvas 128810 deploymentnode_ref 135082 // The Things Uno
+  name "ruche_2"
+  xyzwh 526 260 2005 136 32
+end
+deploymentnodecanvas 129578 deploymentnode_ref 135210 // The Thing Network
+  xyzwh 249 52 2000 112 32
+end
+line 128938 ---- decenter_begin 266
+  from ref 128554 z 2006 label "LoRa" max_width 255 xyz 448 203 3000 to ref 128682
+line 129066 ---- decenter_begin 714
+  from ref 128554 z 2006 label "LoRa" max_width 255 xyz 562 199 3000 to ref 128810
+line 129450 ----
+  from ref 128426 z 2001 label "WiFi" max_width 255 xyz 378 154.5 3000 stereotype "<<<<SANS FIL>>>>" xyz 345 167.5 3000 to ref 128554
+line 129962 ----
+  from ref 129578 z 2001 to ref 128426
+line 130090 ----
+  from ref 129578 z 2001 label "MQTT / JSON" max_width 255 xyz 156 52 3000 to ref 128170
+line 130218 ----
+  from ref 129578 z 2001 label "MQTT / JSON" max_width 255 xyz 143 142 3000 to ref 128298
+end

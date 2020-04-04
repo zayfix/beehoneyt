@@ -1,0 +1,6 @@
+class MenuActivity
+!!!129962.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu);
+        Log.d(TAG, "onCreate: started");
+

@@ -1,0 +1,38 @@
+format 222
+
+classcanvas 128042 class_ref 136106 // Utilisateur
+  simpleclassdiagramsettings end
+  xyz 43 99 2000
+end
+usecasecanvas 128170 usecase_ref 128042 // Visualiser les données
+  xyzwh 200 38 3005 64 32 label_xy 177 70
+end
+usecasecanvas 128298 usecase_ref 128170 // Gérer kes ruches
+  xyzwh 190 175 3005 64 32 label_xy 180 207
+end
+usecasecanvas 128426 usecase_ref 128298 // Ajouter une ruche
+  xyzwh 341 83 3005 64 32 label_xy 330 115
+end
+usecasecanvas 128554 usecase_ref 128426 // Editer une ruche
+  xyzwh 355 154 3005 64 32 label_xy 348 186
+end
+usecasecanvas 128682 usecase_ref 128554 // Supprimer une ruche
+  xyzwh 352 243 3005 64 32 label_xy 334 275
+end
+fragment 129450 "terminal mobile"
+  xyzwh 128 18 3011 373 313
+end
+line 128810 ----
+  from ref 128298 z 3006 to ref 128042
+line 128938 ----
+  from ref 128170 z 3006 to ref 128042
+simplerelationcanvas 129066 simplerelation_ref 128042
+  from ref 128426 z 3006 to ref 128298
+end
+simplerelationcanvas 129194 simplerelation_ref 128170
+  from ref 128554 z 3006 to ref 128298
+end
+simplerelationcanvas 129322 simplerelation_ref 128298
+  from ref 128682 z 3006 to ref 128298
+end
+end

@@ -1,0 +1,31 @@
+class Ruche
+!!!130090.java!!!	Ruche(in nom : String, in deviceID : String)
+        Log.d(TAG, "Ruche : " + nom + " - DeviceID : " + deviceID + " " + this);
+        this.nom = nom;
+        this.deviceID = deviceID;
+        this.abonne = false;
+!!!130218.java!!!	setNom(in nom : String) : void
+        this.nom = nom;
+!!!130346.java!!!	setDeviceID(in deviceID : String) : void
+        this.deviceID = deviceID;
+!!!130474.java!!!	setInfos(in Infos : String) : void
+        this.infos = Infos;
+!!!130602.java!!!	setPoids(in Poids : int) : void
+        this.poids = Poids;
+!!!130730.java!!!	getNom() : String
+        return nom;
+!!!130858.java!!!	getDeviceID() : String
+        return deviceID;
+!!!130986.java!!!	getInfos() : String
+        return infos;
+!!!131114.java!!!	getPoids() : int
+        return poids;
+!!!131242.java!!!	estAbonne() : boolean
+        return abonne;
+!!!131370.java!!!	souscrireTopic() : void
+        if(!abonne)
+        {
+            CommunicationMQTT.souscrireTopic(deviceID);
+            abonne = true;
+            Log.d(TAG, "Souscrire au topic : " + deviceID);
+        }

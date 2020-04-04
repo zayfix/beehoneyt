@@ -1,0 +1,4 @@
+<map id="Configuration" name="Configuration">
+<area shape="rect" id="node2" href="$class_q_object.html" title="{QObject\n||}" alt="" coords="15,27,85,105"/>
+<area shape="rect" id="node3" href="$struct_configuration_t_t_n.html" title="Structure qui définit la configuration MQTT pour se connecter au réseau TheThingsNetwork (TTN) ..." alt="" coords="110,5,235,127"/>
+</map>

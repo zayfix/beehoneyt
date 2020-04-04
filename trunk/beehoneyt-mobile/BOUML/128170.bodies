@@ -1,0 +1,56 @@
+class MainActivity
+!!!129578.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: started");
+
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                recupererRuches();
+            }
+        });
+
+        recyclerView = (RecyclerView) findViewById(R.id.listeRuche);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new RucheAdapter(this, ruches);
+        recyclerView.setAdapter(adapter);
+
+        communicationMQTT = new CommunicationMQTT(getApplicationContext());
+
+        recupererRuches();
+!!!129706.java!!!	recupererRuches() : void
+        // Pour les tests
+        List<Ruche> listeRuches = Arrays.asList(
+                new Ruche("Ruche_Alexis", "ruche_alexis"),
+                new Ruche("Ruche 1", "ruche_1"),
+                new Ruche("Ruche 2", "ruche_2"),
+                new Ruche("Ruche 3", "ruche_3")
+        );
+
+        listeRuches.get(0).setPoids(1148);
+        listeRuches.get(0).setInfos("Alexis");
+        listeRuches.get(1).setPoids(1122);
+        listeRuches.get(1).setInfos("Simulateur");
+        listeRuches.get(2).setPoids(475);
+        listeRuches.get(2).setInfos("Simulateur");
+        listeRuches.get(3).setPoids(570);
+        listeRuches.get(3).setInfos("Simulateur");
+
+        ruches.clear();
+        for(int i = 0; i < listeRuches.size(); i++)
+        {
+            ruches.add(listeRuches.get(i));
+        }
+
+        rafraichir(ruches);
+!!!129834.java!!!	rafraichir(inout ruches : List<Ruche>) : void
+        swipeRefreshLayout.setRefreshing(false);
+        adapter.notifyDataSetChanged();

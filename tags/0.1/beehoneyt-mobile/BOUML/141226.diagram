@@ -1,0 +1,25 @@
+format 222
+
+classcanvas 128042 class_ref 128170 // MainActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 257 29 2000
+end
+classcanvas 128298 class_ref 128810 // RucheActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 22 35 2005
+end
+classcanvas 128426 class_ref 128298 // AppCompatActivity
+  classdiagramsettings member_max_width 0 end
+  xyz 254 232 2011
+end
+relationcanvas 128554 relation_ref 128042 // <generalisation>
+  from ref 128042 z 2012 to ref 128426
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128682 relation_ref 128682 // <generalisation>
+  from ref 128298 z 2012 to ref 128426
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

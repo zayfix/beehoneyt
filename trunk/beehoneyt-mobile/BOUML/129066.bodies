@@ -1,0 +1,15 @@
+class RuchesViewHolder
+!!!133930.java!!!	RuchesViewHolder(in itemView : View)
+        super(itemView);
+
+        image = itemView.findViewById(R.id.circle_image);
+        nom = ((TextView) itemView.findViewById(R.id.nom));
+        info = ((TextView) itemView.findViewById(R.id.info));
+        poids = ((TextView) itemView.findViewById(R.id.poids));
+        cardview = itemView.findViewById(R.id.card_view);
+!!!134058.java!!!	afficher(inout ruche : Ruche) : void
+        this.ruche = ruche;
+
+        nom.setText(ruche.getNom());
+        info.setText(ruche.getInfos());
+        poids.setText(ruche.getPoids() + " Kg");

@@ -1,0 +1,255 @@
+class CommunicationMQTT
+!!!128042.java!!!	CommunicationMQTT(inout context : Context)
+        Log.v(TAG, "ClientMQTT " + clientId);
+        mqttAndroidClient = new MqttAndroidClient(context, serverUri, clientId);
+        mqttAndroidClient.setCallback(new MqttCallbackExtended()
+        {
+            @Override
+            public void connectComplete(boolean b, String s)
+            {
+                Log.w(TAG, "connectComplete() " + s + " -> " + mqttAndroidClient.isConnected());
+            }
+
+            @Override
+            public void connectionLost(Throwable throwable)
+            {
+                Log.w(TAG, "connectionLost()");
+            }
+
+            @Override
+            public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception
+            {
+                Log.w(TAG, "messageArrived() " + topic + " " + mqttMessage.toString());
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken)
+            {
+                Log.w(TAG, "deliveryComplete()");
+            }
+        });
+
+        connecter();
+!!!128170.java!!!	setCallback(inout callback : MqttCallbackExtended) : void
+        mqttAndroidClient.setCallback(callback);
+!!!128298.java!!!	connecter() : void
+        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+        mqttConnectOptions.setAutomaticReconnect(true);
+        mqttConnectOptions.setCleanSession(false);
+        mqttConnectOptions.setUserName(username);
+        mqttConnectOptions.setPassword(password.toCharArray());
+
+        try
+        {
+            Log.d(TAG, "connecter() " + serverUri + " " + clientId);
+            mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener()
+            {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken)
+                {
+                    DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
+                    disconnectedBufferOptions.setBufferEnabled(true);
+                    disconnectedBufferOptions.setBufferSize(100);
+                    disconnectedBufferOptions.setPersistBuffer(false);
+                    disconnectedBufferOptions.setDeleteOldestMessages(false);
+                    mqttAndroidClient.setBufferOpts(disconnectedBufferOptions);
+                    Log.d(TAG, "onSuccess() " + serverUri + " " + clientId);
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception)
+                {
+                    Log.d(TAG, "onFailure() " + serverUri + " " + clientId + " " + exception.toString());
+                }
+            });
+        }
+        catch (MqttException ex)
+        {
+            ex.printStackTrace();
+        }
+!!!128426.java!!!	reconnecter() : void
+        Log.w(TAG, "mqttAndroidClient : reconnecter");
+        if (estConnecte())
+            deconnecter();
+        connecter();
+!!!128554.java!!!	deconnecter() : void
+        Log.d(TAG, "deconnecter() " + serverUri + " " + clientId);
+        try {
+            IMqttToken disconToken = mqttAndroidClient.disconnect();
+            disconToken.setActionCallback(new IMqttActionListener()
+            {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken)
+                {
+                    Log.d(TAG, "onSuccess() : " + serverUri + " " + clientId);
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception)
+                {
+                    Log.d(TAG, "onFailure() " + serverUri + " " + clientId + " " + exception.toString());
+                }
+            });
+        }
+        catch (MqttException e)
+        {
+            e.printStackTrace();
+        }
+!!!128682.java!!!	estConnecte() : boolean
+        Log.w(TAG, "estConnecte() " + mqttAndroidClient.isConnected());
+
+        return mqttAndroidClient.isConnected();
+!!!128810.java!!!	souscrireTopic(in topic : String) : boolean
+        String subTopic = clientId + "/devices/" + topic + "/up";
+        Log.w(TAG, "MqttAndroidClient : souscrire -> " + subTopic);
+        try
+        {
+            final boolean[] retour = {false};
+            mqttAndroidClient.subscribe(subTopic, 0, null, new IMqttActionListener()
+            {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken)
+                {
+                    Log.w(TAG, "souscrire : onSuccess");
+                    retour[0] = true;
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception)
+                {
+                    Log.w(TAG, "souscrire : onFailure");
+                    retour[0] = false;
+                }
+            });
+            return retour[0];
+        }
+        catch (MqttException ex)
+        {
+            Log.e(TAG, "souscrire : exception");
+            ex.printStackTrace();
+            return false;
+        }
+!!!128938.java!!!	decoderMessage(in message : String) : void
+        try
+        {
+            JSONObject json = null;
+            Iterator<String> it = null;
+
+            json = new JSONObject(message);
+            int port = json.getInt("port");
+
+            it = json.keys();
+            while (it.hasNext())
+            {
+                String cle = it.next();
+                Log.i(TAG, "clé = " + cle);
+                Log.i(TAG, "valeur = " + json.getString(cle));
+                //Log.i(TAG, "type = " + json.get(cle).getClass());
+
+                if (cle.equals("payload_fields"))
+                {
+                    decoderPayload(port, json.getString(cle));
+                }
+            }
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+!!!129066.java!!!	decoderPayload(in port : int, in payload : String) : void
+
+        Log.i(TAG, "port = " + port );
+        if ( port == 3)
+        {
+            decoderDonneInterieure(payload);
+        }
+        else
+            {
+            decoderDonneExterieure(payload);
+        }
+!!!129194.java!!!	decoderDonneInterieure(in payload : String) : void
+        try
+        {
+            JSONObject json = null;
+            json = new JSONObject(payload);
+
+            Iterator<String> it = null;
+            it = json.keys();
+            while (it.hasNext())
+            {
+                String cle = it.next();
+                if (cle.equals("temperature"))
+                {
+                    Log.i(TAG, "temperature = " + json.getString(cle));
+                    RucheActivity.afficherTemperatureInterieure(json.getString(cle));
+                }
+                else if (cle.equals("humidite"))
+                {
+                    Log.i(TAG, "humidite = " + json.getString(cle));
+                    RucheActivity.afficherHumiditeInterieure(json.getString(cle));
+                }
+            }
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+!!!129322.java!!!	decoderDonneExterieure(in payload : String) : void
+        try {
+            JSONObject json = null;
+            json = new JSONObject(payload);
+
+            Iterator<String> it = null;
+            it = json.keys();
+            while (it.hasNext()) {
+                String cle = it.next();
+                if (cle.equals("temperature"))
+                {
+                    Log.i(TAG, "temperature = " + json.getString(cle));
+                    RucheActivity.afficherTemperatureExterieure(json.getString(cle));
+                }
+                else if (cle.equals("humidite"))
+                {
+                    Log.i(TAG, "humidite = " + json.getString(cle));
+                    RucheActivity.afficherHumiditerExterieure(json.getString(cle));
+                }
+                else if (cle.equals("ensoleillement"))
+                {
+                    Log.i(TAG, "ensoleillement = " + json.getString(cle));
+                    RucheActivity.afficherEnsoleillement(json.getString(cle));
+                }
+                else if (cle.equals("pression"))
+                {
+                    Log.i(TAG, "pression = " + json.getString(cle));
+                    RucheActivity.afficherPression(json.getString(cle));
+                }
+                else if (cle.equals("poids"))
+                {
+                    double poids = json.getDouble(cle);
+                    poids = poids * 0.01;
+                    Log.i(TAG, "poids = " + json.getString(cle));
+                    RucheActivity.afficherPoids(json.getString(cle));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+!!!129450.java!!!	extraireHorodatage(in message : String) : String
+        String date = "";
+
+        try
+        {
+            JSONObject json = null;
+            json = new JSONObject(message);
+
+            date = json.getJSONObject("metadata").getString("time");
+            date = date.substring(0, 10) + " " + date.substring(11, 19);
+            Log.d(TAG, "Horodatage : " + date + " <- time : " + json.getJSONObject("metadata").getString("time"));
+
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+        return  date;

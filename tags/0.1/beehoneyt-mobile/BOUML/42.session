@@ -1,0 +1,16 @@
+window_sizes 1276 662 450 821 512 104
+
+diagrams
+  sequencediagram_ref 128170 // visualiser les donné
+    656 409 100 A4 0 0
+  usecasediagram_ref 134698 // cas d'utilisation
+    656 409 100 A4 0 0
+  active  deploymentdiagram_ref 147754 // Diagrame_deploiment
+    821 512 100 A4 0 0
+end
+show_stereotypes
+selected deploymentnode_ref 135210 // The Thing Network
+open
+  deploymentview_ref 134570 // Vue_deployment
+end
+end

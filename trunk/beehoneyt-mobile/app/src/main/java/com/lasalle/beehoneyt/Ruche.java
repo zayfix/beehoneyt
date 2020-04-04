@@ -33,10 +33,11 @@ public class Ruche implements Serializable
      *
      * @fn Ruche::Ruche(String nom, String infos, int poids)
      * @param nom
+     * @param deviceID
      */
     public Ruche(String nom, String deviceID)
     {
-        Log.d(TAG, "Ruche : " + nom + " - DeviceID : " + deviceID + " " + this);
+        Log.d(TAG, "Ruche() nom = " + nom + " deviceID = " + deviceID + " instance = " + this);
         this.nom = nom;
         this.deviceID = deviceID;
         this.abonne = false;
@@ -56,7 +57,6 @@ public class Ruche implements Serializable
     /**
      * @brief Mutateur set du device id de la ruche
      *
-     * @fn Ruche::setDeviceID(String nom)
      * @param deviceID le nouveau device id de la ruche
      */
     public void setDeviceID(String deviceID)
@@ -67,7 +67,6 @@ public class Ruche implements Serializable
     /**
      * @brief Mutateur set des informations de la ruche
      *
-     * @fn Ruche::setInfos(String nom)
      * @param Infos les nouvelles informations de la ruche
      */
     public void setInfos(String Infos)
@@ -78,7 +77,6 @@ public class Ruche implements Serializable
     /**
      * @brief Mutateur set du poids de la ruche
      *
-     * @fn Ruche::setPoids(String nom)
      * @param Poids le nouveau poids de la ruche
      */
     public void setPoids(int Poids)
@@ -133,7 +131,7 @@ public class Ruche implements Serializable
 
     /**
      * @brief Accesseur get de abonne
-     *
+     *a
      * @return boolean abonne
      */
     public boolean estAbonne()
@@ -151,7 +149,7 @@ public class Ruche implements Serializable
         {
             CommunicationMQTT.souscrireTopic(deviceID);
             abonne = true;
-            Log.d(TAG, "Souscrire au topic : " + deviceID);
+            Log.d(TAG, "souscrireTopic() topic = " + deviceID);
         }
     }
 }

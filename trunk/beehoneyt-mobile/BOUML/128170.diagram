@@ -1,0 +1,87 @@
+format 222
+
+classinstance 128170 class_ref 128042 // CommunicationMQTT
+  name ""   xyz 515 4 2000 life_line_z 3005
+classinstance 133162 class_ref 128810 // RucheActivity
+  name ""   xyz 283 4 2000 life_line_z 5015
+classinstance 134186 class_ref 135978 // Ruche
+  name ""   xyz 79 1 2000 life_line_z 2000
+fragment 135466 "alt"
+  xyzwh 199 145 5045 570 175
+  separator 5781
+end
+textcanvas 135594 "[Donnée interieur]
+"
+  xyzwh 228 148 3010 234 108
+durationcanvas 134314 classinstance_ref 134186 // :Ruche
+  xyzwh 92 51 2010 11 25
+end
+durationcanvas 134442 classinstance_ref 133162 // :RucheActivity
+  xyzwh 318 51 5025 11 325
+  overlappingdurationcanvas 134698
+    xyzwh 324 51 2020 11 25
+  end
+  overlappingdurationcanvas 136362
+    xyzwh 324 200 5035 11 25
+  end
+  overlappingdurationcanvas 136618
+    xyzwh 324 273 5035 11 25
+  end
+end
+durationcanvas 134954 classinstance_ref 128170 // :CommunicationMQTT
+  xyzwh 567 51 3005 11 280
+  overlappingdurationcanvas 135210
+    xyzwh 573 106 3010 11 32
+  end
+  overlappingdurationcanvas 135850
+    xyzwh 573 171 3015 11 41
+  end
+  overlappingdurationcanvas 136106
+    xyzwh 573 274 3015 11 25
+  end
+end
+msg 134570 asynchronous
+  from durationcanvas_ref 134314
+  to durationcanvas_ref 134442
+  yz 52 2015 explicitmsg "envoi des donées"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 148 38
+reflexivemsg 134826 synchronous
+  to durationcanvas_ref 134698
+  yz 51 2025 msg operation_ref 132010 // "afficherJSON(in message : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 348 34
+msg 135082 synchronous
+  from durationcanvas_ref 134442
+  to durationcanvas_ref 134954
+  yz 81 2025 msg operation_ref 128938 // "decoderMessage(in message : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 397 64
+reflexivemsg 135338 synchronous
+  to durationcanvas_ref 135210
+  yz 106 2025 msg operation_ref 129066 // "decoderPayload(in port : int, in payload : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 611 92
+reflexivemsg 135978 synchronous
+  to durationcanvas_ref 135850
+  yz 171 3020 msg operation_ref 129194 // "decoderDonneInterieure(in payload : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 614 160
+reflexivemsg 136234 synchronous
+  to durationcanvas_ref 136106
+  yz 274 3020 msg operation_ref 129322 // "decoderDonneExterieure(in payload : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 584 258
+msg 136490 synchronous
+  from durationcanvas_ref 135850
+  to durationcanvas_ref 136362
+  yz 200 5040 explicitmsg "Affiche les données interieure"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 399 186
+msg 136746 synchronous
+  from durationcanvas_ref 136106
+  to durationcanvas_ref 136618
+  yz 275 5040 explicitmsg "Affiche les données exterieure reçu"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 379 261
+end

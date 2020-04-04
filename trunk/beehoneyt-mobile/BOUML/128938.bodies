@@ -1,0 +1,33 @@
+class RucheAdapter
+!!!133418.java!!!	RucheAdapter(inout context : Context, inout ruches : List<Ruche>)
+        if(ruches != null)
+        {
+            this.ruches = ruches;
+            mContext = context;
+        }
+!!!133546.java!!!	onCreateViewHolder(inout parent : ViewGroup, in viewType : int) : RuchesViewHolder
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.ruche, parent, false);
+        return new RuchesViewHolder(view);
+!!!133674.java!!!	onBindViewHolder(inout holder : RuchesViewHolder, in position : int) : void
+        Log.d(TAG, "onBindViewHolder: appel.");
+
+        final Ruche ruche = ruches.get(position);
+        holder.afficher(ruche);
+
+        holder.cardview.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public  void onClick(View view) {
+                Log.d(TAG, "onClick: click sur : " + ruche);
+                Toast.makeText(mContext, ruche.getNom(), Toast.LENGTH_SHORT).show();
+
+                ruche.souscrireTopic();
+                Intent intent = new Intent(mContext, RucheActivity.class);
+                intent.putExtra("Ruche", (Serializable) ruche);
+                mContext.startActivity(intent);
+            }
+        });
+!!!133802.java!!!	getItemCount() : int
+        if(ruches != null)
+            return ruches.size();
+        return 0;

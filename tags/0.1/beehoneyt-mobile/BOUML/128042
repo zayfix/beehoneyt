@@ -1,0 +1,1961 @@
+format 222
+"beehoneyt" // beehoneyt
+  revision 4
+  modified_by 42 "N.E.V.A"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\N.E.V.A\\Desktop\\bee-honey-t\\trunk\\beehoneyt-mobile\\app\\src\\main\\java\\com\\lasalle\\beehoneyt/"
+  java_package "com.lasalle.beehoneyt"
+  classview 128042 "beehoneyt"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 128042 "CommunicationMQTT"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class CommunicationMQTT
+@brief Déclaration de la classe CommunicationMQTT
+"
+      attribute 128042 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"CommunicationMQTT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+"
+      end
+
+      attribute 128170 "mqttAndroidClient"
+	class_attribute public explicit_type "MqttAndroidClient"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Attributs
+
+"
+      end
+
+      attribute 128298 "serverUri"
+	private explicit_type "String"
+	init_value " \"tcp://eu.thethings.network:1883\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "@todo Prévoir autre chose pour configurer/stocker les paramètres de connexion TTN
+
+!<  lien vers TTN"
+      end
+
+      attribute 128426 "clientId"
+	class_attribute public explicit_type "String"
+	init_value " \"mes_ruches\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Application ID"
+      end
+
+      attribute 128554 "username"
+	private explicit_type "String"
+	init_value " \"mes_ruches\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!<  nom d'utilisateur"
+      end
+
+      attribute 128682 "password"
+	private explicit_type "String"
+	init_value " \"ttn-account-v2.vC-aqMRnLLzGkNjODWgy81kLqzxBPAT8_mE-L7U2C_w\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!<  mot de passe TTN"
+      end
+
+      operation 128042 "CommunicationMQTT"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "context" explicit_type "Context"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur de la classe CommunicationMQTT
+
+@fn CommunicationMQTT::CommunicationMQTT(Context context)
+@param context
+"
+      end
+
+      operation 128170 "setCallback"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "callback" explicit_type "MqttCallbackExtended"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief
+
+@fn CommunicationMQTT::setCallback(MqttCallbackExtended callback)
+@param callback le retour
+"
+      end
+
+      operation 128298 "connecter"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief connection au ttn
+
+@fn CommunicationMQTT::connecter()
+@param
+"
+      end
+
+      operation 128426 "reconnecter"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief reconnection au ttn
+
+@fn CommunicationMQTT::reconnecter()
+@param
+"
+      end
+
+      operation 128554 "deconnecter"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief deconetion du ttn
+
+@fn CommunicationMQTT::deconnecter()
+@param
+"
+      end
+
+      operation 128682 "estConnecte"
+	class_operation public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief boolaine retourne si le ttn est connecter
+
+@fn CommunicationMQTT::estConnecte()
+@param
+"
+      end
+
+      operation 128810 "souscrireTopic"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "topic" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief S'abone a un device
+
+@fn CommunicationMQTT::souscrireTopic(String topic)
+@param topic le topic au quel s'aboner
+"
+      end
+
+      operation 128938 "decoderMessage"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief decode le message recu
+
+@fn CommunicationMQTT::decoderMessage(String message)
+@param message le message reçu
+"
+      end
+
+      operation 129066 "decoderPayload"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param in name "port" explicit_type "int"
+	  param in name "payload" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief d'ecode le payload
+@fn CommunicationMQTT::decoderPayload(String payload)
+@param payload
+"
+      end
+
+      operation 129194 "decoderDonneInterieure"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "payload" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief decode les donné de l'interieur de la ruche
+@param payload
+"
+      end
+
+      operation 129322 "decoderDonneExterieure"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "payload" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief decode les donné de l'exterieure de la ruche
+@param payload
+"
+      end
+
+      operation 129450 "extraireHorodatage"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief extrait l'horodatage
+@param message
+"
+      end
+    end
+
+    class 128170 "MainActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@file MainActivity.java
+@brief Déclaration de la classe MainActivity
+@author Ethan VILLESSECHE
+
+
+Logcat : MainActivity:|RucheActivity:|Ruche:|CommunicationMQTT:
+
+
+@class MainActivity
+@brief Déclaration de la classe MainActivity
+"
+      classrelation 128042 // <generalisation>
+	relation 128042 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128042 // <generalisation>
+	  b parent class_ref 128298 // AppCompatActivity
+      end
+
+      attribute 128810 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"MainActivity\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+"
+      end
+
+      attribute 128938 "NB_RUCHES"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nombre max. de ruches"
+      end
+
+      classrelation 128170 // ruches (<unidirectional association>)
+	relation 128170 --->
+	  stereotype "List"
+	  a role_name "ruches" init_value " new ArrayList<>()" private
+	    comment "Attributs
+
+!< la liste des ruches connues"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128170 // ruches (<unidirectional association>)
+	  b parent class_ref 128426 // Ruche
+      end
+
+      classrelation 128298 // communicationMQTT (<unidirectional association>)
+	relation 128298 --->
+	  a role_name "communicationMQTT" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128298 // communicationMQTT (<unidirectional association>)
+	  b parent class_ref 128042 // CommunicationMQTT
+      end
+
+      attribute 129066 "recyclerView"
+	private explicit_type "RecyclerView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Ressources graphiques
+
+ la vue"
+      end
+
+      attribute 129194 "adapter"
+	private explicit_type "RecyclerView.Adapter"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " l'adaptateur"
+      end
+
+      attribute 129322 "layoutManager"
+	private explicit_type "RecyclerView.LayoutManager"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " le gestionnaire de mise en page"
+      end
+
+      attribute 129450 "swipeRefreshLayout"
+	private explicit_type "SwipeRefreshLayout"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129578 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée à la création de l'activité MainActivity
+
+@fn MainActivity::onCreate(Bundle savedInstanceState)
+@param savedInstanceState
+"
+      end
+
+      operation 129706 "recupererRuches"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode pour récupérer les ruches
+
+@fn MainActivity::recupererRuches()
+"
+      end
+
+      operation 129834 "rafraichir"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "ruches" explicit_type "List<Ruche>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode pour rafraîchir la liste des ruches connues
+
+@fn MainActivity::rafraichir(List<Ruche> ruches)
+"
+      end
+    end
+
+    class 128426 "Ruche"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class Ruche
+@brief Déclaration de la classe Ruche
+"
+      classrelation 128554 // <realization>
+	relation 128554 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128554 // <realization>
+	  b parent class_ref 128682 // Serializable
+      end
+
+      attribute 129706 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"Ruche\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+"
+      end
+
+      attribute 129834 "nom"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Attributs
+
+!< Le nom de la ruche."
+      end
+
+      attribute 129962 "deviceID"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< l'id de la ruche"
+      end
+
+      attribute 130090 "infos"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Les informations sur la ruche"
+      end
+
+      attribute 130218 "poids"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Le poids de la ruche"
+      end
+
+      attribute 130346 "abonne"
+	package explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Indique si la ruche est abonné à un topic"
+      end
+
+      operation 130090 "Ruche"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "nom" explicit_type "String"
+	  param in name "deviceID" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur de la classe Ruche
+
+@fn Ruche::Ruche(String nom, String infos, int poids)
+@param nom
+"
+      end
+
+      operation 130218 "setNom"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur set du nom de la ruche
+
+@fn Ruche::setNom(String nom)
+@param nom le nouveau nom de la ruche
+"
+      end
+
+      operation 130346 "setDeviceID"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "deviceID" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur set du device id de la ruche
+
+@fn Ruche::setDeviceID(String nom)
+@param deviceID le nouveau device id de la ruche
+"
+      end
+
+      operation 130474 "setInfos"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "Infos" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur set des informations de la ruche
+
+@fn Ruche::setInfos(String nom)
+@param Infos les nouvelles informations de la ruche
+"
+      end
+
+      operation 130602 "setPoids"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "Poids" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur set du poids de la ruche
+
+@fn Ruche::setPoids(String nom)
+@param Poids le nouveau poids de la ruche
+"
+      end
+
+      operation 130730 "getNom"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur get du nom de la ruche
+
+@fn Ruche::getNom()
+@return String le nom de la ruche
+"
+      end
+
+      operation 130858 "getDeviceID"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur get du device id de la ruche
+
+@fn Ruche::getDeviceID()
+@return String le device id de la ruche
+"
+      end
+
+      operation 130986 "getInfos"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur get des information de la ruche
+
+@fn Ruche::getInfos()
+@return String les information  de la ruche
+"
+      end
+
+      operation 131114 "getPoids"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur get du poids de la ruche
+
+@fn Ruche::getPoids()
+@return String le poids de la ruche
+"
+      end
+
+      operation 131242 "estAbonne"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur get de abonne
+
+@return boolean abonne
+"
+      end
+
+      operation 131370 "souscrireTopic"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Permet de s'abonner au topic TTN du deviceID de la ruche
+
+"
+      end
+    end
+
+    class 128554 "MenuActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128426 // <generalisation>
+	relation 128426 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128426 // <generalisation>
+	  b parent class_ref 128298 // AppCompatActivity
+      end
+
+      attribute 129578 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"MenuActivity\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129962 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@Nullable ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 128810 "RucheActivity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128682 // <generalisation>
+	relation 128682 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128682 // <generalisation>
+	  b parent class_ref 128298 // AppCompatActivity
+      end
+
+      attribute 130474 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"RucheActivity\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+"
+      end
+
+      classrelation 128810 // ruche (<unidirectional association>)
+	relation 128810 --->
+	  a role_name "ruche" init_value " null" private
+	    comment "
+Attributs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128810 // ruche (<unidirectional association>)
+	  b parent class_ref 128426 // Ruche
+      end
+
+      attribute 130602 "nom_ruche"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130730 "topic_ruche"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130858 "message_ruche"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130986 "poids_ruche"
+	class_attribute private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131114 "temperature_interieure_ruche"
+	class_attribute private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131242 "temperature_exterieure_ruche"
+	class_attribute private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131370 "humidite_interieure_ruche"
+	class_attribute private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131498 "humidite_exterieure_ruche"
+	class_attribute private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131626 "pression_ruche"
+	class_attribute private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131754 "ensoleillement_ruche"
+	class_attribute private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 131498 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 131626 "afficherInfo"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief afficher les information d'un ruche
+@fn RucheActivity::afficherInfo()
+"
+      end
+
+      operation 131754 "afficherNom"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief afficher le nom d'un ruche
+@fn RucheActivity::afficherNom(String message)
+"
+      end
+
+      operation 131882 "afficherTopic"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@brief afficher le topic
+@fn RucheActivity::afficherTopic(String message)
+
+@param message
+"
+      end
+
+      operation 132010 "afficherJSON"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@briefaffiche le dernier message JSON recu
+@param message
+"
+      end
+
+      operation 132138 "communiquerTTN"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "deviceID" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief paramete la communication avec le ttn
+
+@param deviceID
+"
+      end
+
+      operation 132266 "estBonneRuche"
+	private explicit_return_type "boolean"
+	nparams 2
+	  param in name "deviceID" explicit_type "String"
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief verifie si le json reçu correspond a la ruche souhaité
+@param deviceID
+@param message
+@return
+"
+      end
+
+      operation 132394 "formaterHorodatge"
+	private explicit_return_type "String"
+	nparams 1
+	  param in name "horodatage" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@briefformate l'horodatage
+@param horodatage
+@return
+"
+      end
+
+      operation 132522 "afficherPoids"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief affichie le poid dans le layout
+@param message
+"
+      end
+
+      operation 132650 "afficherTemperatureInterieure"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief affichie la Temperature interieure  dans le layout
+@param message
+"
+      end
+
+      operation 132778 "afficherTemperatureExterieure"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief affichie la Temperature exterieure dans le layout
+@param message
+"
+      end
+
+      operation 132906 "afficherHumiditeInterieure"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief affichie l'humiditer interieure dans le layout
+@param message
+"
+      end
+
+      operation 133034 "afficherHumiditerExterieure"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief affichie l'humiditer exterieure dans le layout
+@param message
+"
+      end
+
+      operation 133162 "afficherPression"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief affichie la pression  dans le layout
+@param message
+"
+      end
+
+      operation 133290 "afficherEnsoleillement"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief affichie l'Ensoleillement dans le layout
+@param message
+"
+      end
+    end
+
+    class 128938 "RucheAdapter"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128938 // <realization>
+	relation 128938 -_-|>
+	  a public
+	    java "${type}<RuchesViewHolder>"
+	    classrelation_ref 128938 // <realization>
+	  b parent class_ref 129194 // Adapter
+      end
+
+      attribute 131882 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"RucheAdapter\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132010 "mContext"
+	private explicit_type "Context"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 129066 // ruches (<unidirectional association>)
+	relation 129066 --->
+	  stereotype "List"
+	  a role_name "ruches" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129066 // ruches (<unidirectional association>)
+	  b parent class_ref 128426 // Ruche
+      end
+
+      operation 133418 "RucheAdapter"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "context" explicit_type "Context"
+	  param inout name "ruches" explicit_type "List<Ruche>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133546 "onCreateViewHolder"
+	public return_type class_ref 129066 // RuchesViewHolder
+	nparams 2
+	  param inout name "parent" explicit_type "ViewGroup"
+	  param in name "viewType" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 133674 "onBindViewHolder"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "holder" type class_ref 129066 // RuchesViewHolder
+	  param in name "position" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}@NonNull ${t0} ${p0}, final ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 133802 "getItemCount"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 129066 "RuchesViewHolder"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129194 // <generalisation>
+	relation 129194 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129194 // <generalisation>
+	  b parent class_ref 129322 // ViewHolder
+      end
+
+      attribute 132138 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"RuchesViewHolder\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132266 "nom"
+	const_attribute package explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132394 "info"
+	const_attribute package explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132522 "poids"
+	const_attribute package explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132650 "image"
+	package explicit_type "CircleImageView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132778 "cardview"
+	package explicit_type "CardView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 129322 // ruche (<unidirectional association>)
+	relation 129322 --->
+	  a role_name "ruche" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129322 // ruche (<unidirectional association>)
+	  b parent class_ref 128426 // Ruche
+      end
+
+      operation 133930 "RuchesViewHolder"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "itemView" explicit_type "View"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}final ${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134058 "afficher"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "ruche" type class_ref 128426 // Ruche
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    classinstance 128042 ""
+      type class_ref 128810 // RucheActivity
+      attributes
+        end
+      relations
+        end
+    end
+
+  end
+
+  deploymentview 128042 "beehoneyt"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128042 "CommunicationMQTT"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Context;
+import android.util.Log;
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import java.util.Iterator;
+${definition}"
+      associated_elems
+	class_ref 128042 // CommunicationMQTT
+      end
+    end
+
+    artifact 128170 "MainActivity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.os.Bundle;
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+${definition}"
+      associated_elems
+	class_ref 128170 // MainActivity
+      end
+    end
+
+    artifact 128298 "MenuActivity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+${definition}"
+      associated_elems
+	class_ref 128554 // MenuActivity
+      end
+    end
+
+    artifact 128426 "Ruche"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.util.Log;
+import java.io.Serializable;
+${definition}"
+      associated_elems
+	class_ref 128426 // Ruche
+      end
+    end
+
+    artifact 128554 "RucheActivity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.TimeZone;
+${definition}"
+      associated_elems
+	class_ref 128810 // RucheActivity
+      end
+    end
+
+    artifact 128682 "RucheAdapter"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.List;
+${definition}"
+      associated_elems
+	class_ref 128938 // RucheAdapter
+      end
+    end
+
+    artifact 128810 "RuchesViewHolder"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
+${definition}"
+      associated_elems
+	class_ref 129066 // RuchesViewHolder
+      end
+    end
+  end
+
+  usecaseview 128042 "Cas_utilisation"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    sequencediagram 128170 "visualiser les donn�"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    usecasediagram 134698 "cas d'utilisation"
+      usecasediagramsettings end
+      size A4
+    end
+
+    class 135978 "Ruche"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 136106 "Utilisateur"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    usecase 128042 "Visualiser les donn�es"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128170 "G�rer kes ruches"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128298 "Ajouter une ruche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 128042
+	---|>
+	  on usecase_ref 128170 // G�rer kes ruches
+      end
+    end
+
+    usecase 128426 "Editer une ruche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 128170
+	---|>
+	  on usecase_ref 128170 // G�rer kes ruches
+      end
+    end
+
+    usecase 128554 "Supprimer une ruche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 128298
+	---|>
+	  on usecase_ref 128170 // G�rer kes ruches
+      end
+    end
+  end
+
+  classview 134826 "Vue_classe"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 128042 "Diagramme de class"
+      classdiagramsettings member_max_width 0 end
+      size A4
+    end
+  end
+
+  deploymentview 134570 "Vue_deployment"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    deploymentdiagram 147754 "Diagrame_deploiment"
+      deploymentdiagramsettings
+       end
+      size A4
+    end
+
+    deploymentnode 134570 "Tablette"
+    end
+
+    deploymentnode 134698 "Pc"
+    end
+
+    deploymentnode 134826 "Routeur"
+    end
+
+    deploymentnode 134954 "The Thing Gateway"
+    end
+
+    deploymentnode 135082 "The Things Uno"
+    end
+
+    deploymentnode 135210 "The Thing Network"
+    end
+  end
+end

@@ -1,0 +1,134 @@
+class RucheActivity
+!!!131498.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ruche);
+
+        nom_ruche = (TextView) this.findViewById(R.id.nom_ruche);
+        topic_ruche = (TextView) this.findViewById(R.id.topic_ruche);
+        message_ruche = (TextView) this.findViewById(R.id.message_ruche);
+        poids_ruche = (TextView) this.findViewById(R.id.poids_ruche);
+        temperature_interieure_ruche = (TextView) this.findViewById(R.id.temperature_interieure_ruche);
+        temperature_exterieure_ruche = (TextView) this.findViewById(R.id.temperature_exterieure_ruche);
+        humidite_interieure_ruche = (TextView) this.findViewById(R.id.humidite_interieure_ruche);
+        humidite_exterieure_ruche = (TextView) this.findViewById(R.id.humidite_exterieure_ruche);
+        pression_ruche = (TextView) this.findViewById(R.id.pression_ruche);
+        ensoleillement_ruche = (TextView) this.findViewById(R.id.ensoleillement_ruche);
+
+
+
+        Intent intent = getIntent();
+        // Attention : un nouvel objet Ruche est créé
+        ruche = (Ruche)intent.getSerializableExtra("Ruche");
+        if(ruche != null)
+        {
+            Log.d(TAG, "Ruche : " + ruche.getNom() + " " + ruche);
+            afficherInfo();
+            communiquerTTN(ruche.getDeviceID());
+        }
+!!!131626.java!!!	afficherInfo() : void
+        afficherNom(ruche.getNom());
+        afficherTopic(ruche.getDeviceID());
+!!!131754.java!!!	afficherNom(in message : String) : void
+        nom_ruche.setText("Nom : " + message);
+!!!131882.java!!!	afficherTopic(in message : String) : void
+        topic_ruche.setText("Topic : " + message);
+!!!132010.java!!!	afficherJSON(in message : String) : void
+        message_ruche.setText("Message : " + message);
+!!!132138.java!!!	communiquerTTN(in deviceID : String) : void
+        Log.d(TAG, "deviceID : " + deviceID);
+        CommunicationMQTT.setCallback(new MqttCallbackExtended()
+        {
+            @Override
+            public void connectComplete(boolean b, String s) {
+
+            }
+            @Override
+            public void connectionLost(Throwable throwable) {
+
+            }
+            @Override
+            public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception
+            {
+                Log.d(TAG, "Topic : " + topic);
+                Log.d(TAG, "Message : " + mqttMessage.toString());
+                if(estBonneRuche(deviceID, mqttMessage.toString()))
+                {
+                    afficherJSON(mqttMessage.toString());
+                    CommunicationMQTT.decoderMessage(mqttMessage.toString());
+                    String horodatage = CommunicationMQTT.extraireHorodatage(mqttMessage.toString());
+                    String horodatageFormate = formaterHorodatge(horodatage);
+                    Log.d(TAG, "Horodatage formaté : " + horodatageFormate);
+                }
+
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken)
+            {
+            }
+        });
+!!!132266.java!!!	estBonneRuche(in deviceID : String, in message : String) : boolean
+        try
+        {
+            JSONObject json = null;
+            Iterator<String> it = null;
+
+            json = new JSONObject(message);
+            int port = json.getInt("port");
+
+            it = json.keys();
+            while (it.hasNext())
+            {
+                String cle = it.next();
+                Log.i(TAG, "clé = " + cle);
+                Log.i(TAG, "valeur = " + json.getString(cle));
+                //Log.i(TAG, "type = " + json.get(cle).getClass());
+
+                if (cle.equals("dev_id"))
+                {
+                    if(json.getString(cle).equals(deviceID)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+!!!132394.java!!!	formaterHorodatge(in horodatage : String) : String
+        /**
+         * @todo Finaliser le formatage de l'horodatage
+         */
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.FRENCH);
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = null;
+        String horodatageFormate = horodatage;
+        try
+        {
+            date = df.parse(horodatage);
+            df.setTimeZone(TimeZone.getDefault());
+            horodatageFormate = df.format(date);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return horodatageFormate;
+!!!132522.java!!!	afficherPoids(in message : String) : void
+        poids_ruche.setText("Poids : " + message + "kg");
+!!!132650.java!!!	afficherTemperatureInterieure(in message : String) : void
+        temperature_interieure_ruche.setText("Temperature interieure : " + message + " °C");
+!!!132778.java!!!	afficherTemperatureExterieure(in message : String) : void
+        temperature_exterieure_ruche.setText("Temperature exterieure : " + message + " °C");
+!!!132906.java!!!	afficherHumiditeInterieure(in message : String) : void
+        humidite_interieure_ruche.setText("Humidité interieure : " + message + " %");
+!!!133034.java!!!	afficherHumiditerExterieure(in message : String) : void
+        humidite_exterieure_ruche.setText("Humidité exterieure : " + message+ " %");
+!!!133162.java!!!	afficherPression(in message : String) : void
+        pression_ruche.setText("Pression atmosphérique : " + message + " hPa");
+!!!133290.java!!!	afficherEnsoleillement(in message : String) : void
+        ensoleillement_ruche.setText("Ensoleillement : " + message + " lux");
