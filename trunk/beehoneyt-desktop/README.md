@@ -1,16 +1,34 @@
+\mainpage Le projet 
+
+\tableofcontents
+
+Système autonome permettant de connaître à distance certains paramètres d'une ruche afin d'assurer son suivi et d'évaluer la santé des abeilles.
+
+\section section_tdm Table des matières
+- \ref page_README
+- \ref page_changelog
+- \ref page_about
+- \ref page_licence
+
+\section section_infos Informations
+
+\author Théo Ackermann <theoackrm@gmail.com>
+\date 2020
+\version 0.1
+\see https://svn.riouxsvn.com/
+
+
 \page page_README README
 
-## Projet Bee-Honey't version 0.2
+[TOC]
 
-\a Théo Ackermann <theoackrm@gmail.com>
+# Projet {#projet}
 
-## Description
+## Présentation {#presentation}
 
 Système autonome permettant de connaître à distance certains paramètres d'une ruche afin d'assurer son suivi et d'évaluer la santé des abeilles.
 
 Version : PC (*desktop*)
-
-[Dépôt SVN](https://svn.riouxsvn.com/bee-honey-t)
 
 ## Fichier de configuration
 
@@ -20,7 +38,7 @@ Le fichier `configuration.ini` contient :
 * le nombre de ruches
 * les paramètres de chaque ruche
 
-~~~ {.ini}
+```ini
 [General]
 NbRuches=2
 
@@ -45,31 +63,29 @@ Hostname=eu.thethings.network
 Password=
 Port=1883
 Username=mes_ruches
-~~~
+```
 
-## Recette de l'application PC (desktop)
+## Recette de l'application PC (desktop) {#recette}
 
 * Consulter les données d'une ruche
 * Recevoir les données actuelles des ruches (MQTT/Json)
 * Éditer les ruches
 
-\mainpage Bee-Honey't
+## Informations {#informations}
 
-Système autonome permettant de connaître à distance certains paramètres d'une ruche afin d'assurer son suivi et d'évaluer la santé des abeilles.
+\author Théo Ackermann <theoackrm@gmail.com>
+\date 2020
+\version 0.2
+\see https://svn.riouxsvn.com/bee-honey-t
 
-\a Théo Ackermann <theoackrm@gmail.com>
-
-\section section_tdm Table des matières
-- \ref page_README
-- \ref page_changelog
-- \ref todo
-- \ref page_about
-- \ref page_licence
 
 \page page_about A propos
-\author \a Théo Ackermann <theoackrm@gmail.com>
+
+\author Théo Ackermann <theoackrm@gmail.com>
+\date 2020
 \version 0.2
-\date \b 2020
+\see https://svn.riouxsvn.com/bee-honey-t
+
 
 \page page_licence Licence GPL
 

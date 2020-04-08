@@ -1,39 +1,63 @@
-\page page_README README
+\mainpage Le projet 
 
-## Projet Bee-Honey't version 0.2
-
-\a Ethan Villesseche <villesseche.ethan@gmail.com>
-
-## Description
+\tableofcontents
 
 Système autonome permettant de connaître à distance certains paramètres d'une ruche afin d'assurer son suivi et d'évaluer la santé des abeilles.
 
 Version : PC (*mobile*)
 
-[Dépôt SVN](https://svn.riouxsvn.com/bee-honey-t)
+\section section_tdm Table des matières
+- \ref page_README
+- \ref page_changelog
+- \ref page_about
+- \ref page_licence
 
-## Recette de l'application PC (mobile)
+\section section_infos Informations
+
+\author Ethan Villesseche <villesseche.ethan@gmail.com>
+\date 2020
+\version 0.2
+\see https://svn.riouxsvn.com/bee-honey-t
+
+
+\page page_README README
+
+[TOC]
+
+# Projet {#projet}
+
+## Présentation {#presentation}
+
+Système autonome permettant de connaître à distance certains paramètres d'une ruche afin d'assurer son suivi et d'évaluer la santé des abeilles.
+
+Version : PC (*mobile*)
+
+## Base de données {#bdd}
+
+~~~ {.sql}
+
+~~~
+
+## Recette de l'application PC (mobile) {#recette}
 
 * Consulter les données d'une ruche
 * Recevoir les données actuelles des ruches (MQTT/Json)
 
-\mainpage Bee-Honey't
+## Informations {#informations}
 
-Système autonome permettant de connaître à distance certains paramètres d'une ruche afin d'assurer son suivi et d'évaluer la santé des abeilles.
+\author Ethan Villesseche <villesseche.ethan@gmail.com>
+\date 2020
+\version 0.2
+\see https://svn.riouxsvn.com/bee-honey-t
 
-\a Ethan Villesseche <villesseche.ethan@gmail.com>
-
-\section section_tdm Table des matières
-- \ref page_README
-- \ref page_changelog
-- \ref todo
-- \ref page_about
-- \ref page_licence
 
 \page page_about A propos
-\author \a Ethan Villesseche <villesseche.ethan@gmail.com>
+
+\author Ethan Villesseche <villesseche.ethan@gmail.com>
+\date 2020
 \version 0.2
-\date \b 2020
+\see https://svn.riouxsvn.com/bee-honey-t
+
 
 \page page_licence Licence GPL
 
