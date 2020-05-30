@@ -118,33 +118,35 @@ void Communication::decoderJson(const QByteArray &json)
 
                 if(objet.contains("temperatureInt"))
                 {
-                    qDebug() << Q_FUNC_INFO << "temperatureInt";
                     emit nouvelleValeurTemperatureInterieure(nomDeLaRuche, extraireTemperatureInterieure(objet), horodatage);
                 }
                 if(objet.contains("temperatureExt"))
                 {
-                    qDebug() << Q_FUNC_INFO << "temperatureExt";
-                    emit nouvelleValeurTemperatureExterieure(nomDeLaRuche, extraireTemperatureInterieure(objet), horodatage);
+                    emit nouvelleValeurTemperatureExterieure(nomDeLaRuche, extraireTemperatureExterieure(objet), horodatage);
                 }
                 if(objet.contains("humiditeInt"))
                 {
-                    qDebug() << Q_FUNC_INFO << "humiditeInt";
                     emit nouvelleValeurHumiditeInterieure(nomDeLaRuche, extraireHumiditeInterieure(objet), horodatage);
+                }
+                if(objet.contains("humiditeExt"))
+                {
+                    emit nouvelleValeurHumiditeExterieure(nomDeLaRuche, extraireHumiditeExterieure(objet), horodatage);
                 }
                 if(objet.contains("ensoleillement"))
                 {
-                    qDebug() << Q_FUNC_INFO << "ensoleillement";
                     emit nouvelleValeurEnsoleillement(nomDeLaRuche, extraireEnsoleillement(objet), horodatage);
                 }
                 if(objet.contains("pression"))
                 {
-                    qDebug() << Q_FUNC_INFO << "pression";
                     emit nouvelleValeurPression(nomDeLaRuche, extrairePression(objet), horodatage);
                 }
                 if(objet.contains("poids"))
                 {
-                    qDebug() << Q_FUNC_INFO << "poids";
                     emit nouvelleValeurPoids(nomDeLaRuche, extrairePoids(objet), horodatage);
+                }
+                if(objet.contains("charge"))
+                {
+                    emit nouvelleValeurCharge(nomDeLaRuche, extraireCharge(objet), horodatage);
                 }
             }
         }
@@ -176,7 +178,7 @@ QString Communication::extraireDeviceID(QJsonObject objetJSON, QStringList liste
 }
 
 /**
- * @brief Méthode pour extraire la temperature de l'objet JSON
+ * @brief Méthode pour extraire la température intérieure de l'objet JSON
  * 
  * @param objetJSON
  * @return double
@@ -186,9 +188,19 @@ double Communication::extraireTemperatureInterieure(QJsonObject objetJSON)
     return objetJSON.value(QString("temperatureInt")).toDouble();
 }
 
+/**
+ * @brief Méthode pour extraire la température extérieure de l'objet JSON
+ *
+ * @param objetJSON
+ * @return double
+ */
+double Communication::extraireTemperatureExterieure(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("temperatureExt")).toDouble();
+}
 
 /**
- * @brief Méthode pour extraire l'humidité de l'objet JSON
+ * @brief Méthode pour extraire l'humidité intérieure de l'objet JSON
  * 
  * @param objetJSON
  * @return double
@@ -198,6 +210,16 @@ double Communication::extraireHumiditeInterieure(QJsonObject objetJSON)
     return objetJSON.value(QString("humiditeInt")).toDouble();
 }
 
+/**
+ * @brief Méthode pour extraire l'humidité extérieure de l'objet JSON
+ *
+ * @param objetJSON
+ * @return double
+ */
+double Communication::extraireHumiditeExterieure(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("humiditeExt")).toDouble();
+}
 /**
  * @brief Méthode pour extraire l'ensoleillement de l'objet JSON
  * 
@@ -229,6 +251,17 @@ int Communication::extrairePression(QJsonObject objetJSON)
 double Communication::extrairePoids(QJsonObject objetJSON)
 {
     return objetJSON.value(QString("poids")).toDouble();
+}
+
+/**
+ * @brief Méthode pour extraire la charge de la batterie le l'objet JSON
+ *
+ * @param objetJSON
+ * @return int
+ */
+int Communication::extraireCharge(QJsonObject objetJSON)
+{
+    return objetJSON.value(QString("charge")).toInt();
 }
 
 /**

@@ -575,6 +575,7 @@ void Ihm::initialiserEvenements()
     connect(communication, SIGNAL(nouvelleValeurEnsoleillement(QString,int,QString)), this, SLOT(setValeurEnsoleillement(QString,int,QString)));
     connect(communication, SIGNAL(nouvelleValeurPression(QString,int,QString)), this, SLOT(setValeurPression(QString,int,QString)));
     connect(communication, SIGNAL(nouvelleValeurPoids(QString,double,QString)), this, SLOT(setValeurPoids(QString,double,QString)));
+    connect(communication, SIGNAL(nouvelleValeurCharge(QString,int,QString)), this, SLOT(setValeurCharge(QString,int,QString)));
 
     // Communication
     connect(communication, SIGNAL(nouvelEtatConnexion(int)), this, SLOT(changerEtatConnexion(int)));
@@ -669,9 +670,9 @@ void Ihm::setValeurHumiditeInterieure(QString nomDeLaRuche, double humidite, QSt
 {
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
-        ui->lcdNumber_humidite->display(humidite);
+        ui->lcdNumber_humidite_interieure->display(humidite);
         QString temps = horodatage;
-        ui->label_maj_humidite->setText(temps);
+        ui->label_maj_humidite_interieure->setText(temps);
     }
     QPointF mesure(mesuresHumidite.size(), humidite);
     mesuresHumidite.push_back(mesure);
@@ -689,9 +690,9 @@ void Ihm::setValeurHumiditeExterieure(QString nomDeLaRuche, double humidite, QSt
 {
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
-        ui->lcdNumber_humidite->display(humidite);
+        ui->lcdNumber_humidite_exterieure->display(humidite);
         QString temps = horodatage;
-        ui->label_maj_humidite->setText(temps);
+        ui->label_maj_humidite_exterieure->setText(temps);
     }
     QPointF mesure(mesuresHumidite.size(), humidite);
     mesuresHumidite.push_back(mesure);
@@ -711,7 +712,7 @@ void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QStr
     {
         ui->lcdNumber_ensoleillement->display(ensoleillement);
         QString temps = horodatage;
-        ui->label_maj_luminosite->setText(temps);
+        ui->label_maj_ensoleillement->setText(temps);
     }
     QDateTime qdatetime;
     qint64 msDepuisEpoch;
@@ -764,6 +765,26 @@ void Ihm::setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage)
     QPointF mesure(mesuresPoids.size(), poids);
     mesuresPoids.push_back(mesure);
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouveau poids :" << poids;
+}
+
+/**
+ * @brief Méthode pour définir la charge dans l'IHM
+ *
+ * @param nomDeLaRuche
+ * @param charge
+ * @param horodatage
+ */
+void Ihm::setValeurCharge(QString nomDeLaRuche, int charge, QString horodatage)
+{
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+    {
+        ui->lcdNumber_charge->display(charge);
+        QString temps = horodatage;
+        ui->label_maj_charge->setText(temps);
+    }
+    QPointF mesure(mesuresCharge.size(), charge);
+    mesuresCharge.push_back(mesure);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle charge :" << charge;
 }
 
 /**

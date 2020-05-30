@@ -79,6 +79,7 @@ public slots:
     void setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage);
     void setValeurPression(QString nomDeLaRuche, int pression, QString horodatage);
     void setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage);
+    void setValeurCharge(QString nomDeLaRuche, int charge, QString horodatage);
 
 private slots:
     void on_pushButton_ruches_clicked();
@@ -127,6 +128,9 @@ private:
 
     QLineSeries *poids;                             //!< La courbe du poids.
     QVector<QPointF> mesuresPoids;                  //!< Les mesures pour la courbe du poids.
+
+    QLineSeries *charge;                             //!< La courbe de la charge.
+    QVector<QPointF> mesuresCharge;                  //!< Les mesures pour la courbe de la charge.
 
     void chargerIconesBoutons();
     void changerApparenceBouton(PagesIHM);

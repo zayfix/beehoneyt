@@ -47,6 +47,7 @@ private:
     int     extraireEnsoleillement(QJsonObject objetJSON);
     int     extrairePression(QJsonObject objetJSON);
     double  extrairePoids(QJsonObject objetJSON);
+    int     extraireCharge(QJsonObject objetJSON);
 
     QString formaterHorodatage(QString horodatageBrut);
 
@@ -62,6 +63,7 @@ signals:
     void nouvelleValeurHumiditeExterieure(QString nomDeLaRuche, double humiditeExterieure, QString horodatage);
     void nouvelleValeurPression(QString nomDeLaRuche, int pression, QString horodatage);
     void nouvelleValeurPoids(QString nomDeLaRuche, double poids, QString horodatage);
+    void nouvelleValeurCharge(QString nomDeLaRuche, int charge, QString horodatage);
     void nouvelEtatConnexion(int etat);
 };
 
