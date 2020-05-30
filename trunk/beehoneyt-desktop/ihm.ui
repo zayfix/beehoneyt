@@ -252,7 +252,7 @@
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="ruches">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -753,17 +753,73 @@
              </item>
              <item>
               <layout class="QGridLayout" name="gridLayout">
-               <item row="0" column="0">
-                <widget class="QChartView" name="graphicsView_ruche_1"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QChartView" name="graphicsView_ruche_3"/>
+               <item row="3" column="1">
+                <layout class="QVBoxLayout" name="verticalLayout_15">
+                 <item>
+                  <widget class="QLCDNumber" name="lcdNumber_4"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_vue_globale_4">
+                   <property name="text">
+                    <string>Aucune données</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
                <item row="0" column="1">
-                <widget class="QChartView" name="graphicsView_ruche_2"/>
+                <layout class="QVBoxLayout" name="verticalLayout_16">
+                 <item>
+                  <widget class="QLCDNumber" name="lcdNumber_2"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_vue_globale_2">
+                   <property name="text">
+                    <string>Aucune données</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
-               <item row="1" column="1">
-                <widget class="QChartView" name="graphicsView_ruche_4"/>
+               <item row="0" column="0">
+                <layout class="QVBoxLayout" name="verticalLayout_17">
+                 <item>
+                  <widget class="QLCDNumber" name="lcdNumber"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_vue_globale_1">
+                   <property name="text">
+                    <string>Aucune données</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="3" column="0">
+                <layout class="QVBoxLayout" name="verticalLayout_18">
+                 <item>
+                  <widget class="QLCDNumber" name="lcdNumber_3"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_vue_globale_3">
+                   <property name="text">
+                    <string>Aucune données</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>

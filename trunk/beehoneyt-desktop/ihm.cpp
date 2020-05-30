@@ -70,7 +70,6 @@ void Ihm::on_pushButton_graphiques_clicked()
 {
     ui->stackedWidget->setCurrentIndex(PagesIHM::PAGE_GRAPHIQUES);
     changerApparenceBouton(PagesIHM::PAGE_GRAPHIQUES);
-    afficherGraphiques();
 }
 
 /**
@@ -200,19 +199,8 @@ void Ihm::initialiserGraphiques()
     initialiserGraphiquePression();
     initialiserGraphiquePoids();
     //initialiserGraphiqueActivite();
-}
 
-/**
- * @brief Méthode qui affiche les nouvelles valeurs dans le graphique
- */
-void Ihm::afficherGraphiques()
-{
-    afficherGraphiqueTemperatureInterieure();
-    afficherGraphiqueTemperatureExterieure();
-    afficherGraphiqueHumidite();
-    afficherGraphiqueEnsoleillement();
-    afficherGraphiquePression();
-    afficherGraphiquePoids();
+    qDebug() << Q_FUNC_INFO;
 }
 
 /**
@@ -321,28 +309,37 @@ void Ihm::initialiserGraphiqueEnsoleillement()
     chart->legend()->hide();
     chart->addSeries(ensoleillement);
     chart->setTitle("Ensoleillement");
+    ensoleillement->setPointsVisible(true);
     ui->chartView_ensoleillement->setChart(chart);
     ui->chartView_ensoleillement->setRenderHint(QPainter::Antialiasing);
 
     QDateTimeAxis *axisX = new QDateTimeAxis();
-    axisX->setTickCount(7);
-    axisX->setFormat("dd/MM");
-    axisX->setTitleText("Jours");
-    // ou :
-    //axisX->setTickCount(10);
-    //axisX->setFormat("hh:mm");
-    //axisX->setTitleText("Heure");
+    axisX->setTickCount(24);
+    axisX->setFormat("hh");
+    axisX->setTitleText("Heure");
+    QDateTime qdatetime;
+    qint64 msDepuisEpochMin = qdatetime.currentSecsSinceEpoch() - 43200;
+    qint64 msDepuisEpochMax = qdatetime.currentSecsSinceEpoch() + 43200;
 
-    axisX->setMin(QDateTime::currentDateTime().addDays(-3));
-    axisX->setMax(QDateTime::currentDateTime().addDays(3));
+    qDebug() << msDepuisEpochMin << msDepuisEpochMax;
+
+    //axisX->setMin(qdatetime.fromSecsSinceEpoch(msDepuisEpochMin));
+    //axisX->setMax(qdatetime.fromSecsSinceEpoch(msDepuisEpochMax));
 
     QValueAxis *axisY = new QValueAxis();
     axisY->setTitleText("lux");
     axisY->setMin(0);
     axisY->setMax(500);
 
-    chart->setAxisY(axisY);
-    chart->setAxisX(axisX);
+    ensoleillement->attachAxis(axisX);
+    ensoleillement->attachAxis(axisY);
+
+    chart->addAxis(axisX, Qt::AlignBottom);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    //chart->setAxisY(axisY);
+    //chart->setAxisX(axisX);
+
+    chart->show();
 }
 
 /**
@@ -676,9 +673,16 @@ void Ihm::setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QStr
         QString temps = horodatage;
         ui->label_maj_luminosite->setText(temps);
     }
-    QPointF mesure(mesuresEnsoleillement.size(), ensoleillement);
+    QDateTime qdatetime;
+    qint64 msDepuisEpoch;
+    msDepuisEpoch = qdatetime.currentSecsSinceEpoch();
+    QPointF mesure(msDepuisEpoch, ensoleillement);
     mesuresEnsoleillement.push_back(mesure);
     qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle ensoleillement :" << ensoleillement;
+    qDebug() << mesuresEnsoleillement.size();
+    for(int i=0;i<mesuresEnsoleillement.size();i++)
+        qDebug() << mesuresEnsoleillement[i];
+    actualiserGraphiqueEnsoleillement();
 }
 
 /**
@@ -710,7 +714,7 @@ void Ihm::setValeurPression(QString nomDeLaRuche, int pression, QString horodata
  */
 void Ihm::setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage)
 {
-    poids = poids*0.001; // valeur à un dixième
+    //poids = poids*0.001; // valeur à un dixième
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
         ui->lcdNumber_poids->display(poids);
@@ -818,11 +822,19 @@ void Ihm::afficherGraphiqueHumidite()
 /**
  * @brief Méthode qui met à jour les mesures de l'ensoleillement dans le graphique associée
  */
-void Ihm::afficherGraphiqueEnsoleillement()
+void Ihm::actualiserGraphiqueEnsoleillement()
 {
-    ensoleillement->clear();
+    //ensoleillement->clear();
+    ensoleillement->setPointsVisible(true);
+    ensoleillement->setVisible(true);
+    ensoleillement->show();
     for(int i=0;i<mesuresEnsoleillement.size();i++)
+    {
         ensoleillement->append(mesuresEnsoleillement[i]);
+        qDebug() << Q_FUNC_INFO << mesuresEnsoleillement[i];
+    }
+
+    qDebug() << Q_FUNC_INFO << "Nouvelle valeur sur le graphique d'ensoleillement";
 }
 
 /**

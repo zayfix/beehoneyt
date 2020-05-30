@@ -136,11 +136,9 @@ private:
     void afficherGraphiqueTemperatureInterieure();
     void afficherGraphiqueTemperatureExterieure();
     void afficherGraphiqueHumidite();
-    void afficherGraphiqueEnsoleillement();
+    void actualiserGraphiqueEnsoleillement();
     void afficherGraphiquePression();
     void afficherGraphiquePoids();
-
-    void afficherGraphiques();
 
 signals:
     void sauvegarderConfigurationTTN(QString hostname, int port, QString username, QString password);
