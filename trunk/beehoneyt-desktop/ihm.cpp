@@ -161,7 +161,16 @@ void Ihm::on_pushButton_nouvelle_ruche_clicked()
  */
 void Ihm::on_pushButton_reglage_clicked()
 {
-    ihmReglageRuche->exec();
+    if(ui->comboBox_liste_ruches->currentText() == nullptr)
+    {
+        QMessageBox::warning(this,"Erreur","Il n'y a pas de ruche.");
+        qDebug() << Q_FUNC_INFO << "Il n'y a pas de ruche.";
+    }
+    else
+    {
+        ihmReglageRuche->recupererInfoRuche(ui->comboBox_liste_ruches->currentText());
+        ihmReglageRuche->exec();
+    }
 }
 
 /**
@@ -169,22 +178,30 @@ void Ihm::on_pushButton_reglage_clicked()
  */
 void Ihm::on_pushButton_supprimer_ruche_clicked()
 {
-    QMessageBox::StandardButton reponse;
-    QString nom_ruche = ui->comboBox_liste_ruches->currentText();
-    QString question = "Êtes-vous sûr de vouloir supprimer la ruche '" + nom_ruche + "' ?";
-    reponse = QMessageBox::question(this,"",question,QMessageBox::Yes|QMessageBox::No);
-
-    if(reponse == QMessageBox::Yes)
+    if(ui->comboBox_liste_ruches->currentText() == nullptr | ui->comboBox_liste_ruches->currentText() == "Nom de la ruche")
     {
-        qDebug() << Q_FUNC_INFO << "reponse : Oui";        
-        communication->desabonnerTopic(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN);
-        ruches.remove(ui->comboBox_liste_ruches->currentIndex());
-        configuration->setRuches(ruches);
-        ui->comboBox_liste_ruches->removeItem(ui->comboBox_liste_ruches->currentIndex());
+        QMessageBox::warning(this,"Erreur","Il n'y a pas de ruche.");
+        qDebug() << Q_FUNC_INFO << "Il n'y a pas de ruche.";
     }
     else
     {
-        qDebug() << Q_FUNC_INFO << "reponse : Non";
+        QMessageBox::StandardButton reponse;
+        QString nom_ruche = ui->comboBox_liste_ruches->currentText();
+        QString question = "Êtes-vous sûr de vouloir supprimer la ruche '" + nom_ruche + "' ?";
+        reponse = QMessageBox::question(this,"",question,QMessageBox::Yes|QMessageBox::No);
+
+        if(reponse == QMessageBox::Yes)
+        {
+            qDebug() << Q_FUNC_INFO << "reponse : Oui";
+            communication->desabonnerTopic(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN);
+            ruches.remove(ui->comboBox_liste_ruches->currentIndex());
+            configuration->setRuches(ruches);
+            ui->comboBox_liste_ruches->removeItem(ui->comboBox_liste_ruches->currentIndex());
+        }
+        else
+        {
+            qDebug() << Q_FUNC_INFO << "reponse : Non";
+        }
     }
 }
 
@@ -855,4 +872,9 @@ void Ihm::afficherGraphiquePoids()
     poids->clear();
     for(int i=0;i<mesuresPoids.size();i++)
         poids->append(mesuresPoids[i]);
+}
+
+QString Ihm::getNomRuche()
+{
+    return ui->comboBox_liste_ruches->currentText();
 }

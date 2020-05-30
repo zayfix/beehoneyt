@@ -1,5 +1,6 @@
 #include "reglageruche.h"
 #include "ui_reglageruche.h"
+#include "ihm.h"
 
 /**
  * @file    reglageruche.cpp
@@ -28,4 +29,11 @@ IHMReglageRuche::~IHMReglageRuche()
 {
     delete ui;
     qDebug() << Q_FUNC_INFO;
+}
+
+void IHMReglageRuche::recupererInfoRuche(QString nomRuche)
+{
+    qDebug() << Q_FUNC_INFO;
+    ui->lineEdit_nomRuche->setText(nomRuche);
+
 }

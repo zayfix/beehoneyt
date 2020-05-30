@@ -67,6 +67,8 @@ public:
     void initialiserGraphiquePoids();
     void initialiserGraphiqueActivite();
 
+    QString getNomRuche();
+
 public slots:
     void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatureInterieure, QString horodatage);
     void setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure, QString horodatage);

@@ -11,6 +11,8 @@
 #include <QDialog>
 #include <QDebug>
 
+class Ihm;
+
 namespace Ui {
 class reglageRuche;
 }
@@ -30,8 +32,11 @@ public:
     explicit IHMReglageRuche(QWidget *parent = nullptr);
     ~IHMReglageRuche();
 
+    void recupererInfoRuche(QString);
+
 private:
     Ui::reglageRuche *ui;           //!< interface
+    Ihm *ihm;
 };
 
 #endif // REGLAGERUCHE_H
