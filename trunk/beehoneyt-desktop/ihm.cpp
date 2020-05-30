@@ -566,9 +566,12 @@ void Ihm::initialiserEvenements()
     connect(ihmNouvelleRuche, SIGNAL(nouvelleRuche(Ruche)), this, SLOT(ajouterNouvelleRuche(Ruche)));
 
     // Afficher valeur reçue TTN
-    connect(communication, SIGNAL(nouvelleValeurTemperature(QString,double,QString)), this, SLOT(setValeurTemperatureInterieure(QString,double,QString)));
+    connect(communication, SIGNAL(nouvelleValeurTemperatureInterieure(QString,double,QString)), this, SLOT(setValeurTemperatureInterieure(QString,double,QString)));
     connect(communication, SIGNAL(nouvelleValeurTemperatureExterieure(QString,double,QString)), this, SLOT(setValeurTemperatureExterieure(QString,double,QString)));
-    connect(communication, SIGNAL(nouvelleValeurHumidite(QString,double,QString)), this, SLOT(setValeurHumidite(QString,double,QString)));
+
+    connect(communication, SIGNAL(nouvelleValeurHumiditeInterieure(QString,double,QString)), this, SLOT(setValeurHumiditeInterieure(QString,double,QString)));
+    connect(communication, SIGNAL(nouvelleValeurHumiditeExterieure(QString,double,QString)), this, SLOT(setValeurHumiditeExterieure(QString,double,QString)));
+
     connect(communication, SIGNAL(nouvelleValeurEnsoleillement(QString,int,QString)), this, SLOT(setValeurEnsoleillement(QString,int,QString)));
     connect(communication, SIGNAL(nouvelleValeurPression(QString,int,QString)), this, SLOT(setValeurPression(QString,int,QString)));
     connect(communication, SIGNAL(nouvelleValeurPoids(QString,double,QString)), this, SLOT(setValeurPoids(QString,double,QString)));
@@ -662,7 +665,7 @@ void Ihm::setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatur
  * @param humidite
  * @param horodatage
  */
-void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage)
+void Ihm::setValeurHumiditeInterieure(QString nomDeLaRuche, double humidite, QString horodatage)
 {
     if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
     {
@@ -672,7 +675,27 @@ void Ihm::setValeurHumidite(QString nomDeLaRuche, double humidite, QString horod
     }
     QPointF mesure(mesuresHumidite.size(), humidite);
     mesuresHumidite.push_back(mesure);
-    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle humidité :" << humidite;
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle humidité intérieure:" << humidite;
+}
+
+/**
+ * @brief Méthode pour définir l'humidite dans l'IHM
+ *
+ * @param nomDeLaRuche
+ * @param humidite
+ * @param horodatage
+ */
+void Ihm::setValeurHumiditeExterieure(QString nomDeLaRuche, double humidite, QString horodatage)
+{
+    if(ruches[ui->comboBox_liste_ruches->currentIndex()].topicTTN.contains(nomDeLaRuche))
+    {
+        ui->lcdNumber_humidite->display(humidite);
+        QString temps = horodatage;
+        ui->label_maj_humidite->setText(temps);
+    }
+    QPointF mesure(mesuresHumidite.size(), humidite);
+    mesuresHumidite.push_back(mesure);
+    qDebug() << Q_FUNC_INFO << nomDeLaRuche << "Nouvelle humidité extérieure:" << humidite;
 }
 
 /**

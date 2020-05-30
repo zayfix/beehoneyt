@@ -544,7 +544,7 @@
                   <string notr="true">color:white;</string>
                  </property>
                  <property name="text">
-                  <string>Humidité (%)</string>
+                  <string>Humidité intérieure (%)</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>

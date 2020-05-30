@@ -40,8 +40,10 @@ private:
 
     QString extraireHorodatage(QJsonObject objetJSON);
     QString extraireDeviceID(QJsonObject objetJSON, QStringList listeCles, int position);
-    double  extraireTemperature(QJsonObject objetJSON);
-    double  extraireHumidite(QJsonObject objetJSON);
+    double  extraireTemperatureInterieure(QJsonObject objetJSON);
+    double  extraireTemperatureExterieure(QJsonObject objetJSON);
+    double  extraireHumiditeInterieure(QJsonObject objetJSON);
+    double  extraireHumiditeExterieure(QJsonObject objetJSON);
     int     extraireEnsoleillement(QJsonObject objetJSON);
     int     extrairePression(QJsonObject objetJSON);
     double  extrairePoids(QJsonObject objetJSON);
@@ -53,10 +55,11 @@ public slots:
     void changerEtatConnexion();
 
 signals:
-    void nouvelleValeurTemperature(QString nomDeLaRuche, double temperature, QString horodatage);
+    void nouvelleValeurTemperatureInterieure(QString nomDeLaRuche, double temperatureInterieure, QString horodatage);
     void nouvelleValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure, QString horodatage);
     void nouvelleValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage);
-    void nouvelleValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage);
+    void nouvelleValeurHumiditeInterieure(QString nomDeLaRuche, double humiditeInterieure, QString horodatage);
+    void nouvelleValeurHumiditeExterieure(QString nomDeLaRuche, double humiditeExterieure, QString horodatage);
     void nouvelleValeurPression(QString nomDeLaRuche, int pression, QString horodatage);
     void nouvelleValeurPoids(QString nomDeLaRuche, double poids, QString horodatage);
     void nouvelEtatConnexion(int etat);

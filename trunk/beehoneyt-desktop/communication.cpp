@@ -116,24 +116,34 @@ void Communication::decoderJson(const QByteArray &json)
             {
                 QJsonObject objet = objetJSON[listeCles.at(i)].toObject();
 
-                if(objet.contains("temperature"))
+                if(objet.contains("temperatureInt"))
                 {
-                    emit nouvelleValeurTemperature(nomDeLaRuche, extraireTemperature(objet), horodatage);
+                    qDebug() << Q_FUNC_INFO << "temperatureInt";
+                    emit nouvelleValeurTemperatureInterieure(nomDeLaRuche, extraireTemperatureInterieure(objet), horodatage);
                 }
-                if(objet.contains("humidite"))
+                if(objet.contains("temperatureExt"))
                 {
-                    emit nouvelleValeurHumidite(nomDeLaRuche, extraireHumidite(objet), horodatage);
+                    qDebug() << Q_FUNC_INFO << "temperatureExt";
+                    emit nouvelleValeurTemperatureExterieure(nomDeLaRuche, extraireTemperatureInterieure(objet), horodatage);
+                }
+                if(objet.contains("humiditeInt"))
+                {
+                    qDebug() << Q_FUNC_INFO << "humiditeInt";
+                    emit nouvelleValeurHumiditeInterieure(nomDeLaRuche, extraireHumiditeInterieure(objet), horodatage);
                 }
                 if(objet.contains("ensoleillement"))
                 {
+                    qDebug() << Q_FUNC_INFO << "ensoleillement";
                     emit nouvelleValeurEnsoleillement(nomDeLaRuche, extraireEnsoleillement(objet), horodatage);
                 }
                 if(objet.contains("pression"))
                 {
+                    qDebug() << Q_FUNC_INFO << "pression";
                     emit nouvelleValeurPression(nomDeLaRuche, extrairePression(objet), horodatage);
                 }
                 if(objet.contains("poids"))
                 {
+                    qDebug() << Q_FUNC_INFO << "poids";
                     emit nouvelleValeurPoids(nomDeLaRuche, extrairePoids(objet), horodatage);
                 }
             }
@@ -171,10 +181,11 @@ QString Communication::extraireDeviceID(QJsonObject objetJSON, QStringList liste
  * @param objetJSON
  * @return double
  */
-double Communication::extraireTemperature(QJsonObject objetJSON)
+double Communication::extraireTemperatureInterieure(QJsonObject objetJSON)
 {
-    return objetJSON.value(QString("temperature")).toDouble();
+    return objetJSON.value(QString("temperatureInt")).toDouble();
 }
+
 
 /**
  * @brief Méthode pour extraire l'humidité de l'objet JSON
@@ -182,9 +193,9 @@ double Communication::extraireTemperature(QJsonObject objetJSON)
  * @param objetJSON
  * @return double
  */
-double Communication::extraireHumidite(QJsonObject objetJSON)
+double Communication::extraireHumiditeInterieure(QJsonObject objetJSON)
 {
-    return objetJSON.value(QString("humidite")).toDouble();
+    return objetJSON.value(QString("humiditeInt")).toDouble();
 }
 
 /**

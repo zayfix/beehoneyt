@@ -72,7 +72,10 @@ public:
 public slots:
     void setValeurTemperatureInterieure(QString nomDeLaRuche, double temperatureInterieure, QString horodatage);
     void setValeurTemperatureExterieure(QString nomDeLaRuche, double temperatureExterieure, QString horodatage);
-    void setValeurHumidite(QString nomDeLaRuche, double humidite, QString horodatage);
+
+    void setValeurHumiditeInterieure(QString nomDeLaRuche, double humiditeExterieure, QString horodatage);
+    void setValeurHumiditeExterieure(QString nomDeLaRuche, double humiditeInterieure, QString horodatage);
+
     void setValeurEnsoleillement(QString nomDeLaRuche, int ensoleillement, QString horodatage);
     void setValeurPression(QString nomDeLaRuche, int pression, QString horodatage);
     void setValeurPoids(QString nomDeLaRuche, double poids, QString horodatage);

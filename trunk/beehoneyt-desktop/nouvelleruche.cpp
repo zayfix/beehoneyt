@@ -56,7 +56,7 @@ void IHMNouvelleRuche::on_buttonBox_accepted()
 {
     Ruche ruche;
     ruche.nom = ui->lineEdit_nom->text();
-    ruche.topicTTN = "mes_ruches/devices/" + ui->lineEdit_ttn->text() + "/up";
+    ruche.topicTTN = "mes-ruches/devices/" + ui->lineEdit_ttn->text() + "/up";
     ruche.adresse = ui->lineEdit_adresse->text();
     ruche.miseEnService = ui->dateEdit_mise_en_service->date().toString("dd/MM/yyyy");
     ruche.latitude = ui->lineEdit_latitude->text();
