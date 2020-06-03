@@ -10,10 +10,6 @@
 
 #include <QDialog>
 #include <QDebug>
-#include <QSettings>
-
-class Ihm;
-class Configuration;
 
 namespace Ui {
 class reglageRuche;
@@ -38,9 +34,6 @@ public:
 
 private:
     Ui::reglageRuche *ui;           //!< interface
-    Ihm *ihm;
-    Configuration *configuration;
-    QSettings settings;                 //!< objet pour gérer un fichier .ini
 };
 
 #endif // REGLAGERUCHE_H
