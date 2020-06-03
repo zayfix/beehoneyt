@@ -1,6 +1,7 @@
 #include "reglageruche.h"
 #include "ui_reglageruche.h"
 #include "ihm.h"
+#include "ruche.h"
 
 /**
  * @file    reglageruche.cpp
@@ -35,5 +36,7 @@ void IHMReglageRuche::recupererInfoRuche(QString nomRuche)
 {
     qDebug() << Q_FUNC_INFO;
     ui->lineEdit_nomRuche->setText(nomRuche);
+
+    Ruche ruche;
 
 }

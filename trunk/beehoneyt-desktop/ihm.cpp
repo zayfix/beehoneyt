@@ -178,7 +178,7 @@ void Ihm::on_pushButton_reglage_clicked()
  */
 void Ihm::on_pushButton_supprimer_ruche_clicked()
 {
-    if(ui->comboBox_liste_ruches->currentText() == nullptr | ui->comboBox_liste_ruches->currentText() == "Nom de la ruche")
+    if((ui->comboBox_liste_ruches->currentText() == nullptr) | (ui->comboBox_liste_ruches->currentText() == "Nom de la ruche"))
     {
         QMessageBox::warning(this,"Erreur","Il n'y a pas de ruche.");
         qDebug() << Q_FUNC_INFO << "Il n'y a pas de ruche.";
