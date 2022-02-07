@@ -1,5 +1,0 @@
-<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$class_q_object.html" title="QObject" alt="" coords="5,31,76,57"/>
-<area shape="rect" id="node2" href="$class_communication.html" title="Permet de recevoir les données. " alt="" coords="124,5,237,32"/>
-<area shape="rect" id="node3" href="$class_configuration.html" title="Gère le fichier INI. " alt="" coords="131,56,230,83"/>
-</map>
